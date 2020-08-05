@@ -4,6 +4,10 @@ A set of templated controls.
 
 <img src="images/templateui-home.gif" Width="300" />
 
+_What is a templated control?_
+
+It is a control defined by a template. Every control has a **ControlTemplate** property and can modify the structure that defines the control.
+
 ## Overview
 
 The controls available are:
