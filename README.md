@@ -90,6 +90,29 @@ Enables a hierarchical list with expanding and collapsing nodes that contain nes
 
 <img src="images/templateui-treeview.gif" Width="300" />
 
+## Contribute
+
+Do you want to contribute?.
+
+**Found a Bug?**
+
+If you find a bug, you can help me by submitting an [issue](https://github.com/jsuarezruiz/TemplateUI/issues). Even better, you can submit a [Pull Request](https://github.com/jsuarezruiz/TemplateUI/pulls) with a fix.
+
+**Submitting a pull request**
+
+For every contribution, you must:
+- Test your code.
+- target master branch (or an appropriate release branch if appropriate for a bug fix).
+
+**Adding documentation**
+
+To update the documentation, you must submit a  Pull Request adding or updating the existing markdowns.
+
+## Principles
+
+* Principle #1: Kept TemplateUI simple.
+* Principle #2: Any control added must allow customization using the ControlTemplate property.
+
 ## Copyright and license
 
 Code released under the [MIT license](https://opensource.org/licenses/MIT).
