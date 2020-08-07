@@ -108,6 +108,10 @@ For every contribution, you must:
 
 To update the documentation, you must submit a  Pull Request adding or updating the existing markdowns.
 
+## Feedback or Requests
+
+Use GitHub [Issues](https://github.com/jsuarezruiz/TemplateUI/issues) for bug reports and feature requests.
+
 ## Principles
 
 * Principle #1: Kept TemplateUI simple.
