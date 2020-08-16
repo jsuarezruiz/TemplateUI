@@ -42,6 +42,12 @@ Shows a control that indicates the progress percentage of an on-going operation 
 
 <img src="images/templateui-circleprogressbar.png" Width="300" />
 
+### ComparerView
+
+Provides an option for displaying a split-screen of two views, which can help you to make comparisons.
+
+<img src="images/templateui-comparerview.gif" Width="300" />
+
 ### DataVisualization
 
 Several series graphs.
