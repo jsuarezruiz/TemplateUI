@@ -135,6 +135,10 @@ Use GitHub [Issues](https://github.com/jsuarezruiz/TemplateUI/issues) for bug re
 * Principle #1: Kept TemplateUI simple.
 * Principle #2: Any control added must allow customization using the ControlTemplate property.
 
+## Known Issues
+
+* A lot of the controls are made up of basic shapes. Gestures don't work with Shapes on iOS. This affects some control like Rate. (waiting [PR #11419](https://github.com/xamarin/Xamarin.Forms/pull/11419))
+
 ## Copyright and license
 
 Code released under the [MIT license](https://opensource.org/licenses/MIT).
