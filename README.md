@@ -66,6 +66,12 @@ Use this control to add an attention–getting text message that scrolls continu
 
 <img src="images/templateui-marquee.gif" Width="300" />
 
+### ProgressBar
+
+Represents progress as a horizontal bar that is filled to a percentage represented by a float value.
+
+<img src="images/templateui-progressbar.gif" Width="300" />
+
 ### Rate
 
 Allows users to select a rating value from a group of visual symbols like stars.
