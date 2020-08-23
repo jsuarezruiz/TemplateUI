@@ -84,11 +84,23 @@ Shield is a type of badge.
 
 <img src="images/templateui-shield.png" Width="300" />
 
+### Slider
+
+Is a horizontal bar that can be manipulated by the user to select a double value from a continuous range.
+
+<img src="images/templateui-slider.gif" Width="300" />
+
 ### Tag
 
 Is a tagging control.
 
 <img src="images/templateui-tag.png" Width="300" />
+
+### ToggleSwitch
+
+A View control that provides a toggled value.
+
+<img src="images/templateui-toggleswitch.png" Width="120" />
 
 ### TreeView
 
