@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.AvatarView"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <ControlTemplate x:Key="CircleAvatarViewTemplate">
+        <Grid 
+            x:Name="Part_Container">
+            <Image
+                x:Name="Part_Image"
+                Aspect="AspectFill"
+                BackgroundColor="{TemplateBinding BackgroundColor}"
+                Source="{TemplateBinding ImageSource}">
+                <Image.Clip>
+                    <EllipseGeometry
+                        x:Name="Part_ImageClip"/>
+                </Image.Clip>
+            </Image>
+            <Ellipse
+                x:Name="Part_Border"
+                Aspect="Fill"
+                Stroke="{TemplateBinding BorderColor}"
+                StrokeThickness="{TemplateBinding BorderWidth}"
+                HorizontalOptions="Start"/>
+            <Label
+                x:Name="Part_Initials"
+                FontSize="{TemplateBinding FontSize}"
+                FontAttributes="{TemplateBinding FontAttributes}"
+                AutomationId="{TemplateBinding AutomationId}"
+                TextColor="White"
+                HorizontalTextAlignment="Center"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="SquareAvatarViewTemplate">
+        <Grid 
+            x:Name="Part_Container">
+            <Frame
+                HasShadow="False"
+                CornerRadius="1"
+                IsClippedToBounds="True"
+                Padding="0"
+                Margin="{TemplateBinding BorderWidth}">
+                <Image
+                    x:Name="Part_Image"
+                    Aspect="AspectFill"
+                    BackgroundColor="{TemplateBinding BackgroundColor}"
+                    Source="{TemplateBinding ImageSource}" />
+            </Frame>
+            <Rectangle
+                x:Name="Part_Border"
+                Aspect="Fill"
+                Stroke="{TemplateBinding BorderColor}"
+                StrokeThickness="{TemplateBinding BorderWidth}"
+                HorizontalOptions="Start">
+                <Rectangle.RadiusX>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, UWP" Value="1" />
+                        <On Platform="iOS" Value="2" />
+                    </OnPlatform>
+                </Rectangle.RadiusX>
+                <Rectangle.RadiusY>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, UWP" Value="1" />
+                        <On Platform="iOS" Value="2" />
+                    </OnPlatform>
+                </Rectangle.RadiusY>
+            </Rectangle>
+            <Label
+                x:Name="Part_Initials"
+                FontSize="{TemplateBinding FontSize}"
+                FontAttributes="{TemplateBinding FontAttributes}"
+                AutomationId="{TemplateBinding AutomationId}"
+                TextColor="White"
+                HorizontalTextAlignment="Center"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="controls:AvatarView">
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Start"/>  
+        <Setter Property="ControlTemplate" Value="{StaticResource SquareAvatarViewTemplate}" />
+    </Style>
+
+</ResourceDictionary>

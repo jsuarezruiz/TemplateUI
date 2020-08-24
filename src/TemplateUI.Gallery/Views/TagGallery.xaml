@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.TagGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="Tag Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Orientation="Horizontal"
+                Padding="12">
+                <controls:Tag 
+                    Margin="2, 0"
+                    Text="Lorem ipsum"
+                    TextColor="White"
+                    BackgroundColor="CadetBlue"
+                    BorderColor="DarkBlue"
+                    ShowCloseButton="False"/>
+                <controls:Tag
+                    Margin="2, 0"
+                    Text="Lorem ipsum"
+                    TextColor="White"
+                    BackgroundColor="CadetBlue"
+                    SelectedBackgroundColor="DarkGreen"
+                    BorderColor="DarkBlue"
+                    Selectable="True"/>
+                <controls:Tag
+                    Margin="2, 0"
+                    Text="Lorem ipsum"
+                    TextColor="White"
+                    BackgroundColor="CadetBlue"
+                    BorderColor="DarkBlue"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:Tag 
+                    Text="Custom colors"
+                    TextColor="LightBlue"
+                    BackgroundColor="CadetBlue"
+                    BorderColor="DarkBlue"/>
+                <controls:Tag
+                    Text="Customize the font properties"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    TextColor="White"
+                    BackgroundColor="MediumVioletRed"
+                    BorderColor="Violet"/>
+                <controls:Tag
+                    IsEnabled="False"
+                    Text="Disabled"
+                    TextColor="White"
+                    BackgroundColor="DarkGreen"
+                    BorderColor="Green"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Events"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:Tag
+                    Selectable="True"
+                    Text="Selected"
+                    TextColor="White"
+                    BackgroundColor="Orange"
+                    SelectedBackgroundColor="Red"
+                    BorderColor="DarkOrange"
+                    Selected="OnTagSelected"/>
+                <controls:Tag
+                    Text="Closed"
+                    TextColor="White"
+                    BackgroundColor="Red"
+                    BorderColor="DarkRed"
+                    Closed="OnTagClosed"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

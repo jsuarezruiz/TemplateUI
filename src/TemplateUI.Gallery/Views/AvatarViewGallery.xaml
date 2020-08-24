@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.AvatarViewGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="AvatarView Gallery">
+    <ContentPage
+        Title="Getting Started" 
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:AvatarView
+                    AvatarName="Javier"
+                    AvatarSurName="Suarez"
+                    BorderColor="Black"
+                    BackgroundColor="Red"/>
+                <Label
+                    Text="Using Initials (Ellipse)"/>
+                <controls:AvatarView
+                    AvatarShape="Square"
+                    AvatarName="Javier"
+                    AvatarSurName="Suarez"
+                    BorderColor="Black"
+                    BackgroundColor="Red"/>
+                <Label
+                    Text="Using Initials (Square)"/>
+                <controls:AvatarView
+                    ImageSource="javier.jpg"
+                    BorderColor="Black"
+                    BackgroundColor="Red"/>
+                <Label
+                    Text="Using an Image (Ellipse)"/>
+                <controls:AvatarView
+                    AvatarShape="Square"
+                    ImageSource="javier.jpg"
+                    BorderColor="Black"
+                    BackgroundColor="Red"/>
+                <Label
+                    Text="Using an Image (Square)"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Avatar Size"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <Grid
+                Padding="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout>
+                    <controls:AvatarView
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="ExtraSmall"/>
+                    <Label
+                        Text="ExtraSmall"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1">
+                    <controls:AvatarView
+                        AvatarShape="Square"
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="ExtraSmall"/>
+                    <Label
+                        Text="ExtraSmall"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1">
+                    <controls:AvatarView
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="Small"/>
+                    <Label
+                        Text="Small"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <controls:AvatarView
+                        AvatarShape="Square"
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="Small"/>
+                    <Label
+                        Text="Small"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2">
+                    <controls:AvatarView
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="Medium"/>
+                    <Label
+                        Text="Medium"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="2">
+                    <controls:AvatarView
+                        AvatarShape="Square"
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="Medium"/>
+                    <Label
+                        Text="Medium"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="3">
+                    <controls:AvatarView
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="Large"/>
+                    <Label
+                        Text="Large"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="3">
+                    <controls:AvatarView
+                        AvatarShape="Square"
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="Large"/>
+                    <Label
+                        Text="Large"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="4">
+                    <controls:AvatarView
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="ExtraLarge"/>
+                    <Label
+                        Text="ExtraLarge"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="4">
+                    <controls:AvatarView
+                        AvatarShape="Square"
+                        BackgroundColor="Orange"
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarSize="ExtraLarge"/>
+                    <Label
+                        Text="ExtraLarge"/>
+                </StackLayout>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+        <ContentPage
+            Title="Customization"
+            IconImageSource="customize.png">
+        <ContentPage.Content>
+            <Grid
+                Padding="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout>
+                    <controls:AvatarView
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        BackgroundColor="Red"
+                        BorderColor="Orange"
+                        BorderWidth="3"/>
+                    <Label
+                        Text="BorderWidth (Circle)"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1">
+                    <controls:AvatarView
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarShape="Square"
+                        BackgroundColor="Red"
+                        BorderColor="Orange"
+                        BorderWidth="3"/>
+                    <Label
+                        Text="BorderWidth (Square)"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1">
+                    <controls:AvatarView
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        BorderColor="Black"
+                        BackgroundColor="Red"
+                        HeightRequest="100"
+                        WidthRequest="100"/>
+                    <Label
+                        Text="Custom Size (Circle)"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <controls:AvatarView
+                        AvatarName="Javier"
+                        AvatarSurName="Suarez"
+                        AvatarShape="Square"
+                        BorderColor="Black"
+                        BackgroundColor="Red"
+                        HeightRequest="100"
+                        WidthRequest="100"/>
+                    <Label
+                        Text="Custom Size (Square)"/>
+                </StackLayout>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

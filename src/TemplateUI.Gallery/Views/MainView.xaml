@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:TemplateUI.Gallery.ViewModels"
+    xmlns:templates="clr-namespace:TemplateUI.Gallery.Views.Templates"
+    x:Class="TemplateUI.Gallery.Views.MainView"
+    BackgroundColor="{StaticResource NavBarBackgroundColor}"
+    Title="Welcome to TemplateUI!">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SubTitleTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="Micro" />
+            </Style>
+
+            <Style x:Key="SectionTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="Margin" Value="12, 12, 12, 0" />
+            </Style>
+
+            <Style x:Key="GitHubTitleTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="12, 6, 12, 0" />
+            </Style>
+
+            <Style x:Key="GitHubSubTitleTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+            <Style x:Key="GitHubTagTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="Margin" Value="12, 0, 12, 6" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                BackgroundColor="{StaticResource NavBarBackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout
+                    Margin="18, 0">
+                    <Label
+                        Text="A set of templated controls."
+                        VerticalOptions="Start"
+                        Style="{StaticResource SubTitleTextStyle}"/>
+                </StackLayout>
+                <Grid
+                    RowSpacing="0"
+                    Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <BoxView
+                        Grid.RowSpan="3"
+                        Color="{StaticResource BackgroundColor}"
+                        CornerRadius="24, 24, 0, 0"/>
+                    <!-- TRENDING -->
+                    <StackLayout
+                        Grid.Row="0">
+                        <Label
+                            Text="Trending"
+                            Style="{StaticResource SectionTextStyle}"/>
+                        <CollectionView
+                            ItemsSource="{Binding Trending}"
+                            Margin="12">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Horizontal"
+                                    SnapPointsAlignment="Start"
+                                    SnapPointsType="MandatorySingle"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:TrendingItemTemplate>
+                                        <templates:TrendingItemTemplate.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=TrendingCommand}"
+                                                CommandParameter="{Binding}" />
+                                        </templates:TrendingItemTemplate.GestureRecognizers>
+                                    </templates:TrendingItemTemplate>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    <!-- GITHUB REPOSITORY -->
+                    <Grid
+                        Grid.Row="1">
+                        <Frame
+                            HasShadow="False"
+                            BackgroundColor="{StaticResource NavBarBackgroundColor}"
+                            Padding="0"
+                            CornerRadius="12"
+                            Margin="12, 0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding GitHubCommand}" />
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Text="Available on GitHub!"
+                                    Style="{StaticResource GitHubTitleTextStyle}"/>
+                                <Label
+                                    Grid.Row="1"
+                                    Text="If you want you can participate with PRs, issues, etc."
+                                    Style="{StaticResource GitHubSubTitleTextStyle}"/>
+                                <Label
+                                    Grid.Row="2"
+                                    Text="#xamarin_forms #templateui"
+                                    Style="{StaticResource GitHubTagTextStyle}"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <!-- CONTROLS -->
+                    <StackLayout
+                        Grid.Row="2">
+                        <Label
+                            Text="Controls"
+                            Style="{StaticResource SectionTextStyle}"/>
+                        <Frame
+                            HasShadow="False"
+                            BackgroundColor="White"
+                            Padding="0"
+                            Margin="12, 0, 12, 12">
+                            <StackLayout
+                                BindableLayout.ItemsSource="{Binding Gallery}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <templates:GalleryItemTemplate>
+                                            <templates:GalleryItemTemplate.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=GalleryCommand}"
+                                                    CommandParameter="{Binding}" />
+                                            </templates:GalleryItemTemplate.GestureRecognizers>
+                                        </templates:GalleryItemTemplate>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

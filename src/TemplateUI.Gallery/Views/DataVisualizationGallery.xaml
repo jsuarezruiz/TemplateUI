@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:datavisualization="clr-namespace:TemplateUI.DataVisualization;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.DataVisualizationGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="DataVisualization Gallery">
+    <ContentPage
+        Title="Line Chart">
+        <StackLayout
+            Padding="12">
+            <datavisualization:LineChart
+                HeightRequest="200"
+                Title="Line Chart"
+                Color="OrangeRed"
+                CategoryMemberPath="Title"
+                ValueMemberPath="Value" 
+                DataSource="{Binding Data}"/>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage
+        Title="Area Chart">
+        <StackLayout
+            Padding="12">
+            <datavisualization:AreaChart
+                HeightRequest="200"
+                Title="Area Chart"
+                Color="LawnGreen"
+                CategoryMemberPath="Title"
+                ValueMemberPath="Value"
+                DataSource="{Binding Data}"/>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage
+        Title="Bar Chart">
+        <StackLayout
+            Padding="12">
+            <datavisualization:BarChart
+                HeightRequest="200"
+                Title="Bar Chart"
+                Color="BlueViolet"
+                CategoryMemberPath="Title"
+                ValueMemberPath="Value"
+                DataSource="{Binding Data}"/>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

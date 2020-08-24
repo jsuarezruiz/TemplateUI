@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.ComparerView"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+     <Style TargetType="controls:ComparerView">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        BackgroundColor="{TemplateBinding BackgroundColor}">
+                        <ContentPresenter
+                            x:Name="PART_Source"
+                            Content="{TemplateBinding SourceView}"/>
+                        <Grid
+                            x:Name="PART_TargetContainer"
+                            IsClippedToBounds="True">
+                            <ContentPresenter
+                                x:Name="PART_Target"
+                                Content="{TemplateBinding TargetView}"/>
+                        </Grid>
+                        <Grid
+                            x:Name="PART_ThumbContainer"
+                            HorizontalOptions="Fill">
+                            <controls:ComparerThumb
+                                x:Name="PART_Thumb"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+     </Style>
+
+      <ControlTemplate x:Key="HorizontalComparerThumb">
+          <Grid>
+              <BoxView
+                  Opacity="0.75"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Center"
+                  WidthRequest="4"
+                  Color="{TemplateBinding Color}" />
+              <Grid>
+                  <Ellipse
+                      HeightRequest="40"
+                      WidthRequest="40"
+                      Fill="{TemplateBinding BackgroundColor}"
+                      Stroke="{TemplateBinding Color}"
+                      StrokeThickness="4"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"/>
+                  <Grid
+                      HeightRequest="20"
+                      WidthRequest="20"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center">
+                      <Grid.ColumnDefinitions>
+                          <ColumnDefinition />
+                          <ColumnDefinition />
+                      </Grid.ColumnDefinitions>
+                      <Path
+                          Aspect="Uniform"
+                          Data="{StaticResource ArrowHeadLeftGeometry}"
+                          Fill="{TemplateBinding Color}"
+                          Stroke="{TemplateBinding Color}"/>
+                      <Path
+                          Grid.Column="1"
+                          Aspect="Uniform"
+                          Data="{StaticResource ArrowHeadRightGeometry}"
+                          Fill="{TemplateBinding Color}"
+                          Stroke="{TemplateBinding Color}"/>
+                  </Grid>
+              </Grid>
+          </Grid>
+      </ControlTemplate>
+
+    <ControlTemplate x:Key="VerticalComparerThumb">
+        <Grid 
+            HorizontalOptions="Fill">
+            <BoxView
+                Opacity="0.75"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill"
+                HeightRequest="4"
+                Color="{TemplateBinding Color}" />
+            <Grid>
+                <Ellipse
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    Fill="{TemplateBinding BackgroundColor}"
+                    Stroke="{TemplateBinding Color}"
+                    StrokeThickness="4"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+                <Grid
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Path
+                        Aspect="Uniform"
+                        Data="{StaticResource ArrowHeadUpGeometry}"
+                        Fill="{TemplateBinding Color}"
+                        Stroke="{TemplateBinding Color}"/>
+                    <Path
+                        Grid.Row="1"
+                        Aspect="Uniform"
+                        Data="{StaticResource ArrowHeadDownGeometry}"
+                        Fill="{TemplateBinding Color}"
+                        Stroke="{TemplateBinding Color}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="controls:ComparerThumb">
+        <Setter Property="ControlTemplate" Value="{StaticResource HorizontalComparerThumb}" />
+    </Style>
+
+</ResourceDictionary>

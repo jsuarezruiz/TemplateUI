@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.GridSplitter"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Color x:Key="GridSplitterIndicatorColor">#FF868686</Color>
+
+    <controls:ElementToBoolConverter x:Key="ElementToBoolConverter" />
+
+    <Style TargetType="controls:GridSplitter">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+        <Setter Property="MinimumWidthRequest" Value="16" />
+        <Setter Property="MinimumHeightRequest" Value="16" />
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        x:Name="PART_GridSplitter">
+                        <Grid
+                            HeightRequest="16"
+                            BackgroundColor="{TemplateBinding BackgroundColor}">
+                                <StackLayout
+                                    Padding="6"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    IsVisible="{TemplateBinding Element, Converter={StaticResource ElementToBoolConverter}}">
+                                    <Line
+                                        X2="10"
+                                        Stroke="{StaticResource GridSplitterIndicatorColor}"
+                                        StrokeThickness="2" />
+                                    <Line
+                                        X2="10"
+                                        Stroke="{StaticResource GridSplitterIndicatorColor}"
+                                        StrokeThickness="2" />
+                                </StackLayout>
+                            </Grid>
+                        <ContentPresenter
+                            Content="{TemplateBinding Element}"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

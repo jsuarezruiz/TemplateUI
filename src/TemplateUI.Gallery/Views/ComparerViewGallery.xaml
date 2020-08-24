@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.ComparerViewGallery"
+    Title="ComparerView Gallery">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="12">
+            <Label
+                Text="Horizontal"/>
+            <controls:ComparerView>
+                <controls:ComparerView.SourceView>
+                    <Image
+                        Aspect="AspectFill"
+                        Source="before.jpg"/>
+                </controls:ComparerView.SourceView>
+                <controls:ComparerView.TargetView>
+                    <Image
+                        Aspect="AspectFill"
+                        Source="after.jpg"/>
+                </controls:ComparerView.TargetView>
+            </controls:ComparerView>
+            <Label
+                Text="Vertical"/>
+            <controls:ComparerView
+                Color="Purple"
+                Orientation="Vertical">
+                <controls:ComparerView.SourceView>
+                    <Image
+                        Aspect="AspectFill"
+                        Source="before.jpg"/>
+                </controls:ComparerView.SourceView>
+                <controls:ComparerView.TargetView>
+                    <Image
+                        Aspect="AspectFill"
+                        Source="after.jpg"/>
+                </controls:ComparerView.TargetView>
+            </controls:ComparerView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

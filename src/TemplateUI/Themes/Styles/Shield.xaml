@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.Shield"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Color x:Key="SubjectColor">#555555</Color>
+
+    <Style TargetType="controls:Shield">
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Frame
+                        x:Name="PART_Border"
+                        CornerRadius="4"
+                        HorizontalOptions="Start"
+                        Padding="0"
+                        HeightRequest="20"
+                        IsClippedToBounds="True"
+                        HasShadow="False">
+                        <Grid
+                            ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid
+                                Grid.Column="0"
+                                BackgroundColor="{StaticResource SubjectColor}">
+                                <Label
+                                    Text="{TemplateBinding Subject}"
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    Margin="4, 0"/>
+                            </Grid>
+                            <Grid
+                                Grid.Column="1"
+                                BackgroundColor="{TemplateBinding Color}">
+                                <Label
+                                    Text="{TemplateBinding Status}"
+                                    TextColor="{TemplateBinding TextColor}"
+                                    VerticalOptions="Center"
+                                    Margin="4, 0" />
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

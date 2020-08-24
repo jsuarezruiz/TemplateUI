@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.ChatBubbleGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="ChatBubble Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:ChatBubble
+                    BubbleType="Receiver"
+                    BackgroundColor="LightSeaGreen"
+                    TextColor="White"
+                    Text="Lorem ipsum dolor sit amet"/>
+                <controls:ChatBubble
+                    BubbleType="Sender"
+                    BackgroundColor="DarkKhaki"
+                    TextColor="White"
+                    Text="Lorem ipsum dolor"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:ChatBubble
+                    BubbleType="Receiver"
+                    BackgroundColor="Coral"
+                    TextColor="White"
+                    Text="Receiver Message"/>
+                <controls:ChatBubble
+                    BubbleType="Sender"
+                    BackgroundColor="DarkSlateBlue"
+                    TextColor="White"
+                    Text="Sender Message"/>
+                <controls:ChatBubble
+                    BubbleType="Receiver"
+                    BackgroundColor="OliveDrab"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Text="Custom font properties"/>
+                <controls:ChatBubble
+                    BubbleType="Receiver"
+                    BackgroundColor="PaleVioletRed">
+                    <controls:ChatBubble.Content>
+                        <Image
+                            HeightRequest="100"
+                            WidthRequest="250"
+                            Aspect="AspectFill"
+                            Source="javier.jpg"/>
+                    </controls:ChatBubble.Content>
+                </controls:ChatBubble>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

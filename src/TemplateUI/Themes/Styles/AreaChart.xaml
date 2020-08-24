@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.AreaChart"
+    xmlns:controls="clr-namespace:TemplateUI.DataVisualization">
+
+    <Style TargetType="controls:AreaChart">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <controls:ValueAxis
+                            x:Name="PART_ValueAxis"
+                            HorizontalOptions="End"
+                            AxisColor="{TemplateBinding AxisColor}"/>
+                        <controls:CategoryAxis
+                            x:Name="PART_CategoryAxis"
+                            Grid.Row="1"
+                            AxisColor="{TemplateBinding AxisColor}"/>
+                        <controls:GridLines
+                            x:Name="PART_GridLines" />
+                        <Grid  
+                            x:Name="PART_Chart"
+                            Grid.Row="0"/>
+                        <Label
+                            Text="{TemplateBinding Title}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

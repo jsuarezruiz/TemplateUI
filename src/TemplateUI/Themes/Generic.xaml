@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:themes="clr-namespace:TemplateUI.Themes"
+    x:Class="TemplateUI.Themes.Generic">
+      <ResourceDictionary>
+          <ResourceDictionary.MergedDictionaries>
+              <!-- BASIC -->
+              <themes:Colors />
+              <themes:Geometries />
+              <!-- STYLES -->
+              <themes:AreaChart />
+              <themes:AvatarView />
+              <themes:BadgeView />
+              <themes:BarChart />
+              <themes:CarouselView />
+              <themes:ChatBubble />
+              <themes:CategoryAxis />
+              <themes:CircleProgressBar />
+              <themes:ComparerView />
+              <themes:GridLines />
+              <themes:GridSplitter />
+              <themes:LineChart />
+              <themes:Marquee />
+              <themes:ProgressBar />
+              <themes:Rate />
+              <themes:SegmentedControl />
+              <themes:Shield />
+              <themes:Slider />
+              <themes:Tag />
+              <themes:ToggleSwitch />
+              <themes:TreeView />
+              <themes:ValueAxis />
+          </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
+</ResourceDictionary>

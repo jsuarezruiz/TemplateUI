@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.SegmentedControlGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="SegmentedControl Gallery">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+
+            <ControlTemplate x:Key="CustomSegmentedControl">
+                <Grid
+                    x:Name="PART_Border"
+                    BackgroundColor="{TemplateBinding BackgroundColor}"
+                    HeightRequest="{TemplateBinding Height}"
+                    Padding="0">
+                    <Grid
+                        x:Name="PART_Holder"
+                        ColumnSpacing="0"/>
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="CustomSegmentedItem">
+                <Grid
+                    x:Name="PART_Container"
+                    BackgroundColor="{TemplateBinding BackgroundColor}"
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        x:Name="PART_Indicator"
+                        Grid.RowSpan="2"
+                        HeightRequest="2"
+                        VerticalOptions="End"
+                        BackgroundColor="{TemplateBinding CurrentBackgroundColor}"/>
+                    <Image 
+                        x:Name="PART_Icon"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit"
+                        Source="{TemplateBinding CurrentIcon}"
+                        Margin="0, 4, 0, 0"/>
+                    <Label
+                        x:Name="PART_Text"
+                        Grid.Row="1"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Text="{TemplateBinding Text}"
+                        TextColor="{TemplateBinding CurrentTextColor}"
+                        FontSize="{TemplateBinding CurrentFontSize}"
+                        FontFamily="{TemplateBinding CurrentFontFamily}"
+                        FontAttributes="{TemplateBinding CurrentFontAttributes}"
+                        Margin="0, 0, 0, 4"/>
+                </Grid>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:SegmentedControl
+                    BackgroundColor="Black"
+                    BackgroundColorSelected="DarkGray"
+                    TextColor="LightGray"
+                    TextColorSelected="White">
+                    <controls:SegmentedControl.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Item 1</x:String>
+                            <x:String>Item 2</x:String>
+                            <x:String>Item 3</x:String>
+                            <x:String>Item 4</x:String>
+                        </x:Array>
+                    </controls:SegmentedControl.ItemsSource>
+                </controls:SegmentedControl>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout
+                    Padding="12">
+                    <Label
+                        Text="Customize the shadow"/>
+                    <controls:SegmentedControl
+                        HasShadow="True"
+                        BackgroundColor="DarkBlue"
+                        BackgroundColorSelected="CadetBlue"
+                        TextColor="LightGray"
+                        TextColorSelected="White">
+                        <controls:SegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Item 1</x:String>
+                                <x:String>Item 2</x:String>
+                                <x:String>Item 3</x:String>
+                                <x:String>Item 4</x:String>
+                            </x:Array>
+                        </controls:SegmentedControl.ItemsSource>
+                    </controls:SegmentedControl>
+                    <Label
+                        Text="Customize the corner radius"/>
+                    <controls:SegmentedControl
+                        CornerRadius="12"
+                        BackgroundColor="DarkRed"
+                        BackgroundColorSelected="IndianRed"
+                        TextColor="LightGray"
+                        TextColorSelected="White">
+                        <controls:SegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Item 1</x:String>
+                                <x:String>Item 2</x:String>
+                                <x:String>Item 3</x:String>
+                                <x:String>Item 4</x:String>
+                                <x:String>Item 5</x:String>
+                            </x:Array>
+                        </controls:SegmentedControl.ItemsSource>
+                    </controls:SegmentedControl>
+                    <Label
+                        Text="Customize the selected item"/>
+                    <controls:SegmentedControl
+                        CornerRadius="12"
+                        BackgroundColor="DarkGreen"
+                        BackgroundColorSelected="Green"
+                        TextColor="LightGray"
+                        TextColorSelected="White"
+                        FontSize="9"
+                        FontSizeSelected="12"
+                        FontAttributes="None"
+                        FontAttributesSelected="Bold">
+                        <controls:SegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Item 1</x:String>
+                                <x:String>Item 2</x:String>
+                                <x:String>Item 3</x:String>
+                            </x:Array>
+                        </controls:SegmentedControl.ItemsSource>
+                    </controls:SegmentedControl>
+                    <Label
+                        Text="Using icons"/>
+                    <controls:SegmentedControl
+                        CornerRadius="12"
+                        BackgroundColor="DarkOrange"
+                        BackgroundColorSelected="Orange"
+                        TextColor="LightGray"
+                        TextColorSelected="White"
+                        FontSize="9"
+                        FontSizeSelected="12"
+                        FontAttributes="None"
+                        FontAttributesSelected="Bold">
+                        <controls:SegmentedItem
+                            Icon="rate.png"/>
+                        <controls:SegmentedItem
+                            Icon="shield.png"/>
+                        <controls:SegmentedItem
+                            Icon="tag.png"/>
+                    </controls:SegmentedControl>
+                    <Label
+                        Text="Using icons and text"/>
+                    <controls:SegmentedControl
+                        HeightRequest="50"
+                        CornerRadius="12"
+                        BackgroundColor="DarkViolet"
+                        BackgroundColorSelected="Violet"
+                        TextColor="LightGray"
+                        TextColorSelected="White">
+                        <controls:SegmentedItem
+                            Text="Item 1"
+                            Icon="rate.png"/>
+                        <controls:SegmentedItem
+                            Text="Item 2"
+                            Icon="shield.png"/>
+                        <controls:SegmentedItem
+                            Text="Item 3"
+                            Icon="tag.png"/>
+                    </controls:SegmentedControl>
+                    <Label
+                        Text="Using a custom ControlTemplate"/>
+                    <controls:SegmentedControl
+                        HeightRequest="50"
+                        CornerRadius="12"
+                        BackgroundColor="Black"
+                        BackgroundColorSelected="Red"
+                        TextColor="White"
+                        TextColorSelected="Red" 
+                        ControlTemplate="{StaticResource CustomSegmentedControl}">
+                        <controls:SegmentedItem
+                            Text="Item 1"
+                            Icon="rate.png"
+                            IconSelected="redstar.png"
+                            ControlTemplate="{StaticResource CustomSegmentedItem}"/>
+                        <controls:SegmentedItem
+                            Text="Item 2"
+                            Icon="shield.png"
+                            IconSelected="redstar.png"
+                            ControlTemplate="{StaticResource CustomSegmentedItem}"/>
+                    </controls:SegmentedControl>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    xmlns:viewmodels="clr-namespace:TemplateUI.Gallery.ViewModels"
+    x:Class="TemplateUI.Gallery.Views.BadgeViewGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="BadgeView Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:BadgeView
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Text="1">
+                    <Label
+                        Text="BadgeView"/>
+                </controls:BadgeView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Badge Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:BadgeView
+                    BackgroundColor="Blue"
+                    TextColor="White"
+                    Text="1003">
+                    <Label
+                        Text="Long Text"/>
+                </controls:BadgeView>
+                <controls:BadgeView
+                    BackgroundColor="Red"
+                    FontAttributes="Bold"
+                    FontSize="8"
+                    TextColor="White"
+                    Text="1">
+                    <Label
+                        Text="Font Customization"/>
+                </controls:BadgeView>
+                <controls:BadgeView
+                    BackgroundColor="Red"
+                    BorderColor="Orange"
+                    TextColor="White"
+                    Text="1">
+                    <Label
+                        Text="Border Customization"/>
+                </controls:BadgeView>
+                <controls:BadgeView
+                    BackgroundColor="Red"
+                    BorderColor="Orange"
+                    HasShadow="True"
+                    TextColor="White"
+                    Text="1">
+                    <Label
+                        Text="Shadow Customization"/>
+                </controls:BadgeView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Position Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:BadgeView
+                    HorizontalOptions="Center"
+                    BadgePosition="TopLeft"
+                    BackgroundColor="Red"
+                    Text="7"
+                    TextColor="White">
+                    <Grid
+                        HeightRequest="48"
+                        WidthRequest="150"
+                        BackgroundColor="LightGray">
+                        <Label
+                            Padding="12"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="TopLeft"/>
+                    </Grid>
+                </controls:BadgeView>
+                <controls:BadgeView
+                    HorizontalOptions="Center"
+                    BadgePosition="TopRight"
+                    BackgroundColor="Red"
+                    Text="7"
+                    TextColor="White">
+                    <Grid
+                        HeightRequest="48"
+                        WidthRequest="150"
+                        BackgroundColor="LightGray">
+                        <Label
+                            Padding="12"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="TopRight"/>
+                    </Grid>
+                </controls:BadgeView>
+                <controls:BadgeView
+                    HorizontalOptions="Center"
+                    BadgePosition="BottomLeft"
+                    BackgroundColor="Red"
+                    Text="7"
+                    TextColor="White">
+                    <Grid
+                        HeightRequest="48"
+                        WidthRequest="150"
+                        BackgroundColor="LightGray">
+                        <Label
+                            Padding="12"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="BottomLeft"/>
+                    </Grid>
+                </controls:BadgeView>
+                <controls:BadgeView
+                    HorizontalOptions="Center"
+                    BadgePosition="BottomRight"
+                    BackgroundColor="Red"
+                    Text="7"
+                    TextColor="White">
+                    <Grid
+                        HeightRequest="48"
+                        WidthRequest="150"
+                        BackgroundColor="LightGray">
+                        <Label
+                            Padding="12"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="BottomRight"/>
+                    </Grid>
+                </controls:BadgeView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Badge Animation"
+        IconImageSource="customize.png">
+        <ContentPage.BindingContext>
+            <viewmodels:BadgeViewModel />
+        </ContentPage.BindingContext>
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:BadgeView
+                    BackgroundColor="Red"
+                    Text="{Binding Counter}"
+                    TextColor="White">
+                    <StackLayout
+                        BackgroundColor="LightGray">
+                        <Button
+                            BackgroundColor="DarkGray"
+                            Command="{Binding IncreaseCommand}"
+                            Text="Increase"/>
+                        <Button
+                            BackgroundColor="DarkGray"
+                            Command="{Binding DecreaseCommand}"
+                            Text="Decrease"/>
+                    </StackLayout>
+                </controls:BadgeView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>
