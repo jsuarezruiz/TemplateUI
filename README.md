@@ -145,6 +145,26 @@ Use GitHub [Issues](https://github.com/jsuarezruiz/TemplateUI/issues) for bug re
 
 * A lot of the controls are made up of basic shapes. Gestures don't work with Shapes on iOS. This affects some control like Rate. (waiting [PR #11419](https://github.com/xamarin/Xamarin.Forms/pull/11419))
 
+## What's next
+
+The next controls will be:
+* RangeSlider
+* TabView
+
+In addition, there are ideas for a wide variety of controls like:
+* Clock
+* Calendar
+* ColorPicker
+* DataGrid
+* Divider
+* Expander
+* Loading
+* Pagination
+* StepBar
+* TimeBar
+
+And much more!
+
 ## Copyright and license
 
 Code released under the [MIT license](https://opensource.org/licenses/MIT).
