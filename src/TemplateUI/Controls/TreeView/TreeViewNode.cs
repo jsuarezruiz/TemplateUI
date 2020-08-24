@@ -294,6 +294,7 @@ namespace TemplateUI.Controls
             }
             else
             {
+                // TODO: Remove only specific gestures.
                 _expandIndicator.GestureRecognizers.Clear();
                 _text.GestureRecognizers.Clear();
             }

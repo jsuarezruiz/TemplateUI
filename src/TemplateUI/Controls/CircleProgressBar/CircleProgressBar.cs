@@ -111,6 +111,7 @@ namespace TemplateUI.Controls
             UpdateAngle();
         }
 
+        // TODO: Review and complete the logic to calculate the angle
         void UpdateAngle()
         {
             if (_arcSegment == null)
