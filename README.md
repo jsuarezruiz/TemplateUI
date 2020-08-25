@@ -148,7 +148,6 @@ Use GitHub [Issues](https://github.com/jsuarezruiz/TemplateUI/issues) for bug re
 ## What's next
 
 The next controls will be:
-* RangeSlider
 * TabView
 
 In addition, there are ideas for a wide variety of controls like:
@@ -157,7 +156,6 @@ In addition, there are ideas for a wide variety of controls like:
 * ColorPicker
 * DataGrid
 * Divider
-* Expander
 * Loading
 * Pagination
 * StepBar
