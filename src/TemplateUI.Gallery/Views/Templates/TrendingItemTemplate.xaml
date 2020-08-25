@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Gallery.Views.Templates.TrendingItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TrendingContainerStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="WidthRequest" Value="180" />
+                <Setter Property="Margin" Value="0, 0, 12, 0" />
+            </Style>
+
+            <Style x:Key="IconStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="18" />
+                <Setter Property="Margin" Value="2, 2, 0, 0" />
+            </Style>
+
+            <Style x:Key="AdornerStyle" TargetType="Ellipse">
+                <Setter Property="Aspect" Value="Uniform" />
+                <Setter Property="Stroke" Value="White" />
+                <Setter Property="StrokeThickness" Value="12" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Opacity" Value="0.1" />
+                <Setter Property="Margin" Value="48, 12, 0, 0" />
+            </Style>
+
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="SubTitleTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Opacity" Value="0.75" />
+                <Setter Property="Margin" Value="6, 0" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Frame
+            BackgroundColor="{Binding Color}"
+            Style="{StaticResource TrendingContainerStyle}">
+            <Grid
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Ellipse
+                    Grid.RowSpan="2"
+                    Style="{StaticResource AdornerStyle}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Source="{Binding Icon}"
+                        Style="{StaticResource IconStyle}"/>
+                    <Label
+                        Grid.Column="1"
+                        Text="{Binding Title}"
+                        Style="{StaticResource TitleTextStyle}"/>
+                </Grid>
+                <Label
+                    Grid.Row="1"
+                    Text="{Binding SubTitle}"
+                    Style="{StaticResource SubTitleTextStyle}"/>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

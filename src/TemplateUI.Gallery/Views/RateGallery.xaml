@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.RateGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="Rate Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <Grid
+                Padding="12">
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Value="3"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Appearance"
+        IconImageSource="customize.png">
+        <ContentPage.Resources>
+            <ResourceDictionary>
+
+                <PathGeometry
+                    x:Key="HeartGeometry"
+                    Figures="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z"/>
+
+            </ResourceDictionary>
+        </ContentPage.Resources>
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    Icon="{StaticResource HeartGeometry}"
+                    SelectedFill="Red"
+                    SelectedStroke="Red"
+                    Value="3"
+                    ShowText="True"
+                    Text="Set a custom Icon"
+                    Margin="0, 12, 0, 0"/>
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    ItemCount="4"
+                    ItemSize="30"
+                    Value="3"
+                    ShowText="True"
+                    Text="Set Number of Items"
+                    Margin="0, 12, 0, 0"/>
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    ItemCount="5"
+                    ItemSize="20"
+                    Value="3"
+                    ShowText="True"
+                    Text="Set ItemSize"
+                    Margin="0, 12, 0, 0"/>
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    ItemCount="5"
+                    ItemSize="30"
+                    SelectedFill="Red"
+                    SelectedStroke="DarkRed"
+                    SelectedStrokeWidth="2"
+                    UnSelectedFill="LightGray"
+                    UnSelectedStroke="DarkGray"
+                    UnSelectedStrokeWidth="0.5"
+                    Value="3"
+                    ShowText="True"
+                    Text="Rating Colors"
+                    Margin="0, 12, 0, 0"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="ReadOnly"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <Grid
+                Padding="12">
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    ItemCount="5"
+                    ItemSize="30"
+                    ShowText="True"
+                    Text="Rate"
+                    Value="3"
+                    IsReadOnly="True"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Value Changes"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <Grid
+                Padding="12">
+                <controls:Rate
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    ItemCount="5"
+                    ItemSize="30"
+                    ShowText="True"
+                    Text="Rate"
+                    Value="3"
+                    ValueChanged="OnRateValueChanged"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

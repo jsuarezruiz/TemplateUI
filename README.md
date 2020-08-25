@@ -42,6 +42,12 @@ Shows a control that indicates the progress percentage of an on-going operation 
 
 <img src="images/templateui-circleprogressbar.png" Width="300" />
 
+### ComparerView
+
+Provides an option for displaying a split-screen of two views, which can help you to make comparisons.
+
+<img src="images/templateui-comparerview.gif" Width="300" />
+
 ### DataVisualization
 
 Several series graphs.
@@ -59,6 +65,12 @@ Represents the control that redistributes space between columns or rows of a Gri
 Use this control to add an attention–getting text message that scrolls continuously across the screen.
 
 <img src="images/templateui-marquee.gif" Width="300" />
+
+### ProgressBar
+
+Represents progress as a horizontal bar that is filled to a percentage represented by a float value.
+
+<img src="images/templateui-progressbar.gif" Width="300" />
 
 ### Rate
 
@@ -78,11 +90,23 @@ Shield is a type of badge.
 
 <img src="images/templateui-shield.png" Width="300" />
 
+### Slider
+
+Is a horizontal bar that can be manipulated by the user to select a double value from a continuous range.
+
+<img src="images/templateui-slider.gif" Width="300" />
+
 ### Tag
 
 Is a tagging control.
 
 <img src="images/templateui-tag.png" Width="300" />
+
+### ToggleSwitch
+
+A View control that provides a toggled value.
+
+<img src="images/templateui-toggleswitch.png" Width="120" />
 
 ### TreeView
 
@@ -116,6 +140,28 @@ Use GitHub [Issues](https://github.com/jsuarezruiz/TemplateUI/issues) for bug re
 
 * Principle #1: Kept TemplateUI simple.
 * Principle #2: Any control added must allow customization using the ControlTemplate property.
+
+## Known Issues
+
+* A lot of the controls are made up of basic shapes. Gestures don't work with Shapes on iOS. This affects some control like Rate. (waiting [PR #11419](https://github.com/xamarin/Xamarin.Forms/pull/11419))
+
+## What's next
+
+The next controls will be:
+* TabView
+
+In addition, there are ideas for a wide variety of controls like:
+* Clock
+* Calendar
+* ColorPicker
+* DataGrid
+* Divider
+* Loading
+* Pagination
+* StepBar
+* TimeBar
+
+And much more!
 
 ## Copyright and license
 

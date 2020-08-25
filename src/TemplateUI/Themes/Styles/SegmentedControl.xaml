@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.SegmentedControl"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Style TargetType="controls:SegmentedControl">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Frame
+                        x:Name="PART_Border"
+                        BackgroundColor="{TemplateBinding BackgroundColor}"
+                        BorderColor="{TemplateBinding BorderColor}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        HasShadow="{TemplateBinding HasShadow}"
+                        IsClippedToBounds="True"
+                        HeightRequest="{TemplateBinding Height}"
+                        Padding="0">
+                        <Grid
+                            x:Name="PART_Holder"
+                            ColumnSpacing="0"/>
+                    </Frame>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:SegmentedItem">
+        <Setter Property="HorizontalOptions" Value="Fill"/>
+        <Setter Property="VerticalOptions" Value="Fill"/>
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        x:Name="PART_Container"
+                        RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid
+                            x:Name="PART_Indicator"
+                            Grid.RowSpan="2"
+                            BackgroundColor="{TemplateBinding CurrentBackgroundColor}"/>
+                        <Image
+                            x:Name="PART_Icon"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit"
+                            Source="{TemplateBinding CurrentIcon}"/>
+                        <Label
+                            x:Name="PART_Text"
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            Text="{TemplateBinding Text}"
+                            TextColor="{TemplateBinding CurrentTextColor}"
+                            FontSize="{TemplateBinding CurrentFontSize}"
+                            FontFamily="{TemplateBinding CurrentFontFamily}"
+                            FontAttributes="{TemplateBinding CurrentFontAttributes}"
+                            Margin="0, 2"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

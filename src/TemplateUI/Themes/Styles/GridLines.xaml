@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.GridLines"
+    xmlns:controls="clr-namespace:TemplateUI.DataVisualization">
+
+    <Style TargetType="controls:GridLines">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <AbsoluteLayout
+                        x:Name="PART_GridLayout"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

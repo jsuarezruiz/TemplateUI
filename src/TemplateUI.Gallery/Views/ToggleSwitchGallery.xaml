@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Gallery.Views.ToggleSwitchGallery"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="ToggleSwitch Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:ToggleSwitch />
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="VisualType"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <Label
+                    Text="Cupertino"/>
+                <controls:ToggleSwitch
+                    OffColor="Gray"
+                    OnColor="DarkGray"
+                    VisualType="Cupertino"/>
+                <Label
+                    Text="Fluent"/>
+                <controls:ToggleSwitch
+                    OffColor="Gray"
+                    OnColor="Blue"
+                    VisualType="Fluent"/>
+                <Label
+                    Text="Material"/>
+                <controls:ToggleSwitch
+                    OffColor="Gray"
+                    OnColor="Green"
+                    VisualType="Material"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <Label
+                    Text="Customize Colors"/>
+                <controls:ToggleSwitch
+                    OnColor="Purple"
+                    OffColor="Violet"
+                    ThumbColor="DeepPink"/>
+                <Label
+                    Text="Customize CornerRadius"/>
+                <controls:ToggleSwitch
+                    CornerRadius="2"/>
+                <Label
+                    Text="Customize Track Border"/>
+                <controls:ToggleSwitch
+                    OffColor="OrangeRed"
+                    OnColor="Orange"
+                    BorderColor="Orange"
+                    BorderWidth="4"/>
+                <Label
+                    Text="Disabled"/>
+                <controls:ToggleSwitch
+                    IsEnabled="False"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Events"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <Label
+                    Text="Should be toggled"/>
+                <controls:ToggleSwitch
+                    IsToggled="True"/>
+                </StackLayout>
+            </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.GridSplitterGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="GridSplitter Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <Grid
+                ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    Grid.Column="0"
+                    BackgroundColor="Red">
+                    <Label
+                        TextColor="White"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+                </Grid>
+                <Grid
+                    Grid.Column="2"
+                    BackgroundColor="Green">
+                    <Label
+                        TextColor="White"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+                </Grid>
+                <controls:GridSplitter
+                    Grid.Column="1"
+                    ResizeDirection="Columns"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Resize Direction"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <Grid
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Row="0"
+                    BackgroundColor="Red">
+                    <Label
+                        TextColor="White"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    BackgroundColor="Green">
+                    <Label
+                        TextColor="White"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+                </Grid>
+                <controls:GridSplitter
+                    Grid.Row="1"
+                    ResizeDirection="Rows"/>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

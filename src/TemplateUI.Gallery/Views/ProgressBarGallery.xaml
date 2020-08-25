@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.ProgressBarGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="ProgressBar Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:ProgressBar
+                    Progress="{Binding Source={x:Reference ProgressSlider}, Path=Value}"
+                    ProgressColor="MediumSeaGreen"/>
+                <Slider
+                    x:Name="ProgressSlider"
+                    MaximumTrackColor="Gray"
+                    MinimumTrackColor="LightGray"
+                    Value="0.25"
+                    Margin="0, 12"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customize"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <Label
+                    Text="Customize the CornerRadius"/>
+                <controls:ProgressBar
+                    Progress="{Binding Source={x:Reference CornerRadiusProgressSlider}, Path=Value}"
+                    CornerRadius="12"
+                    ProgressColor="LightBlue"/>
+                <Slider
+                    x:Name="CornerRadiusProgressSlider"
+                    MaximumTrackColor="Gray"
+                    MinimumTrackColor="LightGray"
+                    Value="0.25"
+                    Margin="0, 120"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.MarqueeGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="Marquee Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:Marquee 
+                    Direction="LeftToRight">
+                    <Label
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </controls:Marquee>
+                <Label
+                    Text="LeftToRight"/>
+                <controls:Marquee
+                    Direction="RightToLeft">
+                    <Label
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </controls:Marquee>
+                <Label
+                    Text="RightToLeft"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:Marquee
+                    Direction="RightToLeft"
+                    AnimationSpeed="20">
+                    <Label
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </controls:Marquee>
+                <controls:Marquee
+                    BackgroundColor="Red"
+                    Direction="RightToLeft">
+                    <Label
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </controls:Marquee>
+                <controls:Marquee
+                    BorderColor="Green"
+                    Direction="RightToLeft">
+                    <Label
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </controls:Marquee>
+                <controls:Marquee
+                    BackgroundColor="GreenYellow"
+                    BorderColor="DarkGreen"
+                    CornerRadius="12"
+                    Direction="RightToLeft">
+                    <Label
+                        Padding="6"
+                        TextColor="DarkGreen"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </controls:Marquee>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

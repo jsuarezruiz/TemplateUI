@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:TemplateUI.Gallery.ViewModels"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.CarouselViewGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="CarouselView Gallery">
+   <TabbedPage.Resources>
+        <ResourceDictionary>
+
+             <DataTemplate x:Key="CarouselItemTemplate">
+                <Grid
+                    BackgroundColor="{Binding Color}"
+                    Padding="10"
+                    RowSpacing="10">
+                    <StackLayout>
+                        <Label
+                            Text="{Binding Index}"
+                            FontSize="Title"
+                            HorizontalOptions="Center"/>
+                        <Label
+                            Text="{Binding Name}"
+                            FontSize="Medium"
+                            HorizontalOptions="Center"/>
+                        <Label
+                            Text="{Binding Location}"
+                            FontSize="Small"
+                            HorizontalOptions="Center"/>
+                        <Label
+                            Text="{Binding Details}"
+                            FontSize="Micro"
+                            HorizontalOptions="Center"
+                            Margin="0, 12"/>
+                    </StackLayout>
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+    <TabbedPage.BindingContext>
+        <viewmodels:CarouselViewModel />
+    </TabbedPage.BindingContext>
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <Grid
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <controls:CarouselView
+                    x:Name="CarouselView"
+                    ItemsSource="{Binding Monkeys}"
+                    ItemTemplate="{StaticResource CarouselItemTemplate}"
+                    IsSwipeEnabled="{Binding Source={x:Reference IsSwipeEnabledCheckBox}, Path=IsChecked}"
+                    IsScrollAnimated="{Binding Source={x:Reference IsScrollAnimatedCheckBox}, Path=IsChecked}"
+                    IsCyclical="{Binding Source={x:Reference IsCyclicalCheckBox}, Path=IsChecked}"
+                    IsLazy="{Binding Source={x:Reference IsLazyCheckBox}, Path=IsChecked}"/>
+                <!-- POSITION -->
+                <StackLayout
+                    Grid.Row="1"
+                    Orientation="Horizontal">
+                     <Label
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="Position:"/>
+                    <Label
+                        Text="{Binding Source={x:Reference CarouselView}, Path=Position}"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                <!-- SETTINGS -->
+                <StackLayout
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="12">
+                    <Label
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="IsSwipeEnabled:"/>
+                    <CheckBox
+                        x:Name="IsSwipeEnabledCheckBox"
+                        IsChecked="True"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"/>
+                    <Label
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="IsCyclical:"/>
+                    <CheckBox
+                        x:Name="IsCyclicalCheckBox"
+                        IsChecked="True"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"/>
+                    <Label
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="IsLazy:"/>
+                    <CheckBox
+                        x:Name="IsLazyCheckBox"
+                        IsChecked="True"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                <!-- SETTINGS -->
+                <StackLayout
+                    Grid.Row="3"
+                    Orientation="Horizontal"
+                    Margin="12">
+                    <Label
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="IsScrollAnimated:"/>
+                    <CheckBox
+                        x:Name="IsScrollAnimatedCheckBox"
+                        IsChecked="True"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                <!-- ISDRAGGING -->
+                <StackLayout
+                    Grid.Row="4"
+                    Orientation="Horizontal"
+                    Margin="12">
+                    <Label
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Text="IsDragging:"/>
+                    <Switch
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        IsToggled="{Binding Source={x:Reference CarouselView}, Path=IsDragging}"/>
+                </StackLayout>
+                <!-- SCROLLTO -->
+                <Grid
+                    RowSpacing="0"
+                    Grid.Row="5"
+                    Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Text="ScrollTo:"
+                            VerticalOptions="Center"/>
+                        <StackLayout
+                            Grid.Column="1"
+                            Orientation="Horizontal">
+                            <CheckBox
+                                x:Name="IsAnimatedScrollToCheckBox"
+                                IsChecked="True"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Text="IsAnimated"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout
+                        Grid.Row="1"
+                        Orientation="Horizontal">
+                        <Button
+                            Text="Scroll To (0 - Baboon)"
+                            Clicked="OnScrollToZeroClicked"/>
+                        <Button
+                            Text="Scroll To (5 - Howler Monkey)"
+                            Clicked="OnScrollToFiveClicked"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

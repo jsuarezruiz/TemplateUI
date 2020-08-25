@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.TreeViewGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    Title="TreeView Gallery">
+    <ContentPage
+        Title="Getting Started">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:TreeView
+                    SelectionMode="Single"
+                    BackgroundColorSelected="LightBlue"
+                    TextColorSelected="White"
+                    FontSizeSelected="18"
+                    ItemTapped="OnTreeViewItemTapped"
+                    ItemDoubleTapped="OnTreeViewItemDoubleTapped">
+                    <controls:TreeView.RootNodes>
+                            <controls:TreeViewNodes>
+                                <controls:TreeViewNode
+                                    Icon="folder.png"
+                                    Text="Controls"
+                                    IsExpanded="True">
+                                    <controls:TreeViewNode.Children>
+                                        <controls:TreeViewNodes>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="AvatarView"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="BadgeView"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="CarouselView"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="ChatBubble"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="CircleProgressBar"/>
+                                            <controls:TreeViewNode
+                                                Icon="folder.png"
+                                                Text="DataVisualization"
+                                                BackgroundColorSelected="DarkBlue">
+                                                <controls:TreeViewNode.Children>
+                                                    <controls:TreeViewNodes>
+                                                        <controls:TreeViewNode
+                                                            Icon="file.png"
+                                                            IconSelected="whitefile.png"
+                                                            Text="Area Chart"/>
+                                                        <controls:TreeViewNode
+                                                            Icon="file.png"
+                                                            IconSelected="whitefile.png"
+                                                            Text="Bar Chart"/>
+                                                        <controls:TreeViewNode
+                                                            Icon="file.png"
+                                                            IconSelected="whitefile.png"
+                                                            Text="Line Chart"/>
+                                                    </controls:TreeViewNodes>
+                                                </controls:TreeViewNode.Children>
+                                            </controls:TreeViewNode>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="GridSplitter"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="Marquee"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="SegmentedControl"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="Shield"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="Tag"/>
+                                            <controls:TreeViewNode
+                                                Icon="file.png"
+                                                IconSelected="whitefile.png"
+                                                Text="TreeView"/>
+                                        </controls:TreeViewNodes>
+                                    </controls:TreeViewNode.Children>
+                                </controls:TreeViewNode>
+                            </controls:TreeViewNodes>
+                    </controls:TreeView.RootNodes>
+                </controls:TreeView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

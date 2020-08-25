@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Gallery.Views.ShieldGallery"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="Shield Gallery">
+    <ContentPage
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Orientation="Horizontal"
+                Padding="12">
+                <controls:Shield
+                    Subject="C#"
+                    Status=">=4.5"
+                    Color="DodgerBlue"
+                    TextColor="White"/>
+                <controls:Shield
+                    Subject="IDE"
+                    Status="2019"
+                    Color="DodgerBlue"
+                    TextColor="White"/>
+                <controls:Shield
+                    Subject="chat"
+                    Status="on discord"
+                    Color="SeaGreen"
+                    TextColor="White"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Events"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Orientation="Horizontal"
+                Padding="12">
+                <controls:Shield
+                    Subject="C#"
+                    Status=">=4.5"
+                    Color="DodgerBlue"
+                    TextColor="White"
+                    Tapped="OnShieldTapped"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

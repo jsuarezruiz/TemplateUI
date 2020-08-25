@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.Marquee"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Style TargetType="controls:Marquee">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Frame
+                        x:Name="PART_Border"
+                        HasShadow="False"
+                        IsClippedToBounds="True"
+                        Padding="0"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        BackgroundColor="{TemplateBinding BackgroundColor}"
+                        BorderColor="{TemplateBinding BorderColor}">
+                        <ContentPresenter
+                            x:Name="PART_Content"
+                            BackgroundColor="Transparent"
+                            Content="{TemplateBinding Content}"
+                            AutomationId="{TemplateBinding AutomationId}"/>
+                    </Frame>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

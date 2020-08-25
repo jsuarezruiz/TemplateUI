@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.ValueAxis"
+    xmlns:controls="clr-namespace:TemplateUI.DataVisualization">
+
+    <Style TargetType="controls:ValueAxis">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        WidthRequest="36"
+                        BackgroundColor="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="2" />
+                        </Grid.ColumnDefinitions>
+                        <AbsoluteLayout
+                            x:Name="PART_ValuesPanel"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill" />
+                        <AbsoluteLayout
+                            x:Name="PART_TickPanel"
+                            Grid.Column="1"
+                            VerticalOptions="Fill" />
+                        <Rectangle
+                            x:Name="PART_AxisLine"
+                            Grid.Column="2"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="End"
+                            BackgroundColor="{TemplateBinding AxisColor}"/> 
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
