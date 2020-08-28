@@ -5,6 +5,11 @@
     x:Class="TemplateUI.Gallery.Views.CustomNavigationPage"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:NavigationPage.HideNavigationBarSeparator="true"
-    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
-    BarTextColor="White">
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}">
+    <NavigationPage.BarTextColor>
+        <OnPlatform x:TypeArguments="Color">
+            <On Platform="Android, iOS">White</On>
+            <On Platform="macOS">Black</On>
+        </OnPlatform>
+    </NavigationPage.BarTextColor>
 </NavigationPage>

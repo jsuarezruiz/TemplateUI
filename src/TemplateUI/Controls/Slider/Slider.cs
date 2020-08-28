@@ -162,7 +162,7 @@ namespace TemplateUI.Controls
                 case GestureStatus.Started:
                     _previousPosition = e.TotalX;
 
-                    if (Device.RuntimePlatform == Device.iOS)
+                    if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                         _previousPosition += _thumb.TranslationX;
                     break;
                 case GestureStatus.Running:

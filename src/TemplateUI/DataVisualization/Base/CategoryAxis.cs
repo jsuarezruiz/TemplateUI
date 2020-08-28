@@ -112,7 +112,7 @@ namespace TemplateUI.DataVisualization
                 _valueLabels.Add(new Label
                 {
                     HorizontalOptions = LayoutOptions.End,
-                    FontSize = Device.RuntimePlatform == Device.iOS ? 8.0 : Device.GetNamedSize(NamedSize.Micro, typeof(Label))
+                    FontSize = (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS) ? 8.0 : Device.GetNamedSize(NamedSize.Micro, typeof(Label))
                 });
 
                 UpdateText(i);
