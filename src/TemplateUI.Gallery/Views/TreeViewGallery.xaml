@@ -4,10 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
     x:Class="TemplateUI.Gallery.Views.TreeViewGallery"
-    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}" 
+    BarTextColor="White"
     Title="TreeView Gallery">
     <ContentPage
-        Title="Getting Started">
+        Title="Getting Started" 
+        IconImageSource="started.png">
         <ContentPage.Content>
             <StackLayout
                 Padding="12">
