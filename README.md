@@ -8,6 +8,18 @@ _What is a templated control?_
 
 It is a control defined by a template. Every control has a **ControlTemplate** property and can modify the structure that defines the control.
 
+## Usage
+
+**Step 1**: Add a reference to TemplateUI. 
+
+**NOTE:** Currently TemplateUI is not yet available in NuGet. _But... why?_. There are a couple more controls and some fixes almost ready. After merge and polish details, TemplateUI will be in NuGet.
+
+**Step 2**: Initialize TemplateUI in your shared library:
+
+`TemplateUI.Init();`
+
+**Step 3**: Enjoy coding!.
+
 ## Overview
 
 The controls available are:
