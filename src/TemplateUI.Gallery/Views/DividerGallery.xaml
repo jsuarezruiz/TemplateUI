@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.DividerGallery"
+    Title="Divider Gallery">
+    <ContentPage.Content>
+      <StackLayout
+          Margin="12">
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Text="Button 1"/>
+                <controls:Divider
+                    Orientation="Vertical"/>
+                <Button
+                    Text="Button 2"/>
+                <controls:Divider
+                    Orientation="Vertical"/>
+                <Button
+                    Text="Button 3"/>
+            </StackLayout>
+          <controls:Divider
+              Orientation="Horizontal"
+              LineStroke="Red"
+              LineStrokeThickness="6"/>
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Text="Button 1"/>
+                <controls:Divider
+                    Orientation="Vertical" />
+                <Button
+                    Text="Button 2"/>
+                <controls:Divider
+                    Orientation="Vertical" />
+                <Button
+                    Text="Button 3"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
