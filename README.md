@@ -160,14 +160,15 @@ Use GitHub [Issues](https://github.com/jsuarezruiz/TemplateUI/issues) for bug re
 ## What's next
 
 The next controls will be:
+* Clock
 * TabView
 
 In addition, there are ideas for a wide variety of controls like:
-* Clock
 * Calendar
 * ColorPicker
 * DataGrid
 * Divider
+* Horizontal Calendar
 * Loading
 * Pagination
 * StepBar
