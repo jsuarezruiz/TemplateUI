@@ -33,6 +33,9 @@
     <Folder Include="Controls\ToggleSwitch\" />
     <Folder Include="Controls\Common\" />
     <Folder Include="Controls\Slider\" />
+    <Folder Include="Layouts\" />
+    <Folder Include="Layouts\CircularLayout\" />
+    <Folder Include="Controls\Clock\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\AreaChart.xaml.cs">

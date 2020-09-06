@@ -60,6 +60,7 @@ namespace TemplateUI.Gallery.ViewModels
                 new GalleryItem { Title = "CarouselView", SubTitle = "Allow to navigate through a collection of views.", Icon = "carouselview.png", Color = Color.LimeGreen },
                 new GalleryItem { Title = "ChatBubble", SubTitle = "Allow to show a speech bubble message.", Icon = "chatbubble.png", Color = Color.DarkSeaGreen },
                 //new GalleryItem { Title = "CircleProgressBar", SubTitle = "Shows a control that indicates the progress percentage of an on-going operation by circular shape.", Icon = "circleprogressbar.png", Color = Color.LightGray, Status = GalleryItemStatus.InProgress },
+                new GalleryItem { Title = "Clock", SubTitle = "Allows the user to select a time.", Icon = "clock.png", Color = Color.Maroon, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "ComparerView", SubTitle = "Provides an option for displaying a split-screen of two views, which can help you to make comparisons.", Icon = "comparerview.png", Color = Color.DarkViolet, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "DataVisualization", SubTitle = "Several series graphs.", Icon = "chart.png", Color = Color.LightCoral, Status = GalleryItemStatus.Preview  },
                 new GalleryItem { Title = "GridSplitter", SubTitle = "Represents the control that redistributes space between columns or rows of a Grid control.", Icon = "gridsplitter.png", Color = Color.DarkOrchid },

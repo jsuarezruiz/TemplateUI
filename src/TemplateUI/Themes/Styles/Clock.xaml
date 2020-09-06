@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.Clock"
+    xmlns:controls="clr-namespace:TemplateUI.Controls"
+    xmlns:layouts="clr-namespace:TemplateUI.Layouts">
+
+    <Style TargetType="controls:Clock">
+        <Setter Property="WidthRequest" Value="250"/>
+        <Setter Property="HeightRequest" Value="250"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        BackgroundColor="{TemplateBinding BackgroundColor}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid
+                            BackgroundColor="{TemplateBinding Color}">
+                            <Label
+                                x:Name="PART_Time"
+                                Text="12:00"
+                                TextColor="White"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                        </Grid>
+                        <Grid
+                            Grid.Row="1">
+                            <Ellipse
+                                Aspect="Uniform"
+                                Fill="WhiteSmoke"/>
+                            <layouts:CircularLayout
+                                x:Name="PART_NumPanel"
+                                Orientation="Clockwise"/>
+                            <Ellipse
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                HeightRequest="10"
+                                WidthRequest="10"
+                                Stroke="{TemplateBinding Color}"
+                                StrokeThickness="2"/>
+                            <BoxView 
+                                x:Name="PART_Hand"
+                                Color="{TemplateBinding Color}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                HeightRequest="50"
+                                WidthRequest="2"
+                                Margin="0, 0, 0, 60"/>
+                        </Grid>
+                        <Grid
+                            Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <controls:ToggleView
+                                CornerRadius="24"
+                                UnCheckedColor="LightGray"
+                                CheckedColor="{TemplateBinding Color}"
+                                IsAnimated="True"
+                                HorizontalOptions="Center">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="AM"
+                                    TextColor="Gray"
+                                    Margin="6"/>
+                            </controls:ToggleView>
+                            <controls:ToggleView
+                                CornerRadius="24"
+                                UnCheckedColor="LightGray"
+                                CheckedColor="{TemplateBinding Color}"
+                                HorizontalOptions="Center"
+                                Grid.Column="1"
+                                IsAnimated="True"
+                                Checked="True">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="PM"
+                                    TextColor="Gray"
+                                    Margin="6"/>
+                            </controls:ToggleView>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:ToggleView">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Frame
+                        BackgroundColor="{TemplateBinding CurrentColor}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        HasShadow="False"
+                        Padding="6">
+                        <ContentPresenter />
+                    </Frame>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

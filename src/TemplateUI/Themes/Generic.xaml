@@ -18,6 +18,7 @@
               <themes:ChatBubble />
               <themes:CategoryAxis />
               <themes:CircleProgressBar />
+              <themes:Clock />
               <themes:ComparerView />
               <themes:GridLines />
               <themes:GridSplitter />
