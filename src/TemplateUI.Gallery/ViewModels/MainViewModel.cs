@@ -69,6 +69,7 @@ namespace TemplateUI.Gallery.ViewModels
                 new GalleryItem { Title = "SegmentedControl", SubTitle = "Is a linear segment made up of multiple segments and allow users to select between multiple options.", Icon = "segmentedcontrol.png", Color = Color.DarkKhaki, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "Shield", SubTitle = "Shield is a type of badge.", Icon = "shield.png", Color = Color.DarkOliveGreen },
                 new GalleryItem { Title = "Slider", SubTitle = "Is a horizontal bar that can be manipulated by the user to select a double value from a continuous range.", Icon = "slider.png", Color = Color.ForestGreen, Status = GalleryItemStatus.InProgress },
+                new GalleryItem { Title = "SnackBar", SubTitle = "Provide brief messages about app processes at the bottom of the screen.", Icon = "snackbar.png", Color = Color.IndianRed },
                 new GalleryItem { Title = "Tag", SubTitle = "Is a tagging control.", Icon = "tag.png", Color = Color.DarkSalmon },
                 new GalleryItem { Title = "ToggleSwitch", SubTitle = "A View control that provides a toggled value.", Icon = "toggleswitch.png", Color = Color.DeepPink, Status = GalleryItemStatus.Preview  },
                 new GalleryItem { Title = "TreeView", SubTitle = "Enables a hierarchical list with expanding and collapsing nodes that contain nested items.", Icon = "tag.png", Color = Color.MediumPurple, Status = GalleryItemStatus.InProgress  }

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Gallery.Views.SnackBarGallery"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    Title="SnackBar Gallery">
+    <ContentPage.Content>
+        <Grid>
+            <Button
+                Text="Show SnackBar"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="OnShowSnackBarClicked"/>
+            <controls:SnackBar 
+                x:Name="SnackBar"
+                Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

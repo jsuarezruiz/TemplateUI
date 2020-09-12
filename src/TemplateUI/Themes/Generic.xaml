@@ -28,6 +28,7 @@
               <themes:SegmentedControl />
               <themes:Shield />
               <themes:Slider />
+              <themes:SnackBar />
               <themes:Tag />
               <themes:ToggleSwitch />
               <themes:TreeView />
