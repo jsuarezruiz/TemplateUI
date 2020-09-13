@@ -7,14 +7,35 @@
     Title="SnackBar Gallery">
     <ContentPage.Content>
         <Grid>
-            <Button
-                Text="Show SnackBar"
+            <StackLayout
                 HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Clicked="OnShowSnackBarClicked"/>
-            <controls:SnackBar 
-                x:Name="SnackBar"
+                VerticalOptions="Center">
+                <Button
+                    Text="Show SnackBar"
+                    Clicked="OnShowDefaultSnackBarClicked"/>
+                <Button
+                    Text="Custom Colors"
+                    Clicked="OnShowCustomColorsSnackBarClicked"/>
+                <Button
+                    Text="Corner Radius"
+                    Clicked="OnShowCornerRadiusSnackBarClicked"/>
+            </StackLayout>
+            <controls:SnackBar
+                x:Name="DefaultSnackBar"
                 Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+            <controls:SnackBar
+                x:Name="CustomColorsSnackBar"
+                BackgroundColor="LightSeaGreen"
+                TextColor="White"
+                ActionTextColor="White"
+                Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+            <controls:SnackBar
+                x:Name="CornerRadiusSnackBar"
+                BackgroundColor="OrangeRed"
+                ActionTextColor="LightGoldenrodYellow"
+                CornerRadius="24"
+                Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                Margin="12, 0, 12, 24"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

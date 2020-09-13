@@ -62,6 +62,15 @@ namespace TemplateUI.Controls
             set { SetValue(ActionTextColorProperty, value); }
         }
 
+        public static readonly BindableProperty BorderColorProperty =
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(SnackBar), Color.Default);
+
+        public Color BorderColor
+        {
+            get => (Color)GetValue(BorderColorProperty);
+            set { SetValue(BorderColorProperty, value); }
+        }
+
         public static readonly BindableProperty MessageProperty =
             BindableProperty.Create(nameof(Message), typeof(string), typeof(SnackBar), string.Empty);
 
@@ -97,6 +106,15 @@ namespace TemplateUI.Controls
             get { return (string)GetValue(FontFamilyProperty); }
             set { SetValue(FontFamilyProperty, value); }
         }
+
+        public double CornerRadius
+        {
+            get { return (double)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static BindableProperty CornerRadiusProperty =
+            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(SnackBar), 0.0d);
 
         protected override void OnApplyTemplate()
         {
@@ -135,7 +153,7 @@ namespace TemplateUI.Controls
         public void Close()
         {
             IsOpen = false;
-            var height = _container.Height > 0 ? _container.Height : 1000;
+            var height = _container.Height > 0 ? (_container.Height + Margin.Bottom) : 1000;
             this.TranslateTo(0, height, CloseAnimationDuration);
         }
 

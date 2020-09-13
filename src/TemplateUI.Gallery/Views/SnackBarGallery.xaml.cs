@@ -10,9 +10,19 @@ namespace TemplateUI.Gallery.Views
             InitializeComponent();
         }
 
-        void OnShowSnackBarClicked(object sender, EventArgs e)
+        void OnShowDefaultSnackBarClicked(object sender, EventArgs e)
         {
-            SnackBar.IsOpen = true;
+            DefaultSnackBar.IsOpen = true;
+        }
+
+        void OnShowCustomColorsSnackBarClicked(object sender, EventArgs e)
+        {
+            CustomColorsSnackBar.IsOpen = true;
+        }
+
+        void OnShowCornerRadiusSnackBarClicked(object sender, EventArgs e)
+        {
+            CornerRadiusSnackBar.IsOpen = true;
         }
     }
 }
