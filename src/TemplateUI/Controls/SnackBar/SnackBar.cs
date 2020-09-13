@@ -4,6 +4,7 @@ using Xamarin.Forms;
 
 namespace TemplateUI.Controls
 {
+    // TODO: Create a SnackBarManager to allow have methods that can show a SnackBar without adding the SnackBar to the page hierarchy.
     public class SnackBar : TemplatedView
     {
         const string DefaultActionText = "Close";
