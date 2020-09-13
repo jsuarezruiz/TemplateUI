@@ -2,62 +2,22 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <PackOnBuild>true</PackOnBuild>
+    <Authors>Javier Suarez</Authors>
+    <Owners>Javier Suarez</Owners>
+    <PackageProjectUrl>https://github.com/jsuarezruiz/TemplateUI</PackageProjectUrl>
+    <Summary>A set of templated controls for Xamarin.Forms.</Summary>
+    <PackageTags>xamarin, xamarin-forms, control, template</PackageTags>
+    <Title>TemplateUI</Title>
+    <Description>A set of templated controls for Xamarin.Forms.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.7.0.1260" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.5-dev.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
     
-  <ItemGroup>
-    <Folder Include="DataVisualization\" />
-    <Folder Include="Themes\" />
-    <Folder Include="Controls\" />
-    <Folder Include="Themes\Basic\" />
-    <Folder Include="Themes\Styles\" />
-    <Folder Include="Controls\Rate\" />
-    <Folder Include="DataVisualization\Base\" />
-    <Folder Include="Controls\AvatarView\" />
-    <Folder Include="Controls\BadgeView\" />
-    <Folder Include="Controls\GridSplitter\" />
-    <Folder Include="Controls\Marquee\" />
-    <Folder Include="Controls\SegmentedControl\" />
-    <Folder Include="Controls\CarouselView\" />
-    <Folder Include="Controls\CircleProgressBar\" />
-    <Folder Include="Controls\ChatBubble\" />
-    <Folder Include="Controls\Tag\" />
-    <Folder Include="Controls\Shield\" />
-    <Folder Include="Controls\TreeView\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Controls\ComparerView\" />
-    <Folder Include="Controls\ProgressBar\" />
-    <Folder Include="Controls\ToggleSwitch\" />
-    <Folder Include="Controls\Common\" />
-    <Folder Include="Controls\Slider\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\AreaChart.xaml.cs">
-      <DependentUpon>AreaChart.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\BarChart.xaml.cs">
-      <DependentUpon>BarChart.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\CategoryAxis.xaml.cs">
-      <DependentUpon>CategoryAxis.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\GridLines.xaml.cs">
-      <DependentUpon>GridLines.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\LineChart.xaml.cs">
-      <DependentUpon>LineChart.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Themes\Styles\ValueAxis.xaml.cs">
-      <DependentUpon>ValueAxis.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
 </Project>
