@@ -121,11 +121,15 @@ namespace TemplateUI.Controls
         {
             base.OnApplyTemplate();
 
+            if (_action != null)
+                _action.Clicked -= OnActionClicked;
+
             _container = GetTemplateChild(ElementContainer) as Grid;
             _text = GetTemplateChild(ElementText) as Label;
             _action = GetTemplateChild(ElementAction) as Button;
 
-            _action.Clicked += OnActionClicked;
+            if (_action != null)
+                _action.Clicked += OnActionClicked;
 
             UpdateIsOpen();
             UpdateIsEnabled();
