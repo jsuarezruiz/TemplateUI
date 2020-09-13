@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using TemplateUI.Layouts;
 using Xamarin.Forms;
 
@@ -6,14 +7,26 @@ namespace TemplateUI.Controls
 {
     public class Clock : TemplatedView
     {
+        const string ElementTime = "PART_Time";
         const string ElementNumPanel = "PART_NumPanel";
+        const string ElementHandContainer = "PART_HandContainer";
         const string ElementHand = "PART_Hand";
+        const string ElementButtomAm = "PART_ButtomAm";
+        const string ElementButtomPm = "PART_ButtomPm";
 
+        Label _time;
         CircularLayout _circularLayout;
+        AbsoluteLayout _handContainer;
         BoxView _hand;
+        ToggleView _buttonAm;
+        ToggleView _buttonPm;
+
+        Point _center;
+        double _radius;
 
         public Clock()
         {
+
         }
 
         public static readonly BindableProperty ColorProperty =
@@ -35,8 +48,30 @@ namespace TemplateUI.Controls
         {
             base.OnApplyTemplate();
 
+            if (_hand != null)
+                _hand.SizeChanged -= OnHandSizeChanged;
+
+            if (_buttonAm != null)
+                _buttonAm.Toggled -= OnButtonAmToggled;
+
+            if (_buttonPm != null)
+                _buttonPm.Toggled -= OnButtonPmToggled;
+
+            _time = GetTemplateChild(ElementTime) as Label;
             _circularLayout = GetTemplateChild(ElementNumPanel) as CircularLayout;
+            _handContainer = GetTemplateChild(ElementHandContainer) as AbsoluteLayout;
             _hand = GetTemplateChild(ElementHand) as BoxView;
+            _buttonAm = GetTemplateChild(ElementButtomAm) as ToggleView;
+            _buttonPm = GetTemplateChild(ElementButtomPm) as ToggleView;
+
+            if (_hand != null)
+                _hand.SizeChanged += OnHandSizeChanged;
+
+            if (_buttonAm != null)
+                _buttonAm.Toggled += OnButtonAmToggled;
+
+            if (_buttonPm != null)
+                _buttonPm.Toggled += OnButtonPmToggled;
 
             AddNumItems();
             UpdateIsEnabled();
@@ -61,6 +96,8 @@ namespace TemplateUI.Controls
 
                 _circularLayout.Children.Add(numItem);
             }
+
+            RaiseChild(_circularLayout);
         }
 
         ToggleView CreateNumItem(string content)
@@ -69,7 +106,8 @@ namespace TemplateUI.Controls
             {
                 CornerRadius = 24,
                 UnCheckedColor = Color.Transparent,
-                CheckedColor = Color
+                CheckedColor = Color,
+                IsAnimated = true
             };
 
             var label = new Label
@@ -90,30 +128,79 @@ namespace TemplateUI.Controls
 
         void UpdateIsEnabled()
         {
-            if(IsEnabled)
+            if (IsEnabled)
             {
                 var panGestureRecognizer = new PanGestureRecognizer();
                 panGestureRecognizer.PanUpdated += OnPanUpdated;
-                _hand.GestureRecognizers.Add(panGestureRecognizer);
+                _handContainer.GestureRecognizers.Add(panGestureRecognizer);
             }
             else
             {
-                _hand.GestureRecognizers.Clear();
+                _handContainer.GestureRecognizers.Clear();
             }
         }
 
         void UpdateColor()
         {
-            foreach(var children in _circularLayout.Children)
+            foreach (var children in _circularLayout.Children)
             {
                 if (children is ToggleView toggleView)
                     toggleView.CheckedColor = Color;
             }
         }
 
-        void OnPanUpdated(object sender, PanUpdatedEventArgs e)
+        void OnHandSizeChanged(object sender, EventArgs e)
         {
-       
+            _center = new Point();
+            _radius = Math.Min(_circularLayout.Width, _circularLayout.Height) / 2;
+
+            _hand.TranslationX = _handContainer.Width / 2;
+            _hand.TranslationY = _handContainer.Height / 2;
+
+            AbsoluteLayout.SetLayoutBounds(_hand, new Rectangle(_center.X - _hand.Width / 2, _center.Y - _radius, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+        }
+
+        async void OnPanUpdated(object sender, PanUpdatedEventArgs e)
+        {
+            switch (e.StatusType)
+            {
+                case GestureStatus.Running:
+                    var point = new Point(e.TotalX, e.TotalY);
+                    var angle = Math.Atan2(point.Y - _center.Y, point.X - _center.X) * 180 / Math.PI;
+
+                    _hand.Rotation = 0;
+                    _hand.AnchorY = _radius / _hand.Height;
+                    await _hand.RotateTo(angle, 0);
+                    break;
+            }
+        }
+
+        void OnButtonAmToggled(object sender, ToggledEventArgs e)
+        {
+            if(e.Toggled)
+            {
+                _buttonAm.Checked = true;
+                _buttonPm.Checked = false;
+            }
+            else
+            {
+                _buttonAm.Checked = false;
+                _buttonPm.Checked = true;
+            }
+        }
+
+        void OnButtonPmToggled(object sender, ToggledEventArgs e)
+        {
+            if (e.Toggled)
+            {
+                _buttonAm.Checked = false;
+                _buttonPm.Checked = true;
+            }
+            else
+            {
+                _buttonAm.Checked = true;
+                _buttonPm.Checked = false;
+            }
         }
     }
 }

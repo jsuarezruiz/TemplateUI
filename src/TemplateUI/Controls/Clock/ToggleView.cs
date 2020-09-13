@@ -92,6 +92,8 @@ namespace TemplateUI.Controls
             }
         }
 
+        public event EventHandler<ToggledEventArgs> Toggled;
+
         protected override async void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -142,6 +144,7 @@ namespace TemplateUI.Controls
         void OnTapped(object sender, EventArgs e)
         {
             Checked = !Checked;
+            Toggled?.Invoke(this, new ToggledEventArgs(Checked));
         }
     }
 }
