@@ -29,6 +29,15 @@ namespace TemplateUI.Controls
 
         }
 
+        public static readonly BindableProperty SelectedTimeProperty =
+            BindableProperty.Create(nameof(SelectedTime), typeof(DateTime), typeof(Clock), null);
+
+        public DateTime SelectedTime
+        {
+            get => (DateTime)GetValue(SelectedTimeProperty);
+            set { SetValue(SelectedTimeProperty, value); }
+        }
+
         public static readonly BindableProperty ColorProperty =
             BindableProperty.Create(nameof(Color), typeof(Color), typeof(Clock), Color.Black,
                 propertyChanged: OnColorChanged);
