@@ -9,8 +9,6 @@ namespace TemplateUI.Controls
     {
         const string DefaultActionText = "Close";
         const int AutoCloseDuration = 2750;
-        const uint OpenAnimationDuration = 250;
-        const uint CloseAnimationDuration = 150;
 
         const string ElementContainer = "PART_Container";
         const string ElementText = "PART_Text";
@@ -108,14 +106,23 @@ namespace TemplateUI.Controls
             set { SetValue(FontFamilyProperty, value); }
         }
 
+        public static BindableProperty CornerRadiusProperty =
+            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(SnackBar), 0.0d);
+
         public double CornerRadius
         {
             get { return (double)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public static BindableProperty CornerRadiusProperty =
-            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(SnackBar), 0.0d);
+        public static BindableProperty AnimationProperty =
+            BindableProperty.Create(nameof(Animation), typeof(ISnackBarAnimation), typeof(SnackBar), new SnackBarAnimation());
+
+        public ISnackBarAnimation Animation
+        {
+            get { return (ISnackBarAnimation)GetValue(AnimationProperty); }
+            set { SetValue(AnimationProperty, value); }
+        }
 
         protected override void OnApplyTemplate()
         {
@@ -152,14 +159,13 @@ namespace TemplateUI.Controls
             if (_timer != null)
                 _timer.Stop();
 
-            this.TranslateTo(0, 0, OpenAnimationDuration);
+            Animation.OnOpen(this);
         }
 
         public void Close()
         {
             IsOpen = false;
-            var height = _container.Height > 0 ? (_container.Height + Margin.Bottom) : 1000;
-            this.TranslateTo(0, height, CloseAnimationDuration);
+            Animation.OnClose(this);
         }
 
         void UpdateIsOpen()
