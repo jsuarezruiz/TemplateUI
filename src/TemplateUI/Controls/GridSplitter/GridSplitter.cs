@@ -83,7 +83,7 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Running:
-                    if (Device.RuntimePlatform == Device.iOS)
+                    if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
                         var totalX = e.TotalX - _previousPositionX;
                         var totalY = e.TotalY - _previousPositionY;

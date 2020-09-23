@@ -154,7 +154,7 @@ namespace TemplateUI.Controls
                     _previousPositionX = e.TotalX;
                     _previousPositionY = e.TotalY;
 
-                    if (Device.RuntimePlatform == Device.iOS)
+                    if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
                         _previousPositionX += _thumbContainer.TranslationX;
                         _previousPositionY += _thumbContainer.TranslationY;

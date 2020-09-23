@@ -105,7 +105,8 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty CornerRadiusProperty =
-            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(ToggleSwitch), (Device.RuntimePlatform == Device.iOS) ? 6.0d : 24.0d);
+            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(ToggleSwitch),
+                (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS) ? 6.0d : 24.0d);
 
         public double CornerRadius
         {

@@ -101,14 +101,14 @@ namespace TemplateUI.DataVisualization
             else if (_values.Count < _valueBoxes.Count)
                 RemoveValueItems(count);
         }
-
+        
         void AddValueItems(int count)
         {
             for (int i = count; i < _values.Count; i++)
             {
                 _valueBoxes.Add(new Label
                 {
-                    FontSize = Device.RuntimePlatform == Device.iOS ? 8.0 : Device.GetNamedSize(NamedSize.Micro, typeof(Label))
+                    FontSize = (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS) ? 8.0 : Device.GetNamedSize(NamedSize.Micro, typeof(Label))
                 });
 
                 UpdateText(i);

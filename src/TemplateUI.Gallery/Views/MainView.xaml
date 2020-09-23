@@ -65,7 +65,14 @@
                     RowSpacing="0"
                     Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="150" />
+                        <RowDefinition>
+                            <RowDefinition.Height>
+                                <OnPlatform x:TypeArguments="GridLength">
+                                   <On Platform="Android, iOS">150</On>
+                                   <On Platform="macOS">24</On>
+                                </OnPlatform>
+                            </RowDefinition.Height>
+                        </RowDefinition>
                         <RowDefinition Height="100" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
