@@ -4,10 +4,16 @@ A set of templated controls.
 
 <img src="images/templateui-home.gif" Width="300" />
 
+Supported platforms:
+* Android
+* iOS
+* macOS
+* UWP
+  
 _What is a templated control?_
 
 It is a control defined by a template. Every control has a **ControlTemplate** property and can modify the structure that defines the control.
-
+  
 ## Usage
 
 **Step 1**: Add a reference to TemplateUI. 
@@ -179,7 +185,6 @@ In addition, there are ideas for a wide variety of controls like:
 * Calendar
 * ColorPicker
 * DataGrid
-* Divider
 * Horizontal Calendar
 * Loading
 * Pagination
