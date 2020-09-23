@@ -66,6 +66,12 @@ Several series graphs.
 
 <img src="images/templateui-datavisualization.gif" Width="300" />
 
+## Divider
+
+Displays a separator between views.
+
+<img src="images/templateui-divider.png" Width="300" />
+
 ### GridSplitter
 
 Represents the control that redistributes space between columns or rows of a Grid control.
@@ -107,6 +113,12 @@ Shield is a type of badge.
 Is a horizontal bar that can be manipulated by the user to select a double value from a continuous range.
 
 <img src="images/templateui-slider.gif" Width="300" />
+
+## SnackBar
+
+Provide brief messages about app processes at the bottom of the screen.
+
+<img src="images/templateui-snackbar.gif" Width="300" />
 
 ### Tag
 
