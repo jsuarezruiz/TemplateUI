@@ -62,6 +62,7 @@ namespace TemplateUI.Gallery.ViewModels
                 //new GalleryItem { Title = "CircleProgressBar", SubTitle = "Shows a control that indicates the progress percentage of an on-going operation by circular shape.", Icon = "circleprogressbar.png", Color = Color.LightGray, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "ComparerView", SubTitle = "Provides an option for displaying a split-screen of two views, which can help you to make comparisons.", Icon = "comparerview.png", Color = Color.DarkViolet, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "DataVisualization", SubTitle = "Several series graphs.", Icon = "chart.png", Color = Color.LightCoral, Status = GalleryItemStatus.Preview  },
+                new GalleryItem { Title = "Divider", SubTitle = "Displays a separator between views.", Icon = "divider.png", Color = Color.Orchid  },
                 new GalleryItem { Title = "GridSplitter", SubTitle = "Represents the control that redistributes space between columns or rows of a Grid control.", Icon = "gridsplitter.png", Color = Color.DarkOrchid },
                 new GalleryItem { Title = "Marquee", SubTitle = "Use this control to add an attention–getting text message that scrolls continuously across the screen.", Icon = "marquee.png", Color = Color.DarkRed },
                 new GalleryItem { Title = "ProgressBar", SubTitle = "Provides a customizable visual to indicate the progress of a task.", Icon = "progressbar.png", Color = Color.DodgerBlue, Status = GalleryItemStatus.InProgress  },
@@ -69,6 +70,7 @@ namespace TemplateUI.Gallery.ViewModels
                 new GalleryItem { Title = "SegmentedControl", SubTitle = "Is a linear segment made up of multiple segments and allow users to select between multiple options.", Icon = "segmentedcontrol.png", Color = Color.DarkKhaki, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "Shield", SubTitle = "Shield is a type of badge.", Icon = "shield.png", Color = Color.DarkOliveGreen },
                 new GalleryItem { Title = "Slider", SubTitle = "Is a horizontal bar that can be manipulated by the user to select a double value from a continuous range.", Icon = "slider.png", Color = Color.ForestGreen, Status = GalleryItemStatus.InProgress },
+                new GalleryItem { Title = "SnackBar", SubTitle = "Provide brief messages about app processes at the bottom of the screen.", Icon = "snackbar.png", Color = Color.IndianRed, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "Tag", SubTitle = "Is a tagging control.", Icon = "tag.png", Color = Color.DarkSalmon },
                 new GalleryItem { Title = "ToggleSwitch", SubTitle = "A View control that provides a toggled value.", Icon = "toggleswitch.png", Color = Color.DeepPink, Status = GalleryItemStatus.Preview  },
                 new GalleryItem { Title = "TreeView", SubTitle = "Enables a hierarchical list with expanding and collapsing nodes that contain nested items.", Icon = "tag.png", Color = Color.MediumPurple, Status = GalleryItemStatus.InProgress  }

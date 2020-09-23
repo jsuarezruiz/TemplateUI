@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Gallery.Views.SnackBarGallery"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    Title="SnackBar Gallery">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Button
+                    Text="Show SnackBar"
+                    Clicked="OnShowDefaultSnackBarClicked"/>
+                <Button
+                    Text="Custom Colors"
+                    Clicked="OnShowCustomColorsSnackBarClicked"/>
+                <Button
+                    Text="Corner Radius"
+                    Clicked="OnShowCornerRadiusSnackBarClicked"/>
+            </StackLayout>
+            <controls:SnackBar
+                x:Name="DefaultSnackBar"
+                Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+            <controls:SnackBar
+                x:Name="CustomColorsSnackBar"
+                BackgroundColor="LightSeaGreen"
+                TextColor="White"
+                ActionTextColor="White"
+                Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+            <controls:SnackBar
+                x:Name="CornerRadiusSnackBar"
+                BackgroundColor="OrangeRed"
+                ActionTextColor="LightGoldenrodYellow"
+                CornerRadius="24"
+                Message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                Margin="12, 0, 12, 24"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

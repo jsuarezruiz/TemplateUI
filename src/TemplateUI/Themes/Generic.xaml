@@ -19,6 +19,7 @@
               <themes:CategoryAxis />
               <themes:CircleProgressBar />
               <themes:ComparerView />
+              <themes:Divider />
               <themes:GridLines />
               <themes:GridSplitter />
               <themes:LineChart />
@@ -28,6 +29,7 @@
               <themes:SegmentedControl />
               <themes:Shield />
               <themes:Slider />
+              <themes:SnackBar />
               <themes:Tag />
               <themes:ToggleSwitch />
               <themes:TreeView />

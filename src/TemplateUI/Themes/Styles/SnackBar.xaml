@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.SnackBar"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+        <Style TargetType="controls:SnackBar">
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="ControlTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Frame
+                            BorderColor="{TemplateBinding BorderColor}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="0"
+                            HasShadow="False">
+                            <Grid
+                                x:Name="PART_Container"
+                                BackgroundColor="{TemplateBinding BackgroundColor}"
+                                VerticalOptions="End">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    x:Name="PART_Text"
+                                    Text="{TemplateBinding Message}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="18, 6, 6, 6"
+                                    LineBreakMode="WordWrap"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    TextColor="{TemplateBinding TextColor}" 
+                                    FontFamily="{TemplateBinding FontFamily}"/>
+                                <Button
+                                    x:Name="PART_Action"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Margin="2"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    FontAttributes="Bold"
+                                    TextColor="{TemplateBinding ActionTextColor}"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="Transparent"
+                                    VerticalOptions="Center"
+                                    Text="{TemplateBinding ActionText}"/>
+                            </Grid>
+                        </Frame>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+</ResourceDictionary>
