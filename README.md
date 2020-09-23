@@ -72,7 +72,7 @@ Several series graphs.
 
 <img src="images/templateui-datavisualization.gif" Width="300" />
 
-## Divider
+### Divider
 
 Displays a separator between views.
 
@@ -120,7 +120,7 @@ Is a horizontal bar that can be manipulated by the user to select a double value
 
 <img src="images/templateui-slider.gif" Width="300" />
 
-## SnackBar
+### SnackBar
 
 Provide brief messages about app processes at the bottom of the screen.
 
