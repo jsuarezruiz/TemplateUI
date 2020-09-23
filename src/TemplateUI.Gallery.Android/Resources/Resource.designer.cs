@@ -8342,94 +8342,95 @@ namespace TemplateUI.Gallery.Droid
 			public const int design_snackbar_background = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int file = 2131165292;
+			public const int divider = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
-			public const int folder = 2131165293;
+			public const int file = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int gridsplitter = 2131165294;
+			public const int folder = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int ic_mtrl_chip_checked_black = 2131165295;
+			public const int gridsplitter = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int ic_mtrl_chip_checked_circle = 2131165296;
+			public const int ic_mtrl_chip_checked_black = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int ic_mtrl_chip_close_circle = 2131165297;
+			public const int ic_mtrl_chip_checked_circle = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public const int javier = 2131165298;
+			public const int ic_mtrl_chip_close_circle = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int marquee = 2131165299;
+			public const int javier = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int mtrl_snackbar_background = 2131165300;
+			public const int marquee = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int mtrl_tabs_default_indicator = 2131165301;
+			public const int mtrl_snackbar_background = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int navigation_empty_icon = 2131165302;
+			public const int mtrl_tabs_default_indicator = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int notification_action_background = 2131165303;
+			public const int navigation_empty_icon = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int notification_bg = 2131165304;
+			public const int notification_action_background = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int notification_bg_low = 2131165305;
+			public const int notification_bg = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int notification_bg_low_normal = 2131165306;
+			public const int notification_bg_low = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int notification_bg_low_pressed = 2131165307;
+			public const int notification_bg_low_normal = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int notification_bg_normal = 2131165308;
+			public const int notification_bg_low_pressed = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int notification_bg_normal_pressed = 2131165309;
+			public const int notification_bg_normal = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int notification_icon_background = 2131165310;
+			public const int notification_bg_normal_pressed = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int notification_template_icon_bg = 2131165311;
+			public const int notification_icon_background = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int notification_template_icon_low_bg = 2131165312;
+			public const int notification_template_icon_bg = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int notification_tile_bg = 2131165313;
+			public const int notification_template_icon_low_bg = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int notify_panel_notification_icon_bg = 2131165314;
+			public const int notification_tile_bg = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int progressbar = 2131165315;
+			public const int notify_panel_notification_icon_bg = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int rate = 2131165316;
+			public const int progressbar = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int redstar = 2131165317;
+			public const int rate = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int segmentedcontrol = 2131165318;
+			public const int redstar = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int shield = 2131165319;
+			public const int segmentedcontrol = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int slider = 2131165320;
+			public const int shield = 2131165320;
 			
 			// aapt resource value: 0x7F070089
 			public const int snackbar = 2131165321;
+			public const int slider = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
 			public const int started = 2131165322;

@@ -19,6 +19,7 @@
               <themes:CategoryAxis />
               <themes:CircleProgressBar />
               <themes:ComparerView />
+              <themes:Divider />
               <themes:GridLines />
               <themes:GridSplitter />
               <themes:LineChart />
