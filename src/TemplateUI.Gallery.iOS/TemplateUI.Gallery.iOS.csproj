@@ -159,6 +159,7 @@
     <BundleResource Include="Resources\progressbar.png" />
     <BundleResource Include="Resources\toggleswitch.png" />
     <BundleResource Include="Resources\slider.png" />
+    <BundleResource Include="Resources\snackbar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -8429,22 +8429,25 @@ namespace TemplateUI.Gallery.Droid
 			public const int slider = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int started = 2131165321;
+			public const int snackbar = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int tag = 2131165322;
+			public const int started = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int toggleswitch = 2131165323;
+			public const int tag = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int tooltip_frame_dark = 2131165324;
+			public const int toggleswitch = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int tooltip_frame_light = 2131165325;
+			public const int tooltip_frame_dark = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int whitefile = 2131165326;
+			public const int tooltip_frame_light = 2131165326;
+			
+			// aapt resource value: 0x7F07008F
+			public const int whitefile = 2131165327;
 			
 			static Drawable()
 			{
