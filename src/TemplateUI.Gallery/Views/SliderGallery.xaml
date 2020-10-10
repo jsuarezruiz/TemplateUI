@@ -9,11 +9,19 @@
         <StackLayout
             Padding="12">
             <Label
-                Text="Getting Started"/>
+                Text="Native RenderMode"/>
             <controls:Slider
                 Minimum="0"
                 Maximum="10"
                 Value="5"
+                ValueChanged="OnSliderValueChanged"/>
+            <Label
+                Text="Skia RenderMode"/>
+            <controls:Slider
+                Minimum="0"
+                Maximum="10"
+                Value="5"
+                RenderMode="Skia"
                 ValueChanged="OnSliderValueChanged"/>
             <Label
                 Text="Customize the background colors"/>

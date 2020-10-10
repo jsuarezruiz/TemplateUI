@@ -18,11 +18,14 @@
         </ContentPage.Content>
     </ContentPage>
     <ContentPage
-        Title="VisualType"
+        Title="VisualType and RenderMode"
         IconImageSource="customize.png">
         <ContentPage.Content>
             <StackLayout
                 Padding="12">
+                <Label
+                    FontSize="Medium"
+                    Text="Native RenderMode"/>
                 <Label
                     Text="Cupertino"/>
                 <controls:ToggleSwitch
@@ -40,6 +43,30 @@
                 <controls:ToggleSwitch
                     OffColor="Gray"
                     OnColor="Green"
+                    VisualType="Material"/>
+                <Label
+                    FontSize="Medium"
+                    Text="Skia RenderMode"/>
+                <Label
+                    Text="Cupertino"/>
+                <controls:ToggleSwitch
+                    OffColor="Gray"
+                    OnColor="DarkGray"
+                    RenderMode="Skia"
+                    VisualType="Cupertino"/>
+                <Label
+                    Text="Fluent"/>
+                <controls:ToggleSwitch
+                    OffColor="Gray"
+                    OnColor="Blue"
+                    RenderMode="Skia"
+                    VisualType="Fluent"/>
+                <Label
+                    Text="Material"/>
+                <controls:ToggleSwitch
+                    OffColor="Gray"
+                    OnColor="Green"
+                    RenderMode="Skia"
                     VisualType="Material"/>
             </StackLayout>
         </ContentPage.Content>
@@ -86,5 +113,22 @@
                     IsToggled="True"/>
                 </StackLayout>
             </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Performance"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <Label
+                    Text="Measure the time to load a page with 10 ToggleSwitch using Native and Skia RenderMode."/>
+                <Button
+                    Text="Using Native RenderMode"
+                    Clicked="OnNativeRenderModeClicked"/>
+                <Button
+                    Text="Using Skia RenderMode"
+                    Clicked="OnSkiaRenderModeClicked"/>
+            </StackLayout>
+        </ContentPage.Content>
     </ContentPage>
 </TabbedPage>

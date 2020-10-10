@@ -2,10 +2,10 @@
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="TemplateUI.Themes.ToggleSwitch"
-    xmlns:controls="clr-namespace:TemplateUI.Controls">
+    xmlns:controls="clr-namespace:TemplateUI.Skia.Controls"
+    x:Class="TemplateUI.Skia.Themes.ToggleSwitch">
 
-    <ControlTemplate x:Key="CupertinoToggleSwitchControlTemplate">
+    <ControlTemplate x:Key="SKCupertinoToggleSwitchControlTemplate">
           <Grid 
               x:Name="PART_Container"
               BackgroundColor="{TemplateBinding BackgroundColor}"
@@ -13,7 +13,7 @@
               VerticalOptions="Start"
               HeightRequest="32"
               WidthRequest="44">
-              <Rectangle
+              <controls:SKRectangle
                   x:Name="PART_Background"
                   HorizontalOptions="Start"
                   VerticalOptions="Start"
@@ -25,7 +25,7 @@
                   StrokeThickness="{TemplateBinding BorderWidth}"
                   RadiusY="{TemplateBinding CornerRadius}"
                   RadiusX="{TemplateBinding CornerRadius}"/>
-              <Ellipse
+              <controls:SKEllipse
                   x:Name="PART_Thumb"
                   Fill="{TemplateBinding ThumbColor}"
                   Stroke="{TemplateBinding CurrentColor}"
@@ -36,7 +36,7 @@
           </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="FluentToggleSwitchControlTemplate">
+    <ControlTemplate x:Key="SKFluentToggleSwitchControlTemplate">
           <Grid 
               x:Name="PART_Container"
               BackgroundColor="{TemplateBinding BackgroundColor}"
@@ -44,7 +44,7 @@
               VerticalOptions="Start"
               HeightRequest="28"
               WidthRequest="48">
-              <Rectangle
+              <controls:SKRectangle
                   x:Name="PART_Background"
                   HorizontalOptions="Start"
                   VerticalOptions="Start"
@@ -56,7 +56,7 @@
                   StrokeThickness="{TemplateBinding BorderWidth}"
                   RadiusY="{TemplateBinding CornerRadius}"
                   RadiusX="{TemplateBinding CornerRadius}"/>
-              <Ellipse
+              <controls:SKEllipse
                   x:Name="PART_Thumb"
                   Aspect="Uniform"
                   Fill="{TemplateBinding ThumbColor}"
@@ -69,7 +69,7 @@
           </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="MaterialToggleSwitchControlTemplate">
+    <ControlTemplate x:Key="SKMaterialToggleSwitchControlTemplate">
           <Grid 
               x:Name="PART_Container"
               BackgroundColor="{TemplateBinding BackgroundColor}"
@@ -77,7 +77,7 @@
               VerticalOptions="Start"
               HeightRequest="32"
               WidthRequest="44">
-              <Rectangle
+              <controls:SKRectangle
                   x:Name="PART_Background"
                   HorizontalOptions="Start"
                   VerticalOptions="Center"
@@ -89,7 +89,7 @@
                   StrokeThickness="{TemplateBinding BorderWidth}"
                   RadiusY="{TemplateBinding CornerRadius}"
                   RadiusX="{TemplateBinding CornerRadius}"/>
-              <Ellipse
+              <controls:SKEllipse
                   x:Name="PART_Thumb"
                   Fill="{TemplateBinding ThumbColor}"
                   Stroke="{TemplateBinding CurrentColor}"
@@ -99,9 +99,5 @@
                   WidthRequest="25" />
           </Grid>
     </ControlTemplate>
-
-    <Style TargetType="controls:ToggleSwitch">
-        <Setter Property="ControlTemplate" Value="{StaticResource CupertinoToggleSwitchControlTemplate}" />
-    </Style>
 
 </ResourceDictionary>

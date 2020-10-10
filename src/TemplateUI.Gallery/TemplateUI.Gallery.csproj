@@ -17,6 +17,7 @@
     
   <ItemGroup>
     <ProjectReference Include="..\TemplateUI\TemplateUI.csproj" />
+    <ProjectReference Include="..\TemplateUI.Skia\TemplateUI.Skia.csproj" />
   </ItemGroup>
     
 </Project>

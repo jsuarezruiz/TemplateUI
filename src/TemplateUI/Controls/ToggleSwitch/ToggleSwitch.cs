@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
-using Xamarin.Forms.Shapes;
 
 namespace TemplateUI.Controls
 {
@@ -14,10 +13,9 @@ namespace TemplateUI.Controls
         const string ElementBackground = "PART_Background";
         const string ElementThumb = "PART_Thumb";
 
-        Grid _container;
-        Shape _background;
-        Shape _thumb;
-
+        View _background;
+        View _thumb;
+        
         public static readonly BindableProperty IsToggledProperty =
             BindableProperty.Create(nameof(IsToggled), typeof(bool), typeof(ToggleSwitch), false,
                 propertyChanged: (bindable, oldValue, newValue) =>
@@ -38,18 +36,33 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty VisualTypeProperty =
-          BindableProperty.Create(nameof(VisualType), typeof(VisualType), typeof(ToggleSwitch), VisualType.Cupertino,
-              propertyChanged: OnVisualTypeChanged);
+            BindableProperty.Create(nameof(VisualType), typeof(VisualType), typeof(ToggleSwitch), VisualType.None,
+                propertyChanged: OnVisualTypeChanged);
 
         static void OnVisualTypeChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as ToggleSwitch)?.UpdateVisualType();
+            (bindable as ToggleSwitch)?.UpdateControlTemplate();
         }
 
         public VisualType VisualType
         {
             get => (VisualType)GetValue(VisualTypeProperty);
             set { SetValue(VisualTypeProperty, value); }
+        }
+
+        public static readonly BindableProperty RenderModeProperty =
+            BindableProperty.Create(nameof(RenderMode), typeof(RenderMode), typeof(ToggleSwitch), RenderMode.Native,
+                propertyChanged: OnRenderModeChanged);
+
+        static void OnRenderModeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            (bindable as ToggleSwitch)?.UpdateControlTemplate();
+        }
+
+        public RenderMode RenderMode
+        {
+            get => (RenderMode)GetValue(RenderModeProperty);
+            set { SetValue(RenderModeProperty, value); }
         }
 
         public static readonly BindableProperty ThumbColorProperty =
@@ -137,9 +150,8 @@ namespace TemplateUI.Controls
         {
             base.OnApplyTemplate();
 
-            _container = GetTemplateChild(ElementContainer) as Grid;
-            _background = GetTemplateChild(ElementBackground) as Shape;
-            _thumb = GetTemplateChild(ElementThumb) as Shape;
+            _background = GetTemplateChild(ElementBackground) as View;
+            _thumb = GetTemplateChild(ElementThumb) as View;
 
             UpdateIsEnabled();
             UpdateCurrent();
@@ -160,41 +172,29 @@ namespace TemplateUI.Controls
             {
                 var tapBackground = new TapGestureRecognizer();
                 tapBackground.Tapped += OnBackgroundTapped;
-                _background.GestureRecognizers.Add(tapBackground);
+                _background?.GestureRecognizers.Add(tapBackground);
 
                 var tapThumb = new TapGestureRecognizer();
                 tapThumb.Tapped += OnThumbTapped;
-                _thumb.GestureRecognizers.Add(tapThumb);
-
-                _container.Opacity = 1.0;
+                _thumb?.GestureRecognizers.Add(tapThumb);
             }
             else
             {
                 // TODO: Remove only specific gestures.
-                _background.GestureRecognizers.Clear();
-                _thumb.GestureRecognizers.Clear();
-
-                _container.Opacity = 0.75;
+                _background?.GestureRecognizers.Clear();
+                _thumb?.GestureRecognizers.Clear();
             }
         }
 
-        void UpdateVisualType()
+        void UpdateControlTemplate()
         {
-            switch(VisualType)
-            {
-                case VisualType.Cupertino:
-                    Application.Current.Resources.TryGetValue("CupertinoControlTemplate", out object cupertinoControlTemplate);
-                    ControlTemplate = cupertinoControlTemplate as ControlTemplate;
-                    break;
-                case VisualType.Fluent:
-                    Application.Current.Resources.TryGetValue("FluentControlTemplate", out object fluentControlTemplate);
-                    ControlTemplate = fluentControlTemplate as ControlTemplate;
-                    break;
-                case VisualType.Material:
-                    Application.Current.Resources.TryGetValue("MaterialControlTemplate", out object materialControlTemplate);
-                    ControlTemplate = materialControlTemplate as ControlTemplate;
-                    break;
-            }
+            var template = TemplateBuilder.GetControlTemplate(GetType().Name, RenderMode, VisualType);
+            Application.Current.Resources.TryGetValue(template, out object controlTemplate);
+
+            if (controlTemplate == null)
+                throw new ArgumentNullException("To use Skia RenderMode you must use TemplateUISkia.Init(); in your Xamarin.Forms Application class.");
+
+            ControlTemplate = controlTemplate as ControlTemplate;
         }
 
         void UpdateCurrent()
@@ -223,6 +223,8 @@ namespace TemplateUI.Controls
         void UpdateIsToggled()
         {
             // TODO: Animate the Thumb.
+            if (_thumb == null)
+                return;
 
             if (IsToggled)
                 _thumb.HorizontalOptions = LayoutOptions.End;

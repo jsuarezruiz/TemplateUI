@@ -2,6 +2,7 @@
 {
     public enum VisualType
     {
+        None,
         Cupertino,
         Fluent,
         Material
