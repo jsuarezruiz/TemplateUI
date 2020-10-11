@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:layout="clr-namespace:TemplateUI.Layouts;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.CircularLayoutGallery"
+    Title="CircularLayout Gallery">
+    <ContentPage.Content>
+        <layout:CircularLayout
+            Orientation="Clockwise">
+            <BoxView Color="Black" CornerRadius="6" WidthRequest="6" HeightRequest="6" />       
+            <BoxView Color="Red" CornerRadius="12" WidthRequest="12" HeightRequest="12" layout:CircularLayout.Angle="0" layout:CircularLayout.Radius="120" />
+            <BoxView Color="Green" CornerRadius="12" WidthRequest="12" HeightRequest="12" layout:CircularLayout.Angle="10" layout:CircularLayout.Radius="120" />
+            <BoxView Color="Blue" CornerRadius="12" WidthRequest="12" HeightRequest="12" layout:CircularLayout.Angle="20" layout:CircularLayout.Radius="120" />
+            <BoxView Color="Yellow" CornerRadius="12" WidthRequest="12" HeightRequest="12" layout:CircularLayout.Angle="30" layout:CircularLayout.Radius="120" />
+            <Label Text="1" layout:CircularLayout.Angle="30" layout:CircularLayout.Radius="90" />
+            <Label Text="2" layout:CircularLayout.Angle="60" layout:CircularLayout.Radius="90" />
+            <Label Text="3" layout:CircularLayout.Angle="90" layout:CircularLayout.Radius="90" />
+            <Label Text="4" layout:CircularLayout.Angle="120" layout:CircularLayout.Radius="90" />
+            <Label Text="5" layout:CircularLayout.Angle="150" layout:CircularLayout.Radius="90" />
+            <Label Text="6" layout:CircularLayout.Angle="180" layout:CircularLayout.Radius="90" />
+            <Label Text="7" layout:CircularLayout.Angle="210" layout:CircularLayout.Radius="90" />
+            <Label Text="8" layout:CircularLayout.Angle="240" layout:CircularLayout.Radius="90" />
+            <Label Text="9" layout:CircularLayout.Angle="270" layout:CircularLayout.Radius="90" />
+            <Label Text="10" layout:CircularLayout.Angle="300" layout:CircularLayout.Radius="90" />
+            <Label Text="11" layout:CircularLayout.Angle="330" layout:CircularLayout.Radius="90" />
+            <Label Text="12" layout:CircularLayout.Angle="360" layout:CircularLayout.Radius="90" />
+        </layout:CircularLayout>
+    </ContentPage.Content>
+</ContentPage>
