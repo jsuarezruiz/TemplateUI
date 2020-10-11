@@ -28,6 +28,10 @@ It is a control defined by a template. Every control has a **ControlTemplate** p
 
 ## Overview
 
+Let's see the possibilities of TemplateUI.
+
+#### Controls
+
 The **controls** available are:
 
 ### AvatarView
@@ -143,6 +147,12 @@ A View control that provides a toggled value.
 Enables a hierarchical list with expanding and collapsing nodes that contain nested items.
 
 <img src="images/templateui-treeview.gif" Width="300" />
+
+#### Layouts
+
+But ... isn't this a templated controls library? You are right. But to create certain controls, there are layouts that would help to achieve the desired result. For example, in the list of upcoming controls we have a Clock. To position the elements that make up the Clock, a CircularLayout makes things very simple.
+
+These Layouts, in addition to adding more possibilities to the library, help to create more templated controls.
 
 The **layouts** available are:
 
