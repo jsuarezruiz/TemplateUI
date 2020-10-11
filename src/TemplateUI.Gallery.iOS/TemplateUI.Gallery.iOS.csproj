@@ -161,6 +161,9 @@
     <BundleResource Include="Resources\slider.png" />
     <BundleResource Include="Resources\snackbar.png" />
     <BundleResource Include="Resources\divider.png" />
+    <BundleResource Include="Resources\circularlayout.png" />
+    <BundleResource Include="Resources\docklayout.png" />
+    <BundleResource Include="Resources\hexlayout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
