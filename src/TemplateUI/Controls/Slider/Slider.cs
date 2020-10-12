@@ -173,7 +173,7 @@ namespace TemplateUI.Controls
 
         void UpdateValue()
         {
-            var position = Value / Maximum * _trackBackground.Width;
+            var position = ConvertRangeValue(Value, Minimum, Maximum, 0, _trackBackground.Width - ThumbWidth);
 
             if (position <= 0)
                 return;
@@ -199,12 +199,17 @@ namespace TemplateUI.Controls
                         totalX += _thumb.TranslationX;
 
                     var position = totalX < 0 ? 0 : totalX > _trackBackground.Width - _thumb.Width ? _trackBackground.Width - _thumb.Width : totalX;
-                    Value = position * Maximum / _trackBackground.Width;
+                    Value = ConvertRangeValue(position, 0, _trackBackground.Width - ThumbWidth, Minimum, Maximum);
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
                     break;
             }
+        }
+        double ConvertRangeValue(double oldValue, double oldMin, double oldMax, double Min, double Max)
+        {
+            var relativeValue = (oldValue - oldMin) / (oldMax - oldMin);
+            return Min + (Max - Min) * relativeValue;
         }
     }
 }
