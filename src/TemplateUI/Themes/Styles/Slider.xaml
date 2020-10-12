@@ -11,7 +11,13 @@
                 <ControlTemplate>
                     <Grid
                         x:Name="PART_TrackBackground"
-                        HeightRequest="24">
+                        HeightRequest="{TemplateBinding ThumbHeight}"
+                        Padding="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
                         <BoxView
                             x:Name="PART_Track"
                             HeightRequest="{TemplateBinding TrackSize}"
@@ -34,14 +40,9 @@
                             Padding="0"
                             BackgroundColor="{TemplateBinding ThumbColor}"
                             BorderColor="{TemplateBinding ThumbBorderColor}"
-                            HeightRequest="20"
-                            WidthRequest="20">
-                            <Frame.CornerRadius>
-                                <OnPlatform x:TypeArguments="x:Single">
-                                    <On Platform="iOS, macOS" Value="10"/>
-                                    <On Platform="Android, UWP" Value="24"/>
-                                </OnPlatform>
-                            </Frame.CornerRadius>
+                            HeightRequest="{TemplateBinding ThumbWidth}"
+                            WidthRequest="{TemplateBinding ThumbHeight}"
+                            CornerRadius="{TemplateBinding ThumbCornerRadius}">
                         </Frame>
                     </Grid>
                 </ControlTemplate>

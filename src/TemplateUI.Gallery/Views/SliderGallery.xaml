@@ -48,6 +48,19 @@
                 Maximum="10"
                 MaximumTrackColor="DarkGreen"
                 Value="2"/>
+            <Label
+                Text="Customize the thumb size"/>
+            <controls:Slider
+                TrackSize="4"
+                ThumbColor="DarkGreen"
+                Minimum="0"
+                MinimumTrackColor="LightGreen"
+                Maximum="10"
+                MaximumTrackColor="LightGreen"
+                Value="2"
+                ThumbHeight="50"
+                ThumbWidth="50"
+                ThumbCornerRadius="25"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

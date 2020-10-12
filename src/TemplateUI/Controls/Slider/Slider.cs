@@ -100,6 +100,33 @@ namespace TemplateUI.Controls
             set { SetValue(ThumbBorderColorProperty, value); }
         }
 
+        public static readonly BindableProperty ThumbWidthProperty =
+           BindableProperty.Create(nameof(ThumbWidth), typeof(double), typeof(Slider), 20.0d);
+
+        public double ThumbWidth
+        {
+            get => (double)GetValue(ThumbWidthProperty);
+            set { SetValue(ThumbWidthProperty, value); }
+        }
+
+        public static readonly BindableProperty ThumbHeightProperty =
+           BindableProperty.Create(nameof(ThumbHeight), typeof(double), typeof(Slider), 20.0d);
+
+        public double ThumbHeight
+        {
+            get => (double)GetValue(ThumbHeightProperty);
+            set { SetValue(ThumbHeightProperty, value); }
+        }
+
+        public static readonly BindableProperty ThumbCornerRadiusProperty =
+           BindableProperty.Create(nameof(ThumbCornerRadius), typeof(double), typeof(Slider), 10.0d);
+
+        public double ThumbCornerRadius
+        {
+            get => (double)GetValue(ThumbCornerRadiusProperty);
+            set { SetValue(ThumbCornerRadiusProperty, value); }
+        }
+
         public event EventHandler<ValueChangedEventArgs> ValueChanged;
 
         protected override void OnApplyTemplate()
