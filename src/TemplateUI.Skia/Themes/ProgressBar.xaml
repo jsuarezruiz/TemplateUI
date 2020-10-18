@@ -7,35 +7,36 @@
 
        <ControlTemplate x:Key="SKProgressBarControlTemplate">
            <controls:SKFrame
-                x:Name="PART_Background"
-                BackgroundColor="{TemplateBinding BackgroundColor}"
-                BorderColor="{TemplateBinding BorderColor}"
-                CornerRadius="{TemplateBinding CornerRadius}"
-                HasShadow="False"
-                Padding="0">
-                <Grid>
-                    <controls:SKFrame
-                        x:Name="PART_Progress"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        BackgroundColor="{TemplateBinding ProgressColor}"
-                        HasShadow="False"
-                        WidthRequest="0"
-                        Padding="0"
-                        HorizontalOptions="Start"/>
-                    <Label
-                        x:Name="PART_Text"
-                        TextColor="{TemplateBinding TextColor}"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{TemplateBinding Percentage}" />
-                                    <Span Text="%" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                    </Label>
-                </Grid>
-            </controls:SKFrame>
+               x:Name="PART_Background"
+               HeightRequest="22"
+               BackgroundColor="{TemplateBinding BackgroundColor}"
+               BorderColor="{TemplateBinding BorderColor}"
+               CornerRadius="{TemplateBinding CornerRadius}"
+               HasShadow="False"
+               Padding="0">
+               <Grid>
+                   <controls:SKFrame
+                       x:Name="PART_Progress"
+                       CornerRadius="{TemplateBinding CornerRadius}"
+                       BackgroundColor="{TemplateBinding ProgressColor}"
+                       HasShadow="False"
+                       WidthRequest="0"
+                       Padding="0"
+                       HorizontalOptions="Start"/>
+                   <Label
+                       x:Name="PART_Text"
+                       TextColor="{TemplateBinding TextColor}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                           <Label.FormattedText>
+                               <FormattedString>
+                                   <Span Text="{TemplateBinding Percentage}" />
+                                   <Span Text="%" />
+                               </FormattedString>
+                           </Label.FormattedText>
+                   </Label>
+               </Grid>
+           </controls:SKFrame>
        </ControlTemplate>
 
 </ResourceDictionary>

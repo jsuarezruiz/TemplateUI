@@ -117,13 +117,13 @@ namespace TemplateUI.Skia.Controls
             {
                 DrawShadow(canvas, width, height);
 
-                var drawPadding = 2;
+                var padding = 2;
 
-                width -= drawPadding * 2;
-                height -= drawPadding * 2;
+                width -= padding * 2;
+                height -= padding * 2;
 
-                x = drawPadding;
-                y = drawPadding;
+                x = padding;
+                y = padding;
             }
 
             var skRect = new SKRect
