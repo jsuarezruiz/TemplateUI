@@ -10,8 +10,8 @@ namespace TemplateUI.Controls
         const string ElementProgress = "PART_Progress";
         const string ElementText = "PART_Text";
 
-        Frame _background;
-        Frame _progress;
+        View _background;
+        View _progress;
         Label _text;
 
         public ProgressBar()
@@ -105,12 +105,27 @@ namespace TemplateUI.Controls
             }
         }
 
+        public static readonly BindableProperty RenderModeProperty =
+           BindableProperty.Create(nameof(RenderMode), typeof(RenderMode), typeof(ProgressBar), RenderMode.Native,
+               propertyChanged: OnRenderModeChanged);
+
+        static void OnRenderModeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            (bindable as ProgressBar)?.UpdateControlTemplate();
+        }
+
+        public RenderMode RenderMode
+        {
+            get => (RenderMode)GetValue(RenderModeProperty);
+            set { SetValue(RenderModeProperty, value); }
+        }
+
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            _background = GetTemplateChild(ElementBackground) as Frame;
-            _progress = GetTemplateChild(ElementProgress) as Frame;
+            _background = GetTemplateChild(ElementBackground) as View;
+            _progress = GetTemplateChild(ElementProgress) as View;
             _text = GetTemplateChild(ElementText) as Label;
         }
 
@@ -141,6 +156,17 @@ namespace TemplateUI.Controls
             _text.TranslationX = textTranslationX;
 
             Percentage = Math.Round(Progress * 100, 1);
+        }
+
+        void UpdateControlTemplate()
+        {
+            var template = TemplateBuilder.GetControlTemplate(GetType().Name, RenderMode, null);
+            Application.Current.Resources.TryGetValue(template, out object controlTemplate);
+
+            if (controlTemplate == null)
+                throw new ArgumentNullException("To use Skia RenderMode you must use TemplateUISkia.Init(); in your Xamarin.Forms Application class.");
+
+            ControlTemplate = controlTemplate as ControlTemplate;
         }
     }
 }

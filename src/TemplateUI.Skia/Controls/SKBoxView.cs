@@ -11,6 +11,7 @@ namespace TemplateUI.Skia.Controls
 
         public SKBoxView() : base()
         {
+     
         }
 
         public static readonly BindableProperty ColorProperty =

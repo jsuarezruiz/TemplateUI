@@ -6,6 +6,10 @@
     x:Class="TemplateUI.Skia.Themes.Generic">
     <ResourceDictionary>
           <ResourceDictionary.MergedDictionaries>
+              <themes:BadgeView />
+              <themes:Divider />
+              <themes:ProgressBar />
+              <themes:Rate />
               <themes:Slider />
               <themes:ToggleSwitch />
           </ResourceDictionary.MergedDictionaries>

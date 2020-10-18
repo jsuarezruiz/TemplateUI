@@ -13,7 +13,7 @@ namespace TemplateUI.Controls
 
         View _trackBackground;
         View _progress;
-        Frame _thumb;
+        View _thumb;
 
         double _previousPosition;
 
@@ -122,7 +122,7 @@ namespace TemplateUI.Controls
 
             _trackBackground = GetTemplateChild(ElementTrackBackground) as View;
             _progress = GetTemplateChild(ElementProgress) as View;
-            _thumb = GetTemplateChild(ElementThumb) as Frame;
+            _thumb = GetTemplateChild(ElementThumb) as View;
 
             UpdateIsEnabled();
         }

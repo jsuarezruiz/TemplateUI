@@ -13,7 +13,7 @@ namespace TemplateUI.Controls
         const string ElementContent = "Part_Content";
 
         Grid _indicatorContainer;
-        Frame _indicatorBackground;
+        View _indicatorBackground;
         Label _text;
         View _content;
         bool _isVisible;
@@ -154,12 +154,27 @@ namespace TemplateUI.Controls
             set { SetValue(FontAttributesProperty, value); }
         }
 
+        public static readonly BindableProperty RenderModeProperty =
+            BindableProperty.Create(nameof(RenderMode), typeof(RenderMode), typeof(BadgeView), RenderMode.Native,
+                propertyChanged: OnRenderModeChanged);
+
+        static void OnRenderModeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            (bindable as BadgeView)?.UpdateControlTemplate();
+        }
+
+        public RenderMode RenderMode
+        {
+            get => (RenderMode)GetValue(RenderModeProperty);
+            set { SetValue(RenderModeProperty, value); }
+        }
+
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             _indicatorContainer = GetTemplateChild(ElementIndicator) as Grid;
-            _indicatorBackground = GetTemplateChild(ElementIndicatorBackground) as Frame;
+            _indicatorBackground = GetTemplateChild(ElementIndicatorBackground) as View;
             _text = GetTemplateChild(ElementText) as Label;
             _content = GetTemplateChild(ElementContent) as View;
         }
@@ -194,7 +209,8 @@ namespace TemplateUI.Controls
             double size = Math.Max(_text.Height, _text.Width) + Padding;
 
             _indicatorBackground.HeightRequest = size / 1.5;
-  
+            _indicatorBackground.HeightRequest = size / 1.5;
+
             double verticalMargin;
             double horizontalMargin;
 
@@ -265,6 +281,17 @@ namespace TemplateUI.Controls
             }
             else
                 _indicatorContainer.IsVisible = badgeIsVisible;
+        }
+
+        void UpdateControlTemplate()
+        {
+            var template = TemplateBuilder.GetControlTemplate(GetType().Name, RenderMode, null);
+            Application.Current.Resources.TryGetValue(template, out object controlTemplate);
+
+            if (controlTemplate == null)
+                throw new ArgumentNullException("To use Skia RenderMode you must use TemplateUISkia.Init(); in your Xamarin.Forms Application class.");
+
+            ControlTemplate = controlTemplate as ControlTemplate;
         }
     }
 }

@@ -2,10 +2,10 @@
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="TemplateUI.Themes.BadgeView"
-    xmlns:controls="clr-namespace:TemplateUI.Controls">
+    xmlns:controls="clr-namespace:TemplateUI.Skia.Controls"
+    x:Class="TemplateUI.Skia.Themes.BadgeView">
 
-      <ControlTemplate x:Key="BadgeViewControlTemplate">
+   <ControlTemplate x:Key="SKBadgeViewControlTemplate">
         <Grid
             HorizontalOptions="Start">
             <ContentPresenter
@@ -17,7 +17,7 @@
                 x:Name="PART_Indicator"
                 HorizontalOptions="Start"
                 VerticalOptions="Start">
-                <Frame
+                <controls:SKFrame
                     x:Name="PART_IndicatorBackground"
                     CornerRadius="8"
                     Padding="2"
@@ -35,15 +35,9 @@
                         FontAttributes="{TemplateBinding FontAttributes}"
                         AutomationId="{TemplateBinding AutomationId}"
                         Margin="4, 0"/>
-                </Frame>
+                </controls:SKFrame>
             </Grid>
         </Grid>
     </ControlTemplate>
-
-    <Style TargetType="controls:BadgeView">
-        <Setter Property="HorizontalOptions" Value="Start"/>
-        <Setter Property="VerticalOptions" Value="Start"/>
-        <Setter Property="ControlTemplate" Value="{StaticResource BadgeViewControlTemplate}" />
-    </Style>
 
 </ResourceDictionary>

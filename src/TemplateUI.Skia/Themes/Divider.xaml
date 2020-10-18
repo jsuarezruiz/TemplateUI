@@ -2,21 +2,17 @@
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="TemplateUI.Themes.Divider"
-    xmlns:controls="clr-namespace:TemplateUI.Controls">
+    xmlns:controls="clr-namespace:TemplateUI.Skia.Controls"
+    x:Class="TemplateUI.Skia.Themes.Divider">
 
-    <ControlTemplate x:Key="DividerControlTemplate">
+    <ControlTemplate x:Key="SKDividerControlTemplate">
         <Grid
             x:Name="PART_Container"
             BackgroundColor="{TemplateBinding BackgroundColor}">
-            <BoxView
+            <controls:SKBoxView
                 x:Name="PART_Line"
                 Color="{TemplateBinding LineStroke}"/>
         </Grid>
     </ControlTemplate>
 
-     <Style TargetType="controls:Divider">
-        <Setter Property="ControlTemplate" Value="{StaticResource DividerControlTemplate}" />
-     </Style>
-    
 </ResourceDictionary>

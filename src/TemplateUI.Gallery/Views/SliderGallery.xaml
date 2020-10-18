@@ -19,7 +19,10 @@
                 Text="Skia RenderMode"/>
             <controls:Slider
                 Minimum="0"
+                MinimumTrackColor="CadetBlue"
                 Maximum="10"
+                MaximumTrackColor="BlueViolet"
+                ThumbBorderColor="BlueViolet"
                 Value="5"
                 RenderMode="Skia"
                 ValueChanged="OnSliderValueChanged"/>

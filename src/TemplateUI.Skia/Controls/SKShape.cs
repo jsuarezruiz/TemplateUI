@@ -7,7 +7,7 @@ using XColor = Xamarin.Forms.Color;
 
 namespace TemplateUI.Skia.Controls
 {
-    public class SKShape : SKCanvasView
+    public abstract class SKShape : SKCanvasView
     {
         SkiaSharp.SKPath _skPath;
         readonly SKPaint _paint;
@@ -228,6 +228,7 @@ namespace TemplateUI.Skia.Controls
             _paint.StrokeCap = strokeCap;
             UpdatePathStrokeBounds();
         }
+
         public void UpdateStrokeLineJoin(SKStrokeJoin strokeJoin)
         {
             _paint.StrokeJoin = strokeJoin;

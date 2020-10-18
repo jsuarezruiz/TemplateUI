@@ -24,7 +24,8 @@
           <controls:Divider
               Orientation="Horizontal"
               LineStroke="Red"
-              LineStrokeThickness="6"/>
+              LineStrokeThickness="6"
+              RenderMode="Skia"/>
             <StackLayout
                 Orientation="Horizontal">
                 <Button

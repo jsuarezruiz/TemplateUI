@@ -13,9 +13,17 @@
         <ContentPage.Content>
             <StackLayout
                 Padding="12">
+                <Label
+                    Text="Native RenderMode"/>
                 <controls:ProgressBar
                     Progress="{Binding Source={x:Reference ProgressSlider}, Path=Value}"
                     ProgressColor="MediumSeaGreen"/>
+                <Label
+                    Text="Skia RenderMode"/>
+                <controls:ProgressBar
+                    Progress="{Binding Source={x:Reference ProgressSlider}, Path=Value}"
+                    ProgressColor="MediumSeaGreen"
+                    RenderMode="Skia"/>
                 <Slider
                     x:Name="ProgressSlider"
                     MaximumTrackColor="Gray"
