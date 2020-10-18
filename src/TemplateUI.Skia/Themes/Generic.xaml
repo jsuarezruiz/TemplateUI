@@ -9,7 +9,6 @@
               <themes:BadgeView />
               <themes:Divider />
               <themes:ProgressBar />
-              <themes:Rate />
               <themes:Slider />
               <themes:ToggleSwitch />
           </ResourceDictionary.MergedDictionaries>
