@@ -5,43 +5,41 @@
     x:Class="TemplateUI.Themes.ProgressBar"
     xmlns:controls="clr-namespace:TemplateUI.Controls">
 
+   <ControlTemplate x:Key="ProgressBarControlTemplate">
+        <Frame
+            x:Name="PART_Background"
+            BackgroundColor="{TemplateBinding BackgroundColor}"
+            BorderColor="{TemplateBinding BorderColor}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            HasShadow="False"
+            Padding="0">
+            <Grid>
+                <Frame
+                    x:Name="PART_Progress"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    BackgroundColor="{TemplateBinding ProgressColor}"
+                    HasShadow="False"
+                    WidthRequest="0"
+                    Padding="0"
+                    HorizontalOptions="Start"/>
+                <Label
+                    x:Name="PART_Text"
+                    TextColor="{TemplateBinding TextColor}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{TemplateBinding Percentage}" />
+                                <Span Text="%" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Frame>
+    </ControlTemplate>
+
     <Style TargetType="controls:ProgressBar">
-        <Setter Property="ControlTemplate">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Frame
-                        x:Name="PART_Background"
-                        BackgroundColor="{TemplateBinding BackgroundColor}"
-                        BorderColor="{TemplateBinding BorderColor}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        HasShadow="False"
-                        Padding="0">
-                        <Grid>
-                            <Frame
-                                x:Name="PART_Progress"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                BackgroundColor="{TemplateBinding ProgressColor}"
-                                HasShadow="False"
-                                WidthRequest="0"
-                                Padding="0"
-                                HorizontalOptions="Start"/>
-                            <Label
-                                x:Name="PART_Text"
-                                TextColor="{TemplateBinding TextColor}"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                                  <Label.FormattedText>
-                                      <FormattedString>
-                                          <Span Text="{TemplateBinding Percentage}" />
-                                          <Span Text="%" />
-                                      </FormattedString>
-                                  </Label.FormattedText>
-                            </Label>
-                        </Grid>
-                    </Frame>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="ControlTemplate" Value="{StaticResource ProgressBarControlTemplate}" />
     </Style>
 
 </ResourceDictionary>

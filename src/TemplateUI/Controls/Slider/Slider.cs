@@ -12,9 +12,8 @@ namespace TemplateUI.Controls
         const string ElementThumb = "PART_Thumb";
 
         View _trackBackground;
-        BoxView _progress;
-        BoxView _track;
-        Frame _thumb;
+        View _progress;
+        View _thumb;
 
         double _previousPosition;
 
@@ -100,6 +99,21 @@ namespace TemplateUI.Controls
             set { SetValue(ThumbBorderColorProperty, value); }
         }
 
+        public static readonly BindableProperty RenderModeProperty =
+            BindableProperty.Create(nameof(RenderMode), typeof(RenderMode), typeof(ToggleSwitch), RenderMode.Native,
+                propertyChanged: OnRenderModeChanged);
+
+        static void OnRenderModeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            (bindable as Slider)?.UpdateControlTemplate();
+        }
+
+        public RenderMode RenderMode
+        {
+            get => (RenderMode)GetValue(RenderModeProperty);
+            set { SetValue(RenderModeProperty, value); }
+        }
+
         public event EventHandler<ValueChangedEventArgs> ValueChanged;
 
         protected override void OnApplyTemplate()
@@ -107,9 +121,8 @@ namespace TemplateUI.Controls
             base.OnApplyTemplate();
 
             _trackBackground = GetTemplateChild(ElementTrackBackground) as View;
-            _track = GetTemplateChild(ElementTrack) as BoxView;
-            _progress = GetTemplateChild(ElementProgress) as BoxView;
-            _thumb = GetTemplateChild(ElementThumb) as Frame;
+            _progress = GetTemplateChild(ElementProgress) as View;
+            _thumb = GetTemplateChild(ElementThumb) as View;
 
             UpdateIsEnabled();
         }
@@ -135,12 +148,12 @@ namespace TemplateUI.Controls
             {
                 var panGestureRecognizer = new PanGestureRecognizer();
                 panGestureRecognizer.PanUpdated += OnThumbPanUpdated;
-                _thumb.GestureRecognizers.Add(panGestureRecognizer);
+                _thumb?.GestureRecognizers.Add(panGestureRecognizer);
             }
             else
             {
                 _trackBackground.GestureRecognizers.Clear();
-                _thumb.GestureRecognizers.Clear();
+                _thumb?.GestureRecognizers.Clear();
             }
         }
 
@@ -153,6 +166,17 @@ namespace TemplateUI.Controls
 
             _thumb.TranslationX = position;
             _progress.WidthRequest = position;
+        }
+
+        void UpdateControlTemplate()
+        {
+            var template = TemplateBuilder.GetControlTemplate(GetType().Name, RenderMode, null);
+            Application.Current.Resources.TryGetValue(template, out object controlTemplate);
+
+            if (controlTemplate == null)
+                throw new ArgumentNullException("To use Skia RenderMode you must use TemplateUISkia.Init(); in your Xamarin.Forms Application class.");
+
+            ControlTemplate = controlTemplate as ControlTemplate;
         }
 
         void OnThumbPanUpdated(object sender, PanUpdatedEventArgs e)

@@ -21,6 +21,14 @@
                     <Label
                         Text="BadgeView"/>
                 </controls:BadgeView>
+                <controls:BadgeView
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Text="1"
+                    RenderMode="Skia">
+                    <Label
+                        Text="Skia BadgeView"/>
+                </controls:BadgeView>
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>

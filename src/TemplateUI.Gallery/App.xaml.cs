@@ -1,4 +1,5 @@
 ﻿using TemplateUI.Gallery.Views;
+using TemplateUI.Skia;
 using Xamarin.Forms;
 
 namespace TemplateUI.Gallery
@@ -10,6 +11,7 @@ namespace TemplateUI.Gallery
             InitializeComponent();
 
             TemplateUI.Init();
+            TemplateUISkia.Init();
 
             MainPage = new CustomNavigationPage(new MainView());
         }
