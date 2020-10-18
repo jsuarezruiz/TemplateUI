@@ -11,7 +11,6 @@
                 <ControlTemplate>
                     <Grid
                         x:Name="PART_TrackBackground"
-                        HeightRequest="{TemplateBinding ThumbHeight}"
                         Padding="0">
 
                         <Grid.RowDefinitions>
@@ -33,17 +32,16 @@
                             HorizontalOptions="Start"
                             VerticalOptions="Center"
                             Margin="2, 0"/>
-                        <Frame
+                        <ContentView
                             x:Name="PART_Thumb"
                             HorizontalOptions="Start"
                             VerticalOptions="Center"
                             Padding="0"
-                            BackgroundColor="{TemplateBinding ThumbColor}"
-                            BorderColor="{TemplateBinding ThumbBorderColor}"
-                            HeightRequest="{TemplateBinding ThumbWidth}"
-                            WidthRequest="{TemplateBinding ThumbHeight}"
-                            CornerRadius="{TemplateBinding ThumbCornerRadius}">
-                        </Frame>
+                            Margin="0">
+                            <ContentView.Content>
+                                <BoxView BackgroundColor="LightGray" HeightRequest="20" WidthRequest="20" CornerRadius="10" Margin="0"/>
+                            </ContentView.Content>
+                        </ContentView>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -51,3 +49,4 @@
     </Style>
 
 </ResourceDictionary>
+<!--HeightRequest="{Binding Height, Source={x:Reference PART_Thumb}}"-->

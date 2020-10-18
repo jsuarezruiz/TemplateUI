@@ -2,12 +2,13 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI" 
+    xmlns:iconsB="clr-namespace:FontAwesome.Brand;assembly=FontAwesome.Brand"
     x:Class="TemplateUI.Gallery.Views.SliderGallery"
     Title="Slider Gallery">
     <ContentPage.Content>
         <StackLayout
-            Padding="12">
+            Padding="12" Spacing="0">
             <Label
                 Text="Getting Started"/>
             <controls:Slider
@@ -16,12 +17,12 @@
                 Value="5"
                 ValueChanged="OnSliderValueChanged"/>
             <Label
-                Text="Customize the background colors"/>
+                Text="Customize the background colors" Margin="0,10,0,0"/>
             <controls:Slider
                 Value="3"
                 BackgroundColor="LightCoral"/>
             <Label
-                Text="Customize the track colors"/>
+                Text="Customize the track colors" Margin="0,10,0,0"/>
             <controls:Slider
                 Minimum="0"
                 MinimumTrackColor="Red"
@@ -29,38 +30,68 @@
                 MaximumTrackColor="Blue"
                 Value="7"/>
             <Label
-                Text="Customize the thumb colors"/>
-            <controls:Slider
-                ThumbColor="Orange"
-                ThumbBorderColor="Red"
-                Minimum="0"
-                MinimumTrackColor="LightCoral"
-                Maximum="10"
-                MaximumTrackColor="DarkOrange"
-                Value="4"/>
-            <Label
-                Text="Customize the track size"/>
+                Text="Customize the track size" Margin="0,10,0,0"/>
             <controls:Slider
                 TrackSize="4"
-                ThumbColor="Green"
                 Minimum="0"
                 MinimumTrackColor="LightGreen"
                 Maximum="10"
                 MaximumTrackColor="DarkGreen"
                 Value="2"/>
             <Label
-                Text="Customize the thumb size"/>
-            <controls:Slider
+                Text="Customize the thumb" Margin="0,10,0,0"/>
+            <controls:Slider x:Name="changingSlider"
                 TrackSize="4"
-                ThumbColor="DarkGreen"
-                Minimum="0"
+                Minimum="2"
                 MinimumTrackColor="LightGreen"
                 Maximum="10"
                 MaximumTrackColor="LightGreen"
-                Value="2"
-                ThumbHeight="50"
-                ThumbWidth="50"
-                ThumbCornerRadius="25"/>
+                Value="6"
+                Margin="0">
+                <controls:Slider.Thumb>
+                    <Frame BackgroundColor="Black" CornerRadius="10" HeightRequest="60" WidthRequest="60" Padding="0" Margin="0">
+                        <Grid>
+                            <Image Margin="5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Image.Source>
+                                    <iconsB:IconSource Icon="GithubAlt" Color="Red"/>
+                                </Image.Source>
+                            </Image>
+                            <BoxView BackgroundColor="Red" HeightRequest="10" WidthRequest="2" Margin="0" VerticalOptions="End" HorizontalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </controls:Slider.Thumb>
+            </controls:Slider>
+
+            <Grid Margin="0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <BoxView Grid.Column="1" BackgroundColor="Red" HeightRequest="10" Margin="0" />
+                <Label Text="Center" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <Label TextColor="Black" FontAttributes="Bold" Margin="0,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Minimum: "/>
+                            <Span Text="{Binding Minimum, Source={x:Reference changingSlider}}"/>
+                            <Span Text="&#10;"/>
+                            <Span Text="Maximum: "/>
+                            <Span Text="{Binding Maximum, Source={x:Reference changingSlider}}"/>
+                            <Span Text="&#10;"/>
+                            <Span Text="Value: "/>
+                            <Span Text="{Binding Value, Source={x:Reference changingSlider}}"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

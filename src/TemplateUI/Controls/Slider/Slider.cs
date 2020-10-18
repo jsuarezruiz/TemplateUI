@@ -13,10 +13,23 @@ namespace TemplateUI.Controls
 
         View _trackBackground;
         BoxView _progress;
-        BoxView _track;
-        Frame _thumb;
+        ContentView _thumb;
+        double ThumbHalfWidth => (_thumb?.Width ?? 0) / 2 ;
 
         double _previousPosition;
+
+        public static readonly BindableProperty ThumbProperty = BindableProperty.Create(nameof(Thumb), typeof(View), typeof(Slider), null, propertyChanged: ThumbChanged);
+
+        public View Thumb
+        {
+            get => (View)GetValue(ThumbProperty);
+            set{ SetValue(ThumbProperty, value); }
+        }
+        private static void ThumbChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var slider = bindable as Slider;
+            slider._thumb.Content = newValue as View;
+        }
 
         public static readonly BindableProperty MinimumProperty =
             BindableProperty.Create(nameof(Minimum), typeof(double), typeof(Slider), 0.0d);
@@ -82,62 +95,14 @@ namespace TemplateUI.Controls
             set { SetValue(MaximumTrackColorProperty, value); }
         }
 
-        public static readonly BindableProperty ThumbColorProperty =
-            BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Slider), Color.Default);
-
-        public Color ThumbColor
-        {
-            get => (Color)GetValue(ThumbColorProperty);
-            set { SetValue(ThumbColorProperty, value); }
-        }
-
-        public static readonly BindableProperty ThumbBorderColorProperty =
-            BindableProperty.Create(nameof(ThumbBorderColor), typeof(Color), typeof(Slider), Color.Default);
-
-        public Color ThumbBorderColor
-        {
-            get => (Color)GetValue(ThumbBorderColorProperty);
-            set { SetValue(ThumbBorderColorProperty, value); }
-        }
-
-        public static readonly BindableProperty ThumbWidthProperty =
-           BindableProperty.Create(nameof(ThumbWidth), typeof(double), typeof(Slider), 20.0d);
-
-        public double ThumbWidth
-        {
-            get => (double)GetValue(ThumbWidthProperty);
-            set { SetValue(ThumbWidthProperty, value); }
-        }
-
-        public static readonly BindableProperty ThumbHeightProperty =
-           BindableProperty.Create(nameof(ThumbHeight), typeof(double), typeof(Slider), 20.0d);
-
-        public double ThumbHeight
-        {
-            get => (double)GetValue(ThumbHeightProperty);
-            set { SetValue(ThumbHeightProperty, value); }
-        }
-
-        public static readonly BindableProperty ThumbCornerRadiusProperty =
-           BindableProperty.Create(nameof(ThumbCornerRadius), typeof(double), typeof(Slider), 10.0d);
-
-        public double ThumbCornerRadius
-        {
-            get => (double)GetValue(ThumbCornerRadiusProperty);
-            set { SetValue(ThumbCornerRadiusProperty, value); }
-        }
-
         public event EventHandler<ValueChangedEventArgs> ValueChanged;
 
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
             _trackBackground = GetTemplateChild(ElementTrackBackground) as View;
-            _track = GetTemplateChild(ElementTrack) as BoxView;
             _progress = GetTemplateChild(ElementProgress) as BoxView;
-            _thumb = GetTemplateChild(ElementThumb) as Frame;
-
+            _thumb = GetTemplateChild(ElementThumb) as ContentView;
             UpdateIsEnabled();
         }
 
@@ -152,7 +117,6 @@ namespace TemplateUI.Controls
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-
             UpdateValue();
         }
 
@@ -173,13 +137,13 @@ namespace TemplateUI.Controls
 
         void UpdateValue()
         {
-            var position = ConvertRangeValue(Value, Minimum, Maximum, 0, _trackBackground.Width - ThumbWidth);
-
+            var half = ThumbHalfWidth;
+            var position = ConvertRangeValue(Value, Minimum, Maximum, half, _trackBackground.Width - half) - half;
             if (position <= 0)
                 return;
 
-            _thumb.TranslationX = position;
             _progress.WidthRequest = position;
+            _thumb.TranslationX = position;
         }
 
         void OnThumbPanUpdated(object sender, PanUpdatedEventArgs e)
@@ -197,9 +161,10 @@ namespace TemplateUI.Controls
 
                     if (Device.RuntimePlatform == Device.Android)
                         totalX += _thumb.TranslationX;
-
-                    var position = totalX < 0 ? 0 : totalX > _trackBackground.Width - _thumb.Width ? _trackBackground.Width - _thumb.Width : totalX;
-                    Value = ConvertRangeValue(position, 0, _trackBackground.Width - ThumbWidth, Minimum, Maximum);
+                    
+                    var half = ThumbHalfWidth;
+                    var position = totalX <= half ? half : totalX >= _trackBackground.Width - half ? _trackBackground.Width - half : totalX;
+                    Value = ConvertRangeValue(position, half, _trackBackground.Width - half, Minimum, Maximum);
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
