@@ -9,7 +9,7 @@ namespace TemplateUI.Controls
     public class CircleProgressBar : TemplatedView
     {
         const string ElementArc = "PART_Arc";
-        const string ElementText= "PART_Text";
+        const string ElementText = "PART_Text";
 
         Path _arcSegment;
         Label _arcText;
@@ -79,6 +79,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(CircleProgressBar), 24.0d);
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
@@ -120,8 +121,8 @@ namespace TemplateUI.Controls
             double percentage = Value * 100 / Maximum;
             double angle = percentage * 360 / 100;
             double radius = Width / 2;
-            
-            Point startPoint =  new Point(radius, 0);
+
+            Point startPoint = new Point(radius, 0);
             Point endPoint = GetEndPoint(angle, radius);
 
             endPoint.X += radius;

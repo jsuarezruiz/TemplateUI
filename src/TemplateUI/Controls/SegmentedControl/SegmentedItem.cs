@@ -63,6 +63,7 @@ namespace TemplateUI.Controls
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(SegmentedItem), Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 propertyChanged: OnSegmentedItemPropertyChanged);
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
@@ -72,6 +73,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeSelectedProperty =
             BindableProperty.Create(nameof(FontSizeSelected), typeof(double), typeof(SegmentedItem), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSizeSelected
         {
             get => (double)GetValue(FontSizeSelectedProperty);
@@ -285,7 +287,7 @@ namespace TemplateUI.Controls
             if (_text == null || _icon == null)
                 return;
 
-            if(Icon != null && !string.IsNullOrEmpty(Text))
+            if (Icon != null && !string.IsNullOrEmpty(Text))
             {
                 Grid.SetRow(_icon, 0);
                 Grid.SetRowSpan(_icon, 1);
@@ -293,7 +295,7 @@ namespace TemplateUI.Controls
                 Grid.SetRow(_text, 1);
                 Grid.SetRowSpan(_text, 1);
             }
-            else if(Icon == null && !string.IsNullOrEmpty(Text))
+            else if (Icon == null && !string.IsNullOrEmpty(Text))
             {
                 Grid.SetRow(_text, 0);
                 Grid.SetRowSpan(_text, 2);
