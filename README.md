@@ -28,7 +28,11 @@ It is a control defined by a template. Every control has a **ControlTemplate** p
 
 ## Overview
 
-The controls available are:
+Let's see the possibilities of TemplateUI.
+
+#### Controls
+
+The **controls** available are:
 
 ### AvatarView
 
@@ -143,6 +147,36 @@ A View control that provides a toggled value.
 Enables a hierarchical list with expanding and collapsing nodes that contain nested items.
 
 <img src="images/templateui-treeview.gif" Width="300" />
+
+#### Layouts
+
+But ... isn't this a templated controls library? You are right. But to create certain controls, there are layouts that would help to achieve the desired result. For example, in the list of upcoming controls we have a Clock. To position the elements that make up the Clock, a CircularLayout makes things very simple.
+
+These Layouts, in addition to adding more possibilities to the library, help to create more templated controls.
+
+The **layouts** available are:
+
+### CircularLayout
+
+The CircularLayout is a simple Layout derivative that lays out its children in a circular arrangement. 
+It has some useful properties to allow some customization like the Orientation (Clockwise or Counterclockwise).
+
+<img src="images/templateui-circularlayout.png" Width="300" />
+
+### DockLayout
+
+The DockLayout makes it easy to dock content in all four directions (top, bottom, left and right). 
+This makes it a great choice in many situations, where you want to divide the screen into specific areas, 
+especially because by default, the last element inside the DockLayout, unless this feature is specifically disabled, 
+will automatically fill the rest of the space (center).
+
+<img src="images/templateui-docklayout.png" Width="300" />
+
+### HexLayout
+
+A Layout that arranges the elements in a honeycomb pattern.
+
+<img src="images/templateui-hexlayout.png" Width="300" />
 
 ## Contribute
 

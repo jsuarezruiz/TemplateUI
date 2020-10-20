@@ -136,6 +136,9 @@
     <BundleResource Include="Resources\tag.png" />
     <BundleResource Include="Resources\toggleswitch.png" />
     <BundleResource Include="Resources\whitefile.png" />
+    <BundleResource Include="Resources\circularlayout.png" />
+    <BundleResource Include="Resources\docklayout.png" />
+    <BundleResource Include="Resources\hexlayout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.4.7.0.1351\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.7.0.1351\build\Xamarin.Forms.targets')" />

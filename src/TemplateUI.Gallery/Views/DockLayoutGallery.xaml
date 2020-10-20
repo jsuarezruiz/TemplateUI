@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:layout="clr-namespace:TemplateUI.Layouts;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.DockLayoutGallery"
+    Title="DockLayout Gallery">
+    <ContentPage.Content>
+        <layout:DockLayout
+            LastChildFill="False">
+            <Button layout:DockLayout.Dock="Top" Text="Top" HeightRequest="50"/>
+            <Button layout:DockLayout.Dock="Bottom" Text="Bottom" HeightRequest="50"/>
+            <Button layout:DockLayout.Dock="Left" Text="Left" WidthRequest="60"/>
+            <Button layout:DockLayout.Dock="Left" Text="Left" WidthRequest="60"/>
+            <Button layout:DockLayout.Dock="Right" Text="Right" WidthRequest="80"/>
+            <Button layout:DockLayout.Dock="Right" Text="Right" WidthRequest="80"/>
+        </layout:DockLayout>
+    </ContentPage.Content>
+</ContentPage>
