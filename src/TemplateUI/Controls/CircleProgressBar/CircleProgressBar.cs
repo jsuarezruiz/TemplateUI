@@ -79,7 +79,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(CircleProgressBar), 24.0d);
 
-        [TypeConverter(typeof(FontSizeConverter))]
+        [Xamarin.Forms.TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
