@@ -5,14 +5,14 @@ using TemplateUI.Gallery.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(GradientLayout), typeof(GradientLayoutRenderer))]
+[assembly: ExportRenderer(typeof(OpacityGradientLayout), typeof(GradientLayoutRenderer))]
 
 // @author: https://stackoverflow.com/users/9654227/na2axl
 namespace TemplateUI.Gallery.Droid.Renderers
 {
-    public class GradientLayoutRenderer : VisualElementRenderer<StackLayout>
+    public class GradientLayoutRenderer : VisualElementRenderer<AbsoluteLayout>
     {
-        private Color[] Colors { get; set; }
+        private Color SelectedColor { get; set; }
 
         private GradientColorStackMode Mode { get; set; }
 
@@ -23,39 +23,34 @@ namespace TemplateUI.Gallery.Droid.Renderers
         {
             Android.Graphics.LinearGradient gradient;
 
-            int[] colors = new int[Colors.Length];
-
-            for (int i = 0, l = Colors.Length; i < l; i++)
-            {
-                colors[i] = Colors[i].ToAndroid().ToArgb();
-            }
+            int[] androidColors = new int[] { Color.White.ToAndroid().ToArgb(), SelectedColor.ToAndroid().ToArgb() };
 
             switch (Mode)
             {
                 default:
                 case GradientColorStackMode.ToRight:
-                    gradient = new Android.Graphics.LinearGradient(0, 0, Width, 0, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(0, 0, Width, 0, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToLeft:
-                    gradient = new Android.Graphics.LinearGradient(Width, 0, 0, 0, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(Width, 0, 0, 0, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToTop:
-                    gradient = new Android.Graphics.LinearGradient(0, Height, 0, 0, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(0, Height, 0, 0, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToBottom:
-                    gradient = new Android.Graphics.LinearGradient(0, 0, 0, Height, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(0, 0, 0, Height, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToTopLeft:
-                    gradient = new Android.Graphics.LinearGradient(Width, Height, 0, 0, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(Width, Height, 0, 0, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToTopRight:
-                    gradient = new Android.Graphics.LinearGradient(0, Height, Width, 0, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(0, Height, Width, 0, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToBottomLeft:
-                    gradient = new Android.Graphics.LinearGradient(Width, 0, 0, Height, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(Width, 0, 0, Height, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
                 case GradientColorStackMode.ToBottomRight:
-                    gradient = new Android.Graphics.LinearGradient(0, 0, Width, Height, colors, null, Android.Graphics.Shader.TileMode.Mirror);
+                    gradient = new Android.Graphics.LinearGradient(0, 0, Width, Height, androidColors, null, Android.Graphics.Shader.TileMode.Mirror);
                     break;
             }
 
@@ -70,7 +65,7 @@ namespace TemplateUI.Gallery.Droid.Renderers
             base.DispatchDraw(canvas);
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<StackLayout> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<AbsoluteLayout> e)
         {
             base.OnElementChanged(e);
 
@@ -79,9 +74,9 @@ namespace TemplateUI.Gallery.Droid.Renderers
 
             try
             {
-                if (e.NewElement is GradientLayout layout)
+                if (e.NewElement is OpacityGradientLayout layout)
                 {
-                    Colors = layout.Colors;
+                    SelectedColor = layout.SelectedColor;
                     Mode = layout.Mode;
                 }
             }
