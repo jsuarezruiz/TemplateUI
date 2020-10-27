@@ -25,6 +25,11 @@ namespace TemplateUI.Gallery.Views
             Navigation.PushAsync(new CarouselViewGallery());
         }
 
+        void OnColorPickerClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ColorPickerGallery());
+        }
+
         void OnDataVisualizationClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new DataVisualizationGallery());

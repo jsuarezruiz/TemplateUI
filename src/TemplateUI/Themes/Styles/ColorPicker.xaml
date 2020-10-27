@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateUI.Themes.ColorPicker"
+             xmlns:controls="clr-namespace:TemplateUI.Controls"
+             xmlns:converters="clr-namespace:TemplateUI.Converters">
+    <converters:ColorConverter x:Key="colorConverter"
+                               PickerWidth="200"/>
+    <converters:ColorNumberConverter x:Key="colorNumberConverter"/>
+    <Style TargetType="controls:ColorPicker">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <!-- COLUMN 1 -->
+                        <controls:OpacityGradientLayout x:Name="PART_SaturationAndLight" WidthRequest="200" HeightRequest="200" SelectedColor="{TemplateBinding PickedColorWithoutSaturationAndLightness}" Mode="ToRight" Grid.Column="0">
+                            <Frame
+                            x:Name="PART_Thumb"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            Padding="0"
+                            BackgroundColor="{TemplateBinding ThumbColor}"
+                            BorderColor="{TemplateBinding ThumbBorderColor}"
+                            HeightRequest="20"
+                            WidthRequest="20">
+                                <!--<Frame.TranslationX>
+                                    <MultiBinding Converter="{StaticResource colorConverter}">
+                                        <TemplateBinding Path="HexCode" />
+                                        <TemplateBinding Path="Red" />
+                                        <TemplateBinding Path="Green" />
+                                        <TemplateBinding Path="Blue" />
+                                        <TemplateBinding Path="Hue" />
+                                        <TemplateBinding Path="Saturation" />
+                                        <TemplateBinding Path="Lightness" />
+                                        <TemplateBinding Path="HslPicklerHeight" />
+                                        <TemplateBinding Path="HslPickerWidth" />
+                                        <TemplateBinding Path="RgbPicklerHeight" />
+                                        <TemplateBinding Path="RgbPickerWidth" />
+                                    </MultiBinding>
+                                </Frame.TranslationX>-->
+                                <Frame.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Single">
+                                        <On Platform="iOS, macOS" Value="10"/>
+                                        <On Platform="Android, UWP" Value="24"/>
+                                    </OnPlatform>
+                                </Frame.CornerRadius>
+                            </Frame>
+                        </controls:OpacityGradientLayout>
+                        <BoxView BackgroundColor="{TemplateBinding PickedColor}" Grid.Row="1" Grid.Column="0"></BoxView>
+                        <!-- COLUMN 2 -->
+                        <controls:GradientLayout x:Name="PART_HuePicker" WidthRequest="200" HeightRequest="200" ColorsList="#FF0000,#FF8B00,#FFE400,#9EFF00,#3AFF00,#00FF32,#00FFAA,#00FFF3,#008BFF,#002EFF,#4D00FF,#B900FF,#FF00FF,#FF0000" Mode="ToTop" Grid.Column="1">
+                            <Frame
+                            x:Name="PART_HueThumb"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            Padding="0"
+                            BackgroundColor="{TemplateBinding ThumbColor}"
+                            BorderColor="{TemplateBinding ThumbBorderColor}"
+                            HeightRequest="20"
+                            WidthRequest="20">
+                                <Frame.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Single">
+                                        <On Platform="iOS, macOS" Value="10"/>
+                                        <On Platform="Android, UWP" Value="24"/>
+                                    </OnPlatform>
+                                </Frame.CornerRadius>
+                            </Frame>
+                        </controls:GradientLayout>
+                        <!-- COLUMN 3 -->
+                        <StackLayout Grid.Column="2">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="R" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Entry Placeholder="R"
+                                       Text="{TemplateBinding Path=PickedColor.R, Converter={StaticResource colorNumberConverter}, ConverterParameter=R, StringFormat='{0:n0}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="G" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Entry Placeholder="G"
+                                       Text="{TemplateBinding Path=PickedColor.G, Converter={StaticResource colorNumberConverter}, ConverterParameter=G, StringFormat='{0:n0}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="B" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Entry Placeholder="B"
+                                       Text="{TemplateBinding Path=PickedColor.B, Converter={StaticResource colorNumberConverter}, ConverterParameter=B, StringFormat ='{0:n0}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="H" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Entry Placeholder="H"
+                                       Text="{TemplateBinding Path=PickedColor.Hue, Converter={StaticResource colorNumberConverter}, ConverterParameter=H, StringFormat ='{0:n0}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="S" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Entry Placeholder="S"
+                                       Text="{TemplateBinding Path=PickedColor.Saturation, Converter={StaticResource colorNumberConverter}, ConverterParameter=S, StringFormat='{0:n0}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="L" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Entry Placeholder="L"
+                                       Text="{TemplateBinding Path=PickedColor.Luminosity, Converter={StaticResource colorNumberConverter}, ConverterParameter=L, StringFormat='{0:n0}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"></Entry>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
