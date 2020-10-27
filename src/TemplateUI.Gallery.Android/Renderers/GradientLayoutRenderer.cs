@@ -7,6 +7,7 @@ using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(GradientLayout), typeof(GradientLayoutRenderer))]
 
+// @author: https://stackoverflow.com/users/9654227/na2axl
 namespace TemplateUI.Gallery.Droid.Renderers
 {
     public class GradientLayoutRenderer : VisualElementRenderer<StackLayout>
