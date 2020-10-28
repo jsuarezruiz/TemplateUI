@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Globalization;
+using TemplateUI.Helpers;
 using Xamarin.Forms;
 
 namespace TemplateUI.Converters
 {
     public class ColorNumberConverter : IValueConverter
     {
-        readonly int maxRGBNumber = 255;
-        readonly int maxHue = 359;
-        readonly int maxSaturation = 100;
-        readonly int maxLightness = 100;
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo ci)
         {
             if (value != null && value is double)
@@ -21,13 +17,13 @@ namespace TemplateUI.Converters
                     case "R":
                     case "G":
                     case "B":
-                        return Math.Round(doubleValue * maxRGBNumber, 0);
+                        return Math.Round(ColorNumberHelper.FromSourceToTargetRGB(doubleValue), 0);
                     case "H":
-                        return Math.Round(doubleValue * maxHue, 0);
+                        return Math.Round(ColorNumberHelper.FromSourceToTargetHue(doubleValue), 0);
                     case "S":
-                        return Math.Round(doubleValue * maxSaturation, 0);
+                        return Math.Round(ColorNumberHelper.FromSourceToTargetSaturation(doubleValue), 0);
                     case "L":
-                        return Math.Round(doubleValue * maxLightness, 0);
+                        return Math.Round(ColorNumberHelper.FromSourceToTargetLuminosity(doubleValue), 0);
                     default:
                         return 0.0;
                 }
@@ -36,7 +32,7 @@ namespace TemplateUI.Converters
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo ci)
         {
-            Console.WriteLine(value);
+            Console.WriteLine($"Convert Back: {value}");
             return value;
         }
     }

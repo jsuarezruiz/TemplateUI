@@ -21,7 +21,7 @@
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="90" />
                         </Grid.ColumnDefinitions>
-                        <!-- COLUMN 1 -->
+                        <!-- COLUMN 1: HSL Picker -->
                         <controls:OpacityGradientLayout x:Name="PART_SaturationAndLight" WidthRequest="200" HeightRequest="200" SelectedColor="{TemplateBinding PickedColorWithoutSaturationAndLightness}" Mode="ToRight" Grid.Column="0">
                             <Frame
                             x:Name="PART_Thumb"
@@ -56,7 +56,7 @@
                             </Frame>
                         </controls:OpacityGradientLayout>
                         <BoxView BackgroundColor="{TemplateBinding PickedColor}" Grid.Row="1" Grid.Column="0"></BoxView>
-                        <!-- COLUMN 2 -->
+                        <!-- COLUMN 2: RGB Picker -->
                         <controls:GradientLayout x:Name="PART_HuePicker" WidthRequest="200" HeightRequest="200" ColorsList="#FF0000,#FF8B00,#FFE400,#9EFF00,#3AFF00,#00FF32,#00FFAA,#00FFF3,#008BFF,#002EFF,#4D00FF,#B900FF,#FF00FF,#FF0000" Mode="ToTop" Grid.Column="1">
                             <Frame
                             x:Name="PART_HueThumb"
@@ -75,46 +75,53 @@
                                 </Frame.CornerRadius>
                             </Frame>
                         </controls:GradientLayout>
-                        <!-- COLUMN 3 -->
+                        <!-- COLUMN 3: TextFields -->
                         <StackLayout Grid.Column="2">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="R" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                <Entry Placeholder="R"
-                                       Text="{TemplateBinding Path=PickedColor.R, Converter={StaticResource colorNumberConverter}, ConverterParameter=R, StringFormat='{0:n0}'}"
+                                <Entry x:Name="PART_ENTRY_red"
+                                       Placeholder="R"
+                                       Text="{TemplateBinding Path=PickedColor.R, Mode=TwoWay, Converter={StaticResource colorNumberConverter}, ConverterParameter=R, StringFormat='{0:n0}'}"
                                        VerticalOptions="Center"
-                                       HorizontalOptions="FillAndExpand"></Entry>
+                                       HorizontalOptions="FillAndExpand">
+                                </Entry>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="G" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                <Entry Placeholder="G"
+                                <Entry x:Name="PART_ENTRY_green"
+                                       Placeholder="G"
                                        Text="{TemplateBinding Path=PickedColor.G, Converter={StaticResource colorNumberConverter}, ConverterParameter=G, StringFormat='{0:n0}'}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="FillAndExpand"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="B" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                <Entry Placeholder="B"
+                                <Entry x:Name="PART_ENTRY_blue"
+                                       Placeholder="B"
                                        Text="{TemplateBinding Path=PickedColor.B, Converter={StaticResource colorNumberConverter}, ConverterParameter=B, StringFormat ='{0:n0}'}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="FillAndExpand"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="H" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                <Entry Placeholder="H"
+                                <Entry x:Name="PART_ENTRY_hue"
+                                       Placeholder="H"
                                        Text="{TemplateBinding Path=PickedColor.Hue, Converter={StaticResource colorNumberConverter}, ConverterParameter=H, StringFormat ='{0:n0}'}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="FillAndExpand"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="S" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                <Entry Placeholder="S"
+                                <Entry x:Name="PART_ENTRY_saturation"
+                                       Placeholder="S"
                                        Text="{TemplateBinding Path=PickedColor.Saturation, Converter={StaticResource colorNumberConverter}, ConverterParameter=S, StringFormat='{0:n0}'}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="FillAndExpand"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="L" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                <Entry Placeholder="L"
+                                <Entry x:Name="PART_ENTRY_luminosity"
+                                       Placeholder="L"
                                        Text="{TemplateBinding Path=PickedColor.Luminosity, Converter={StaticResource colorNumberConverter}, ConverterParameter=L, StringFormat='{0:n0}'}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="FillAndExpand"></Entry>

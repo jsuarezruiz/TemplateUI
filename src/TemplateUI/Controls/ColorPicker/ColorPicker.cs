@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
+using TemplateUI.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 
@@ -14,6 +16,12 @@ namespace TemplateUI.Controls
         const string ElementSaturationAndLightPicker = "PART_SaturationAndLight";
         const string ElementHuePicker = "PART_HuePicker";
         const string ElementHueThumb = "PART_HueThumb";
+        const string ElementEntryRed = "PART_ENTRY_red";
+        const string ElementEntryGreen = "PART_ENTRY_green";
+        const string ElementEntryBlue = "PART_ENTRY_blue";
+        const string ElementEntryHue = "PART_ENTRY_hue";
+        const string ElementEntrySaturation = "PART_ENTRY_saturation";
+        const string ElementEntryLuminosity = "PART_ENTRY_luminosity";
 
         const double ExtraLargeSize = 64;
         const double LargeSize = 48;
@@ -31,6 +39,12 @@ namespace TemplateUI.Controls
         Frame _hueThumb;
         OpacityGradientLayout _hslPicker;
         GradientLayout _rgbPicker;
+        Entry _entryRed;
+        Entry _entryGreen;
+        Entry _entryBlue;
+        Entry _entryHue;
+        Entry _entrySaturation;
+        Entry _entryLuminosity;
 
         double _previousPositionX;
         double _previousPostionY;
@@ -311,6 +325,12 @@ namespace TemplateUI.Controls
             _hslPicker = (OpacityGradientLayout)GetTemplateChild(ElementSaturationAndLightPicker);
             _hueThumb = (Frame)GetTemplateChild(ElementHueThumb);
             _rgbPicker = (GradientLayout)GetTemplateChild(ElementHuePicker);
+            _entryRed = (Entry)GetTemplateChild(ElementEntryRed);
+            _entryGreen = (Entry)GetTemplateChild(ElementEntryGreen);
+            _entryBlue = (Entry)GetTemplateChild(ElementEntryBlue);
+            _entryHue = (Entry)GetTemplateChild(ElementEntryHue);
+            _entrySaturation = (Entry)GetTemplateChild(ElementEntrySaturation);
+            _entryLuminosity = (Entry)GetTemplateChild(ElementEntryLuminosity);
 
             UpdateIsEnabled();
         }
@@ -350,11 +370,102 @@ namespace TemplateUI.Controls
                 var panGestureRecognizer2 = new PanGestureRecognizer();
                 panGestureRecognizer2.PanUpdated += RgbPanGestureRecognizer_PanUpdated;
                 _hueThumb.GestureRecognizers.Add(panGestureRecognizer2);
+
+                _entryRed.Completed += _entryRed_Completed;
+                _entryGreen.Completed += _entryGreen_Completed;
+                _entryBlue.Completed += _entryBlue_Completed;
+                _entryHue.Completed += _entryHue_Completed;
+                _entrySaturation.Completed += _entrySaturation_Completed;
+                _entryLuminosity.Completed += _entryLuminosity_Completed;
             }
             else
             {
                 _thumb.GestureRecognizers.Clear();
                 _hueThumb.GestureRecognizers.Clear();
+                _entryRed.Completed -= _entryRed_Completed;
+                _entryGreen.Completed -= _entryGreen_Completed;
+                _entryBlue.Completed -= _entryBlue_Completed;
+                _entryHue.Completed -= _entryHue_Completed;
+                _entrySaturation.Completed -= _entrySaturation_Completed;
+                _entryLuminosity.Completed -= _entryLuminosity_Completed;
+            }
+        }
+
+        private void _entryLuminosity_Completed(object sender, EventArgs e)
+        {
+            double newValue = 1.0d;
+            bool parseSuccess = double.TryParse(_entryLuminosity.Text, out newValue);
+            if (parseSuccess)
+            {
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue);
+                Color newColor = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, convertedNewValue);
+                PickedColor = newColor;
+                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entrySaturation_Completed(object sender, EventArgs e)
+        {
+            double newValue = 1.0d;
+            bool parseSuccess = double.TryParse(_entrySaturation.Text, out newValue);
+            if (parseSuccess)
+            {
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue);
+                Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
+                PickedColor = newColor;
+                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entryHue_Completed(object sender, EventArgs e)
+        {
+            double newValue = 1.0d;
+            bool parseSuccess = double.TryParse(_entryHue.Text, out newValue);
+            if (parseSuccess)
+            {
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceHue(newValue);
+                Color newColor = Color.FromHsla(convertedNewValue, PickedColor.Saturation, PickedColor.Luminosity);
+                PickedColor = newColor;
+                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entryBlue_Completed(object sender, EventArgs e)
+        {
+            double newValue = 1.0d;
+            bool parseSuccess = double.TryParse(_entryBlue.Text, out newValue);
+            if (parseSuccess)
+            {
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+                Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
+                PickedColor = newColor;
+                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entryGreen_Completed(object sender, EventArgs e)
+        {
+            double newValue = 1.0d;
+            bool parseSuccess = double.TryParse(_entryGreen.Text, out newValue);
+            if (parseSuccess)
+            {
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+                Color newColor = Color.FromRgb(PickedColor.R, convertedNewValue, PickedColor.B);
+                PickedColor = newColor;
+                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entryRed_Completed(object sender, EventArgs e)
+        {
+            double newValue = 1.0d;
+            bool parseSuccess = double.TryParse(_entryRed.Text, out newValue);
+            if (parseSuccess)
+            {
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+                Color newColor = Color.FromRgb(convertedNewValue, PickedColor.G, PickedColor.B);
+                PickedColor = newColor;
+                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
             }
         }
 
@@ -420,6 +531,11 @@ namespace TemplateUI.Controls
                 case GestureStatus.Canceled:
                     break;
             }
+        }
+
+        private void CalculatePickedColorFromEntries()
+        {
+            this.PickedColor = PickedColor;
         }
 
         private void CalculatePickedColor()
