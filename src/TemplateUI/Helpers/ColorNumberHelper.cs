@@ -57,5 +57,21 @@ namespace TemplateUI.Helpers
             targetValue = targetValue > maxLuminosity ? maxLuminosity : targetValue;
             return maxInterValue / maxLuminosity * targetValue;
         }
+
+        public static double MaxSaturationFromLuminosity(double luminosity)
+        {
+            if (luminosity <= maxLuminosity / 2)
+            {
+                return maxSaturation;
+            }
+
+            double saturationSubtrahend = (luminosity - maxLuminosity / 2) / (maxLuminosity - maxLuminosity / 2) * maxSaturation;
+            return maxSaturation - saturationSubtrahend;
+        }
+
+        public static double MaxLuminosityFromSaturation(double saturation)
+        {
+            return -0.5 * saturation + maxLuminosity;
+        }
     }
 }

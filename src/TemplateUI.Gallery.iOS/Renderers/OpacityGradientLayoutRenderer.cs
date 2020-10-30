@@ -12,20 +12,23 @@ namespace TemplateUI.Gallery.iOS.Renderers
 {
     public class OpacityGradientLayoutRenderer : VisualElementRenderer<AbsoluteLayout>
     {
-        private static int counter = 0;
-
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
             SetNeedsDisplay();
         }
 
+        private CAGradientLayer gradientLayer;
+
         public override void Draw(CGRect rect)
         {
             base.Draw(rect);
             OpacityGradientLayout layout = (OpacityGradientLayout)Element;
 
-            var gradientLayer = new CAGradientLayer();
+            if (gradientLayer == null)
+            {
+                gradientLayer = new CAGradientLayer();
+            }
 
             switch (layout.Mode)
             {
@@ -71,16 +74,6 @@ namespace TemplateUI.Gallery.iOS.Renderers
                 };
 
             var maskLayer = new CAGradientLayer();
-
-
-            //maskLayer.AnchorPoint = new CGPoint(x: 0.75, y: 0.75);
-            //gradientLayer.AnchorPoint = new CGPoint(x: 0.75, y: 0.75);
-
-
-            maskLayer.StartPoint = new CGPoint(x: 0.0, y: 0.5);
-            maskLayer.EndPoint = new CGPoint(x: 1.0, y: 0.5);
-
-
             var lightZero = Color.FromHsla(0d, 1d, 0, 0.0d).ToCGColor();
             var light100 = Color.FromHsla(0d, 1d, 0, 1.0d).ToCGColor();
             CGColor[] maskedColors =
@@ -89,12 +82,19 @@ namespace TemplateUI.Gallery.iOS.Renderers
                 light100
             };
             maskLayer.Colors = maskedColors;
-            maskLayer.StartPoint = new CGPoint(0.5, 0);
-            maskLayer.EndPoint = new CGPoint(0.5, 1);
+            maskLayer.StartPoint = new CGPoint(x: 0.5, y: 0);
+            maskLayer.EndPoint = new CGPoint(x: 0.5, y: 1);
             maskLayer.Frame = rect;
 
-            NativeView.Layer.InsertSublayer(gradientLayer, counter++);
-            NativeView.Layer.InsertSublayer(maskLayer, counter++);
+            if (NativeView.Layer.Sublayers.Length == 1)
+            {
+                NativeView.Layer.InsertSublayer(gradientLayer, 0);
+            }
+
+            if (NativeView.Layer.Sublayers.Length == 2)
+            {
+                NativeView.Layer.InsertSublayer(maskLayer, 1);
+            }
         }
     }
 }

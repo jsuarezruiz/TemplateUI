@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-using System.Windows.Input;
 using TemplateUI.Helpers;
 using Xamarin.Forms;
-using Xamarin.Forms.Shapes;
 
 namespace TemplateUI.Controls
 {
     public class ColorPicker : TemplatedView, INotifyPropertyChanged
     {
-        const string ElementThumb = "PART_Thumb";
-        const string ElementSaturationAndLightPicker = "PART_SaturationAndLight";
-        const string ElementHuePicker = "PART_HuePicker";
-        const string ElementHueThumb = "PART_HueThumb";
+        const string ElementHSLThumb = "PART_Thumb";
+        const string ElementHSLPicker = "PART_SaturationAndLight";
+        const string ElementRGBPicker = "PART_HuePicker";
+        const string ElementRGBThumb = "PART_HueThumb";
         const string ElementEntryRed = "PART_ENTRY_red";
         const string ElementEntryGreen = "PART_ENTRY_green";
         const string ElementEntryBlue = "PART_ENTRY_blue";
@@ -23,19 +19,7 @@ namespace TemplateUI.Controls
         const string ElementEntrySaturation = "PART_ENTRY_saturation";
         const string ElementEntryLuminosity = "PART_ENTRY_luminosity";
 
-        const double ExtraLargeSize = 64;
-        const double LargeSize = 48;
-        const double MediumSize = 36;
-        const double SmallSize = 24;
-        const double ExtraSmallSize = 18;
-
-        const double ExtraLargeFontSize = 24;
-        const double LargeFontSize = 18;
-        const double MediumFontSize = 12;
-        const double SmallFontSize = 10;
-        const double ExtraSmallFontSize = 8;
-
-        Frame _thumb;
+        Frame _rgbthumb;
         Frame _hueThumb;
         OpacityGradientLayout _hslPicker;
         GradientLayout _rgbPicker;
@@ -46,9 +30,9 @@ namespace TemplateUI.Controls
         Entry _entrySaturation;
         Entry _entryLuminosity;
 
-        double _previousPositionX;
-        double _previousPostionY;
-        double _hueThumbPreviousPostionY;
+        double _hslPreviousPositionX;
+        double _hslPreviousPostionY;
+        double _rgbThumbPreviousPostionY;
 
         /**************************************************
          * Bindable Properties
@@ -66,8 +50,8 @@ namespace TemplateUI.Controls
             if (bindable is ColorPicker colorPicker)
             {
                 colorPicker.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                colorPicker.UpdateHSLPicker();
-                colorPicker.CalculatePickedColor();
+                colorPicker.UpdateHSLThumb();
+                colorPicker.CalculatePickedColorBasedOnThumbs();
             }
         }
 
@@ -108,8 +92,8 @@ namespace TemplateUI.Controls
             if (bindable is ColorPicker colorPicker)
             {
                 colorPicker.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                colorPicker.UpdateRGBPicker();
-                colorPicker.CalculatePickedColor();
+                colorPicker.UpdateRGBThumb();
+                colorPicker.CalculatePickedColorBasedOnThumbs();
             }
         }
 
@@ -134,126 +118,6 @@ namespace TemplateUI.Controls
         /**************************************************
          * Properties
          **************************************************/
-        private double red = 0.0d;
-        public double Red
-        {
-            get
-            {
-                return this.red;
-            }
-            set
-            {
-                this.red = value;
-                OnPropertyChanged();
-                ConvertToHsl();
-            }
-        }
-
-        private double blue = 0.0d;
-        public double Blue
-        {
-            get
-            {
-                return this.blue;
-            }
-            set
-            {
-                this.blue = value;
-                OnPropertyChanged();
-                ConvertToHsl();
-            }
-        }
-
-        private double green = 0.0d;
-        public double Green
-        {
-            get
-            {
-                return this.green;
-            }
-            set
-            {
-                this.green = value;
-                OnPropertyChanged();
-                ConvertToHsl();
-            }
-        }
-
-        private double hue = 0.0d;
-        public double Hue
-        {
-            get
-            {
-                return this.hue;
-            }
-            set
-            {
-                this.hue = value;
-                OnPropertyChanged();
-                ConvertToRgb();
-            }
-        }
-
-        private double saturation = 1.0d;
-        public double Saturation
-        {
-            get
-            {
-                return this.saturation;
-            }
-            set
-            {
-                this.saturation = value;
-                OnPropertyChanged();
-                ConvertToRgb();
-            }
-        }
-
-        private double lightness = 0.5d;
-        public double Lightness
-        {
-            get
-            {
-                return this.lightness;
-            }
-            set
-            {
-                this.lightness = value;
-                OnPropertyChanged();
-                ConvertToRgb();
-            }
-        }
-
-        private double hexCode;
-        public double HexCode
-        {
-            get
-            {
-                return this.hexCode;
-            }
-            set
-            {
-                this.hexCode = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private void ConvertToHsl()
-        {
-            //Color color = Color.FromRgb(this.Red, this.Blue, this.Green);
-            //this.Hue = color.Hue;
-            //this.Saturation = color.Saturation;
-            //this.Lightness = color.Luminosity;
-        }
-
-        private void ConvertToRgb()
-        {
-            //Color color = Color.FromRgb(this.Hue, this.Saturation, this.Lightness);
-            //this.Red = color.R;
-            //this.Blue = color.B;
-            //this.Green = color.G;
-        }
-
         private Color pickedColor;
         public Color PickedColor
         {
@@ -268,49 +132,18 @@ namespace TemplateUI.Controls
             }
         }
 
-        private Color pickedColorWithoutSaturationAndLightness;
-        public Color PickedColorWithoutSaturationAndLightness
+        // This color has a fixed saturation and luminosity
+        private Color pickedColorForHSL;
+        public Color PickedColorForHSL
         {
             get
             {
-                return this.pickedColorWithoutSaturationAndLightness;
+                return this.pickedColorForHSL;
             }
             set
             {
-                this.pickedColorWithoutSaturationAndLightness = value;
+                this.pickedColorForHSL = value;
                 OnPropertyChanged();
-            }
-        }
-
-        public double HslPicklerHeight
-        {
-            get
-            {
-                return this._hslPicker.Height;
-            }
-        }
-
-        public double HslPickerWidth
-        {
-            get
-            {
-                return this._hslPicker.Width;
-            }
-        }
-
-        public double RgbPickerHeight
-        {
-            get
-            {
-                return this._rgbPicker.Height;
-            }
-        }
-
-        public double RgbPickerWidth
-        {
-            get
-            {
-                return this._rgbPicker.Width;
             }
         }
 
@@ -321,10 +154,10 @@ namespace TemplateUI.Controls
         {
             base.OnApplyTemplate();
 
-            _thumb = (Frame)GetTemplateChild(ElementThumb);
-            _hslPicker = (OpacityGradientLayout)GetTemplateChild(ElementSaturationAndLightPicker);
-            _hueThumb = (Frame)GetTemplateChild(ElementHueThumb);
-            _rgbPicker = (GradientLayout)GetTemplateChild(ElementHuePicker);
+            _rgbthumb = (Frame)GetTemplateChild(ElementHSLThumb);
+            _hslPicker = (OpacityGradientLayout)GetTemplateChild(ElementHSLPicker);
+            _hueThumb = (Frame)GetTemplateChild(ElementRGBThumb);
+            _rgbPicker = (GradientLayout)GetTemplateChild(ElementRGBPicker);
             _entryRed = (Entry)GetTemplateChild(ElementEntryRed);
             _entryGreen = (Entry)GetTemplateChild(ElementEntryGreen);
             _entryBlue = (Entry)GetTemplateChild(ElementEntryBlue);
@@ -347,8 +180,8 @@ namespace TemplateUI.Controls
         {
             base.OnSizeAllocated(width, height);
 
-            UpdateHSLPicker();
-            UpdateRGBPicker();
+            UpdateHSLThumb();
+            UpdateRGBThumb();
         }
 
         /**************************************************
@@ -365,7 +198,7 @@ namespace TemplateUI.Controls
             {
                 var panGestureRecognizer = new PanGestureRecognizer();
                 panGestureRecognizer.PanUpdated += PanGestureRecognizer_PanUpdated;
-                _thumb.GestureRecognizers.Add(panGestureRecognizer);
+                _rgbthumb.GestureRecognizers.Add(panGestureRecognizer);
 
                 var panGestureRecognizer2 = new PanGestureRecognizer();
                 panGestureRecognizer2.PanUpdated += RgbPanGestureRecognizer_PanUpdated;
@@ -380,7 +213,7 @@ namespace TemplateUI.Controls
             }
             else
             {
-                _thumb.GestureRecognizers.Clear();
+                _rgbthumb.GestureRecognizers.Clear();
                 _hueThumb.GestureRecognizers.Clear();
                 _entryRed.Completed -= _entryRed_Completed;
                 _entryGreen.Completed -= _entryGreen_Completed;
@@ -397,10 +230,14 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entryLuminosity.Text, out newValue);
             if (parseSuccess)
             {
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue);
+                double maxLuminosity = ColorNumberHelper.MaxLuminosityFromSaturation(ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation));
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue >= maxLuminosity ? maxLuminosity : newValue);
                 Color newColor = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, convertedNewValue);
                 PickedColor = newColor;
-                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                // move hsl thumb
+                _rgbthumb.TranslationX = PickedColor.Saturation * _hslPicker.Width;
+                _rgbthumb.TranslationY = _hslPicker.Height - (PickedColor.Luminosity * _hslPicker.Height + (_rgbthumb.TranslationX / _hslPicker.Width) * (_hslPicker.Height / 2));
             }
         }
 
@@ -410,10 +247,14 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entrySaturation.Text, out newValue);
             if (parseSuccess)
             {
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue);
+                double maxSaturation = ColorNumberHelper.MaxSaturationFromLuminosity(ColorNumberHelper.FromSourceToTargetLuminosity(PickedColor.Luminosity));
+                double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue >= maxSaturation ? maxSaturation : newValue);
                 Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
                 PickedColor = newColor;
-                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                // move hsl thumb
+                _rgbthumb.TranslationX = PickedColor.Saturation * _hslPicker.Width;
+                _rgbthumb.TranslationY = _hslPicker.Height - (PickedColor.Luminosity * _hslPicker.Height + (_rgbthumb.TranslationX / _hslPicker.Width) * (_hslPicker.Height / 2));
             }
         }
 
@@ -426,7 +267,9 @@ namespace TemplateUI.Controls
                 double convertedNewValue = ColorNumberHelper.FromTargetToSourceHue(newValue);
                 Color newColor = Color.FromHsla(convertedNewValue, PickedColor.Saturation, PickedColor.Luminosity);
                 PickedColor = newColor;
-                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                // move rgb thumb
+                _hueThumb.TranslationY = PickedColor.Hue * _rgbPicker.Height;
             }
         }
 
@@ -439,7 +282,11 @@ namespace TemplateUI.Controls
                 double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
                 Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
                 PickedColor = newColor;
-                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                // move rgb & hsl thumb
+                _hueThumb.TranslationY = PickedColor.Hue * _rgbPicker.Height;
+                _rgbthumb.TranslationX = PickedColor.Saturation * _hslPicker.Width;
+                _rgbthumb.TranslationY = _hslPicker.Height - (PickedColor.Luminosity * _hslPicker.Height + (_rgbthumb.TranslationX / _hslPicker.Width) * (_hslPicker.Height / 2));
             }
         }
 
@@ -452,7 +299,11 @@ namespace TemplateUI.Controls
                 double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
                 Color newColor = Color.FromRgb(PickedColor.R, convertedNewValue, PickedColor.B);
                 PickedColor = newColor;
-                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                // move rgb & hsl thumb
+                _hueThumb.TranslationY = PickedColor.Hue * _rgbPicker.Height;
+                _rgbthumb.TranslationX = PickedColor.Saturation * _hslPicker.Width;
+                _rgbthumb.TranslationY = _hslPicker.Height - (PickedColor.Luminosity * _hslPicker.Height + (_rgbthumb.TranslationX / _hslPicker.Width) * (_hslPicker.Height / 2));
             }
         }
 
@@ -465,7 +316,11 @@ namespace TemplateUI.Controls
                 double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
                 Color newColor = Color.FromRgb(convertedNewValue, PickedColor.G, PickedColor.B);
                 PickedColor = newColor;
-                PickedColorWithoutSaturationAndLightness = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                // move rgb thumb
+                _hueThumb.TranslationY = PickedColor.Hue * _rgbPicker.Height;
+                _rgbthumb.TranslationX = PickedColor.Saturation * _hslPicker.Width;
+                _rgbthumb.TranslationY = _hslPicker.Height - (PickedColor.Luminosity * _hslPicker.Height + (_rgbthumb.TranslationX / _hslPicker.Width) * (_hslPicker.Height / 2));
             }
         }
 
@@ -474,28 +329,29 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _previousPositionX = e.TotalX;
-                    _previousPostionY = e.TotalY;
+                    _hslPreviousPositionX = e.TotalX;
+                    _hslPreviousPostionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _previousPositionX += _thumb.TranslationX;
-                        _previousPostionY += _thumb.TranslationY;
+                        _hslPreviousPositionX += _rgbthumb.TranslationX;
+                        _hslPreviousPostionY += _rgbthumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalX = _previousPositionX + e.TotalX;
-                    double totalY = _previousPostionY + e.TotalY;
+                    double totalX = _hslPreviousPositionX + e.TotalX;
+                    double totalY = _hslPreviousPostionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
-                        totalX += _thumb.TranslationX;
-                        totalY += _thumb.TranslationY;
+                        totalX += _rgbthumb.TranslationX;
+                        totalY += _rgbthumb.TranslationY;
                     }
 
-                    var positionX = totalX < 0 ? 0 : totalX > _hslPicker.Width - _thumb.Width ? _hslPicker.Width - _thumb.Width : totalX;
+                    // Keep the position of thumbs in check
+                    var positionX = totalX < 0 ? 0 : totalX > _hslPicker.Width ? _hslPicker.Width : totalX;
                     ValueXhslThumb = positionX * MaximumX / _hslPicker.Width;
-                    var positionY = totalY < 0 ? 0 : totalY > _hslPicker.Height - _thumb.Height ? _hslPicker.Height - _thumb.Height : totalY;
+                    var positionY = totalY < 0 ? 0 : totalY > _hslPicker.Height ? _hslPicker.Height : totalY;
                     ValueYhslThumb = positionY * MaximumY / _hslPicker.Height;
                     break;
                 case GestureStatus.Completed:
@@ -509,22 +365,22 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _hueThumbPreviousPostionY = e.TotalY;
+                    _rgbThumbPreviousPostionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _hueThumbPreviousPostionY += _hueThumb.TranslationY;
+                        _rgbThumbPreviousPostionY += _hueThumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalY = _hueThumbPreviousPostionY + e.TotalY;
+                    double totalY = _rgbThumbPreviousPostionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
                         totalY += _hueThumb.TranslationY;
                     }
 
-                    var positionY = totalY < 0 ? 0 : totalY > _rgbPicker.Height - _hueThumb.Height ? _rgbPicker.Height - _hueThumb.Height : totalY;
+                    var positionY = totalY < 0 ? 0 : totalY > _rgbPicker.Height ? _rgbPicker.Height : totalY;
                     ValueYrgbThumb = positionY * MaximumY / _rgbPicker.Height;
                     break;
                 case GestureStatus.Completed:
@@ -533,59 +389,47 @@ namespace TemplateUI.Controls
             }
         }
 
-        private void CalculatePickedColorFromEntries()
+        private void CalculatePickedColorBasedOnThumbs()
         {
-            this.PickedColor = PickedColor;
+            // HUE (0.0d to 359.0d)
+            double hue = 359.0d * (_hueThumb.TranslationY / _rgbPicker.Height);
+
+            // LUMINOSITY (0.0d to 100.0d)
+            double positionXhslInv = _hslPicker.Width - _rgbthumb.TranslationX;
+            double positionYhslInv = _hslPicker.Height - _rgbthumb.TranslationY;
+            double minimumLuminosity = 50.0d;
+            double maximumLuminosity = minimumLuminosity + (positionXhslInv / _hslPicker.Width * 50.0d);
+            double luminosity = positionYhslInv / _hslPicker.Height * maximumLuminosity;
+
+            // SATURATION (0.0d to 100.0d)
+            double saturation = _rgbthumb.TranslationX / _hslPicker.Width * 100;
+
+            // SETTING PICKED COLOR
+            double technicalHue = ColorNumberHelper.FromTargetToSourceHue(hue);
+            double technicalSaturation = ColorNumberHelper.FromTargetToSourceSaturation(saturation);
+            double technicalLuminosity = ColorNumberHelper.FromTargetToSourceLuminosity(luminosity);
+            this.PickedColor = Color.FromHsla(technicalHue, technicalSaturation, technicalLuminosity);
+            this.PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
-        private void CalculatePickedColor()
-        {
-            // HUE
-            double positionY = ValueYrgbThumb / MaximumX * _rgbPicker.Height;
-            double hue = 360.0d * (positionY / _rgbPicker.Height);
-            //this.Hue = hue;
-
-            // LIGHTNESS
-            double positionXhsl = ValueXhslThumb / MaximumX * _hslPicker.Width;
-            double positionXhslInv = _hslPicker.Width - positionXhsl;
-            double positionYhsl = ValueYhslThumb / MaximumY * _hslPicker.Height;
-            double positionYhslInv = _hslPicker.Height - positionYhsl;
-            double minimumLightness = 50.0d;
-            double maximumLightness = minimumLightness + (positionXhslInv / _hslPicker.Width * 50.0d);
-            double lightness = positionYhslInv / _hslPicker.Height * maximumLightness;
-            //this.Lightness = lightness;
-
-            // SATURATION
-            double saturation = positionXhsl / _hslPicker.Width * 100;
-            //this.Saturation = saturation;
-
-            // RED
-            //this.PickedColor = Color.FromHsla(1.0 / 360 * this.Hue, this.Saturation / 100, this.Lightness / 100);
-            this.PickedColor = Color.FromHsla(1.0 / 360 * hue, saturation / 100, lightness / 100);
-            this.PickedColorWithoutSaturationAndLightness = Color.FromHsla(1.0 / 360 * hue, 1.0d, 0.5d);
-            //this.Red = PickedColor.R;
-            //this.Blue = PickedColor.B;
-            //this.Green = PickedColor.G;
-        }
-
-        void UpdateHSLPicker()
+        void UpdateHSLThumb()
         {
             var positionX = ValueXhslThumb / MaximumX * _hslPicker.Width;
-            var positionY = ValueYhslThumb / MaximumX * _hslPicker.Height;
+            var positionY = ValueYhslThumb / MaximumY * _hslPicker.Height;
 
             if (positionX < 0)
                 positionX = 0;
             if (positionY < 0)
                 positionY = 0;
 
-            _thumb.TranslationX = positionX;
-            _thumb.TranslationY = positionY;
+            _rgbthumb.TranslationX = positionX;
+            _rgbthumb.TranslationY = positionY;
         }
 
-        void UpdateRGBPicker()
+        void UpdateRGBThumb()
         {
             var positionX = ValueXrgbThumb / MaximumX * _rgbPicker.Width;
-            var positionY = ValueYrgbThumb / MaximumX * _rgbPicker.Height;
+            var positionY = ValueYrgbThumb / MaximumY * _rgbPicker.Height;
 
             if (positionX < 0)
                 positionX = 0;

@@ -22,31 +22,21 @@
                             <ColumnDefinition Width="90" />
                         </Grid.ColumnDefinitions>
                         <!-- COLUMN 1: HSL Picker -->
-                        <controls:OpacityGradientLayout x:Name="PART_SaturationAndLight" WidthRequest="200" HeightRequest="200" SelectedColor="{TemplateBinding PickedColorWithoutSaturationAndLightness}" Mode="ToRight" Grid.Column="0">
-                            <Frame
-                            x:Name="PART_Thumb"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Padding="0"
-                            BackgroundColor="{TemplateBinding ThumbColor}"
-                            BorderColor="{TemplateBinding ThumbBorderColor}"
-                            HeightRequest="20"
-                            WidthRequest="20">
-                                <!--<Frame.TranslationX>
-                                    <MultiBinding Converter="{StaticResource colorConverter}">
-                                        <TemplateBinding Path="HexCode" />
-                                        <TemplateBinding Path="Red" />
-                                        <TemplateBinding Path="Green" />
-                                        <TemplateBinding Path="Blue" />
-                                        <TemplateBinding Path="Hue" />
-                                        <TemplateBinding Path="Saturation" />
-                                        <TemplateBinding Path="Lightness" />
-                                        <TemplateBinding Path="HslPicklerHeight" />
-                                        <TemplateBinding Path="HslPickerWidth" />
-                                        <TemplateBinding Path="RgbPicklerHeight" />
-                                        <TemplateBinding Path="RgbPickerWidth" />
-                                    </MultiBinding>
-                                </Frame.TranslationX>-->
+                        <controls:OpacityGradientLayout x:Name="PART_SaturationAndLight"
+                                                        WidthRequest="200"
+                                                        HeightRequest="200"
+                                                        SelectedColor="{TemplateBinding PickedColorForHSL}"
+                                                        Mode="ToRight"
+                                                        Grid.Column="0"
+                                                        Margin="10">
+                            <Frame x:Name="PART_Thumb"
+                                   AbsoluteLayout.LayoutBounds="-10.0,-10.0,20,20"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   Padding="0"
+                                   BackgroundColor="{TemplateBinding ThumbColor}"
+                                   HeightRequest="20"
+                                   WidthRequest="20">
                                 <Frame.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Single">
                                         <On Platform="iOS, macOS" Value="10"/>
@@ -57,8 +47,15 @@
                         </controls:OpacityGradientLayout>
                         <BoxView BackgroundColor="{TemplateBinding PickedColor}" Grid.Row="1" Grid.Column="0"></BoxView>
                         <!-- COLUMN 2: RGB Picker -->
-                        <controls:GradientLayout x:Name="PART_HuePicker" WidthRequest="200" HeightRequest="200" ColorsList="#FF0000,#FF8B00,#FFE400,#9EFF00,#3AFF00,#00FF32,#00FFAA,#00FFF3,#008BFF,#002EFF,#4D00FF,#B900FF,#FF00FF,#FF0000" Mode="ToTop" Grid.Column="1">
+                        <controls:GradientLayout x:Name="PART_HuePicker"
+                                                 WidthRequest="200"
+                                                 HeightRequest="200"
+                                                 Margin="0,10,0,10"
+                                                 ColorsList="#FF0000,#FF8B00,#FFE400,#9EFF00,#3AFF00,#00FF32,#00FFAA,#00FFF3,#008BFF,#002EFF,#4D00FF,#B900FF,#FF00FF,#FF0000"
+                                                 Mode="ToTop"
+                                                 Grid.Column="1">
                             <Frame
+                            AbsoluteLayout.LayoutBounds="0.0,-10.0,20,20"
                             x:Name="PART_HueThumb"
                             HorizontalOptions="Start"
                             VerticalOptions="Center"
