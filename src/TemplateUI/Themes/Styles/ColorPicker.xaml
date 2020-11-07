@@ -54,16 +54,14 @@
                                                  ColorsList="#FF0000,#FF8B00,#FFE400,#9EFF00,#3AFF00,#00FF32,#00FFAA,#00FFF3,#008BFF,#002EFF,#4D00FF,#B900FF,#FF00FF,#FF0000"
                                                  Mode="ToTop"
                                                  Grid.Column="1">
-                            <Frame
-                            AbsoluteLayout.LayoutBounds="0.0,-10.0,20,20"
-                            x:Name="PART_HueThumb"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Padding="0"
-                            BackgroundColor="{TemplateBinding ThumbColor}"
-                            BorderColor="{TemplateBinding ThumbBorderColor}"
-                            HeightRequest="20"
-                            WidthRequest="20">
+                            <Frame x:Name="PART_HueThumb"
+                                   AbsoluteLayout.LayoutBounds="0.0,-10.0,20,20"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   Padding="0"
+                                   BackgroundColor="{TemplateBinding ThumbColor}"
+                                   HeightRequest="20"
+                                   WidthRequest="20">
                                 <Frame.CornerRadius>
                                     <OnPlatform x:TypeArguments="x:Single">
                                         <On Platform="iOS, macOS" Value="10"/>

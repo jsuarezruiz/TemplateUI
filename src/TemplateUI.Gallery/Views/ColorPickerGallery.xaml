@@ -6,7 +6,7 @@
     x:Class="TemplateUI.Gallery.Views.ColorPickerGallery"
     BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
     BarTextColor="White"
-    Title="AvatarView Gallery"> 
+    Title="Colorpicker Gallery"> 
     <ContentPage
         Title="Getting Started" 
         IconImageSource="started.png">
