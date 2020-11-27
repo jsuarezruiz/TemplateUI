@@ -5,7 +5,17 @@ namespace TemplateUI.Controls
 {
     public class GradientLayout : AbsoluteLayout
     {
-        public string ColorsList { get; set; }
+        public static readonly BindableProperty ColorsListProperty =
+            BindableProperty.Create(nameof(ColorsList), typeof(string), typeof(GradientLayout), "");
+        public string ColorsList { get
+            {
+                return (string)GetValue(ColorsListProperty);
+            }
+            set
+            {
+                SetValue(ColorsListProperty, value);
+            }
+        }
 
         public Color[] Colors
         {

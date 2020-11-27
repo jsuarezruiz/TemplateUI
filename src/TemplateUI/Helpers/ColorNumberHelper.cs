@@ -73,5 +73,11 @@ namespace TemplateUI.Helpers
         {
             return -0.5 * saturation + maxLuminosity;
         }
+
+        public static double ConvertDegreesToRadians(double degrees)
+        {
+            double radians = (Math.PI / 180) * degrees;
+            return radians;
+        }
     }
 }

@@ -86,6 +86,11 @@ namespace TemplateUI.Gallery.iOS.Renderers
             maskLayer.EndPoint = new CGPoint(x: 0.5, y: 1);
             maskLayer.Frame = rect;
 
+            /**
+             * LAYER 0: Controls
+             * LAYER 1: MaskLayer
+             * LAYER 2: GradientLayer
+             */
             if (NativeView.Layer.Sublayers.Length == 1)
             {
                 NativeView.Layer.InsertSublayer(gradientLayer, 0);
@@ -94,6 +99,11 @@ namespace TemplateUI.Gallery.iOS.Renderers
             if (NativeView.Layer.Sublayers.Length == 2)
             {
                 NativeView.Layer.InsertSublayer(maskLayer, 1);
+            }
+
+            if (NativeView.Layer.Sublayers.Length == 3)
+            {
+                NativeView.Layer.ReplaceSublayer(NativeView.Layer.Sublayers[1], maskLayer);
             }
         }
     }

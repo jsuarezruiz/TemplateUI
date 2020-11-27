@@ -4,7 +4,6 @@ using Android.Content;
 using Android.Graphics;
 using TemplateUI.Controls;
 using TemplateUI.Gallery.Droid.Renderers;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -15,40 +14,79 @@ namespace TemplateUI.Gallery.Droid.Renderers
 {
     public class GradientLayoutRenderer : VisualElementRenderer<AbsoluteLayout>
     {
+        private GradientLayout gradientLayout;
         List<int> droidColorSpectrumArgb = new List<int>();
+
         public GradientLayoutRenderer(Context context) : base(context)
         {
-            List<Xamarin.Forms.Color> colorSpectrum = new List<Xamarin.Forms.Color>
-            {
-                Xamarin.Forms.Color.FromHsla(0.1d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.2d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.3d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.4d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.5d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.6d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.7d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.8d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(0.9d, 1.0d, 0.5d),
-                Xamarin.Forms.Color.FromHsla(1.0d, 1.0d, 0.5d),
-            };
-
-            List<Android.Graphics.Color> droidColorSpectrum = new List<Android.Graphics.Color>();
-            foreach (Xamarin.Forms.Color col in colorSpectrum)
-            {
-                droidColorSpectrum.Add(col.ToAndroid());
-            }
-
-            foreach (Android.Graphics.Color droidColor in droidColorSpectrum)
-            {
-                this.droidColorSpectrumArgb.Add(droidColor.ToArgb());
-            }
         }
 
         protected override void DispatchDraw(global::Android.Graphics.Canvas canvas)
         {
-            
-            var gradient = new LinearGradient(0, 0, 0, Height,
-            colors: this.droidColorSpectrumArgb.ToArray(), positions: null, tile: Shader.TileMode.Clamp);
+            int startX;
+            int startY;
+            int endX;
+            int endY;
+
+            switch (this.gradientLayout.Mode)
+            {
+                case GradientColorStackMode.ToLeft:
+                    startX = 0;
+                    startY = 0;
+                    endX = Width;
+                    endY = 0;
+                    break;
+                case GradientColorStackMode.ToRight:
+                    startX = Width;
+                    startY = 0;
+                    endX = 0;
+                    endY = 0;
+                    break;
+                case GradientColorStackMode.ToBottom:
+                    startX = 0;
+                    startY = Height;
+                    endX = 0;
+                    endY = 0;
+                    break;
+                case GradientColorStackMode.ToTop:
+                    startX = 0;
+                    startY = 0;
+                    endX = 0;
+                    endY = Height;
+                    break;
+                case GradientColorStackMode.ToTopLeft:
+                    startX = 0;
+                    startY = 0;
+                    endX = Width;
+                    endY = Height;
+                    break;
+                case GradientColorStackMode.ToTopRight:
+                    startX = Width;
+                    startY = 0;
+                    endX = 0;
+                    endY = Height;
+                    break;
+                case GradientColorStackMode.ToBottomLeft:
+                    startX = 0;
+                    startY = Height;
+                    endX = Width;
+                    endY = 0;
+                    break;
+                case GradientColorStackMode.ToBottomRight:
+                    startX = Width;
+                    startY = Height;
+                    endX = 0;
+                    endY = 0;
+                    break;
+                default:
+                    startX = 0;
+                    startY = 0;
+                    endX = 0;
+                    endY = Height;
+                    break;
+            }
+
+            LinearGradient gradient = new LinearGradient(startX, startY, endX, endY, colors: this.droidColorSpectrumArgb.ToArray(), positions: null, tile: Shader.TileMode.Clamp);
 
             var paint = new Android.Graphics.Paint()
             {
@@ -69,19 +107,25 @@ namespace TemplateUI.Gallery.Droid.Renderers
             }
             try
             {
-                var gradientLayout = e.NewElement as GradientLayout;
+                this.gradientLayout = e.NewElement as GradientLayout;
+                List<Xamarin.Forms.Color> colorSpectrum = new List<Xamarin.Forms.Color>();
+                colorSpectrum.AddRange(gradientLayout.Colors);
+
+                List<Android.Graphics.Color> droidColorSpectrum = new List<Android.Graphics.Color>();
+                foreach (Xamarin.Forms.Color col in colorSpectrum)
+                {
+                    droidColorSpectrum.Add(col.ToAndroid());
+                }
+
+                foreach (Android.Graphics.Color droidColor in droidColorSpectrum)
+                {
+                    this.droidColorSpectrumArgb.Add(droidColor.ToArgb());
+                }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(@"ERROR:", ex.Message);
             }
-        }
-
-        private static int convertDpToPixel(float dp)
-        {
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var pixels = dp * mainDisplayInfo.Density;
-            return (int)pixels;
         }
     }
 }

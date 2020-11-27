@@ -4,8 +4,6 @@
              x:Class="TemplateUI.Themes.ColorPicker"
              xmlns:controls="clr-namespace:TemplateUI.Controls"
              xmlns:converters="clr-namespace:TemplateUI.Converters">
-    <converters:ColorConverter x:Key="colorConverter"
-                               PickerWidth="200"/>
     <converters:ColorNumberConverter x:Key="colorNumberConverter"/>
     <Style TargetType="controls:ColorPicker">
         <Setter Property="ControlTemplate">
@@ -51,7 +49,7 @@
                                                  WidthRequest="200"
                                                  HeightRequest="200"
                                                  Margin="0,10,0,10"
-                                                 ColorsList="#FF0000,#FF8B00,#FFE400,#9EFF00,#3AFF00,#00FF32,#00FFAA,#00FFF3,#008BFF,#002EFF,#4D00FF,#B900FF,#FF00FF,#FF0000"
+                                                 ColorsList="{TemplateBinding ColorsList}"
                                                  Mode="ToTop"
                                                  Grid.Column="1">
                             <Frame x:Name="PART_HueThumb"
@@ -122,6 +120,52 @@
                                        HorizontalOptions="FillAndExpand"></Entry>
                             </StackLayout>
                         </StackLayout>
+                        <!-- RADIAL PICKER -->
+                        <controls:RadialPicker x:Name="PART_RadialPicker" Grid.Row="2" Grid.Column="0" WidthRequest="200" HeightRequest="200">
+                            <controls:RadialPicker.Effects>
+                                <controls:RoundEffect />
+                            </controls:RadialPicker.Effects>
+                            <Frame x:Name="PART_RadialPickerThumb"
+                                   AbsoluteLayout.LayoutBounds="-10.0, -10.0,20,20"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   Padding="0"
+                                   BackgroundColor="Black"
+                                   HeightRequest="20"
+                                   WidthRequest="20">
+                                <Frame.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Single">
+                                        <On Platform="iOS, macOS" Value="10"/>
+                                        <On Platform="Android, UWP" Value="24"/>
+                                    </OnPlatform>
+                                </Frame.CornerRadius>
+                            </Frame>
+                        </controls:RadialPicker>
+                        <!-- COLUMN 2: Brightness/Value Picker -->
+                        <controls:GradientLayout x:Name="PART_BrightnessPicker"
+                                                 WidthRequest="200"
+                                                 HeightRequest="200"
+                                                 Margin="0,10,0,10"
+                                                 ColorsList="{TemplateBinding ColorsListBrightness}"
+                                                 Mode="ToTop"
+                                                 Grid.Row="2"
+                                                 Grid.Column="1">
+                            <Frame x:Name="PART_BrightnessThumb"
+                                   AbsoluteLayout.LayoutBounds="0.0,-10.0,20,20"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   Padding="0"
+                                   BackgroundColor="{TemplateBinding ThumbColor}"
+                                   HeightRequest="20"
+                                   WidthRequest="20">
+                                <Frame.CornerRadius>
+                                    <OnPlatform x:TypeArguments="x:Single">
+                                        <On Platform="iOS, macOS" Value="10"/>
+                                        <On Platform="Android, UWP" Value="24"/>
+                                    </OnPlatform>
+                                </Frame.CornerRadius>
+                            </Frame>
+                        </controls:GradientLayout>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

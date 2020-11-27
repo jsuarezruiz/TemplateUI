@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using CoreAnimation;
+﻿using CoreAnimation;
 using CoreGraphics;
 using TemplateUI.Controls;
 using TemplateUI.Gallery.iOS.Renderers;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

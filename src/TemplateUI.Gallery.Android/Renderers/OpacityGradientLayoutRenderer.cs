@@ -24,6 +24,7 @@ namespace TemplateUI.Gallery.Droid.Renderers
 
         public OpacityGradientLayoutRenderer(Context context) : base(context)
         {
+            // REDRAW
             this.SetWillNotDraw(false);
         }
 
