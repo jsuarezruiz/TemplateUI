@@ -20,14 +20,14 @@
                             <ColumnDefinition Width="90" />
                         </Grid.ColumnDefinitions>
                         <!-- COLUMN 1: HSL Picker -->
-                        <controls:OpacityGradientLayout x:Name="PART_SaturationAndLight"
+                        <controls:OpacityGradientLayout x:Name="PART_Rect_SatLumPicker"
                                                         WidthRequest="200"
                                                         HeightRequest="200"
                                                         SelectedColor="{TemplateBinding PickedColorForHSL}"
                                                         Mode="ToRight"
                                                         Grid.Column="0"
                                                         Margin="10">
-                            <Frame x:Name="PART_Thumb"
+                            <Frame x:Name="PART_Rect_SatLumPickerThumb"
                                    AbsoluteLayout.LayoutBounds="-10.0,-10.0,20,20"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
@@ -45,14 +45,14 @@
                         </controls:OpacityGradientLayout>
                         <BoxView BackgroundColor="{TemplateBinding PickedColor}" Grid.Row="1" Grid.Column="0"></BoxView>
                         <!-- COLUMN 2: RGB Picker -->
-                        <controls:GradientLayout x:Name="PART_HuePicker"
+                        <controls:GradientLayout x:Name="PART_Rect_HuePicker"
                                                  WidthRequest="200"
                                                  HeightRequest="200"
                                                  Margin="0,10,0,10"
                                                  ColorsList="{TemplateBinding ColorsList}"
                                                  Mode="ToTop"
                                                  Grid.Column="1">
-                            <Frame x:Name="PART_HueThumb"
+                            <Frame x:Name="PART_Rect_HuePickerThumb"
                                    AbsoluteLayout.LayoutBounds="0.0,-10.0,20,20"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
@@ -121,11 +121,11 @@
                             </StackLayout>
                         </StackLayout>
                         <!-- RADIAL PICKER -->
-                        <controls:RadialPicker x:Name="PART_RadialPicker" Grid.Row="2" Grid.Column="0" WidthRequest="200" HeightRequest="200">
+                        <controls:RadialPicker x:Name="PART_Radial_SatHuePicker" Grid.Row="2" Grid.Column="0" WidthRequest="200" HeightRequest="200">
                             <controls:RadialPicker.Effects>
                                 <controls:RoundEffect />
                             </controls:RadialPicker.Effects>
-                            <Frame x:Name="PART_RadialPickerThumb"
+                            <Frame x:Name="PART_Radial_SatHuePickerThumb"
                                    AbsoluteLayout.LayoutBounds="-10.0, -10.0,20,20"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
@@ -142,7 +142,7 @@
                             </Frame>
                         </controls:RadialPicker>
                         <!-- COLUMN 2: Brightness/Value Picker -->
-                        <controls:GradientLayout x:Name="PART_BrightnessPicker"
+                        <controls:GradientLayout x:Name="PART_Radial_LumPicker"
                                                  WidthRequest="200"
                                                  HeightRequest="200"
                                                  Margin="0,10,0,10"
@@ -150,7 +150,7 @@
                                                  Mode="ToTop"
                                                  Grid.Row="2"
                                                  Grid.Column="1">
-                            <Frame x:Name="PART_BrightnessThumb"
+                            <Frame x:Name="PART_Radial_LumPickerThumb"
                                    AbsoluteLayout.LayoutBounds="0.0,-10.0,20,20"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"

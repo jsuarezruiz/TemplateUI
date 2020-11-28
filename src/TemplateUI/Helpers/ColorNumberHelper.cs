@@ -4,7 +4,7 @@ namespace TemplateUI.Helpers
     public class ColorNumberHelper
     {
         readonly static int maxRGB = 255;
-        readonly static int maxHue = 359;
+        readonly static int maxHue = 360;
         readonly static int maxSaturation = 100;
         readonly static int maxLuminosity = 100;
         readonly static double maxInterValue = 1.0d;

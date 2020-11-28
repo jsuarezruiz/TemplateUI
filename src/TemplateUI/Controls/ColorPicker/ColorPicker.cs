@@ -8,14 +8,14 @@ namespace TemplateUI.Controls
 {
     public class ColorPicker : TemplatedView, INotifyPropertyChanged
     {
-        const string ElementHSLThumb = "PART_Thumb";
-        const string ElementHSLPicker = "PART_SaturationAndLight";
-        const string ElementRGBPicker = "PART_HuePicker";
-        const string ElementRGBThumb = "PART_HueThumb";
-        const string ElementRadialPicker = "PART_RadialPicker";
-        const string ElementRadialPickerThumb = "PART_RadialPickerThumb";
-        const string ElementBrightnessPicker = "PART_BrightnessPicker";
-        const string ElementBrightnessPickerThumb = "PART_BrightnessThumb";
+        const string ElementRectSatLumPicker = "PART_Rect_SatLumPicker";
+        const string ElementRectSatLumPickerThumb = "PART_Rect_SatLumPickerThumb";
+        const string ElementRectHuePicker = "PART_Rect_HuePicker";
+        const string ElementRectHuePickerThumb = "PART_Rect_HuePickerThumb";
+        const string ElementRadialSatHuePicker = "PART_Radial_SatHuePicker";
+        const string ElementRadialSatHuePickerThumb = "PART_Radial_SatHuePickerThumb";
+        const string ElementRadialLumPicker = "PART_Radial_LumPicker";
+        const string ElementRadialLumPickerThumb = "PART_Radial_LumPickerThumb";
         const string ElementEntryRed = "PART_ENTRY_red";
         const string ElementEntryGreen = "PART_ENTRY_green";
         const string ElementEntryBlue = "PART_ENTRY_blue";
@@ -23,14 +23,14 @@ namespace TemplateUI.Controls
         const string ElementEntrySaturation = "PART_ENTRY_saturation";
         const string ElementEntryLuminosity = "PART_ENTRY_luminosity";
 
-        Frame _rgbthumb;
-        Frame _hueThumb;
-        Frame _radialPickerThumb;
-        Frame _brightnessPickerThumb;
-        OpacityGradientLayout _hslPicker;
-        GradientLayout _rgbPicker;
-        RadialPicker _radialPicker;
-        GradientLayout _brightnessPicker;
+        Frame _rectSatLumPickerThumb;
+        Frame _rectHuePickerThumb;
+        Frame _radialSatHuePickerThumb;
+        Frame _radialLumPickerThumb;
+        OpacityGradientLayout _rectSatLumPicker;
+        GradientLayout _rectHuePicker;
+        RadialPicker _radialSatHuePicker;
+        GradientLayout _radialLumPicker;
         Entry _entryRed;
         Entry _entryGreen;
         Entry _entryBlue;
@@ -38,12 +38,12 @@ namespace TemplateUI.Controls
         Entry _entrySaturation;
         Entry _entryLuminosity;
 
-        double _hslPreviousPositionX;
-        double _hslPreviousPostionY;
-        double _rgbThumbPreviousPostionY;
-        double _radialPickerPreviousPositionX;
-        double _radialPickerPreviousPositionY;
-        double _brightnessThumbPreviousPostionY;
+        double _rectSatLumPickerThumbPreviousPositionX;
+        double _rectSatLumPickerThumbPreviousPostionY;
+        double _rectHuePickerThumbPreviousPostionY;
+        double _radialSatHuePickerThumbPreviousPositionX;
+        double _radialSatHuePickerThumbPreviousPositionY;
+        double _radialLumPickerThumbPreviousPostionY;
 
         /**************************************************
          * Bindable Properties
@@ -72,134 +72,134 @@ namespace TemplateUI.Controls
             set { SetValue(PickedColorProperty, value); }
         }
         /**********
-         * SL Picker
+         * RECT Saturation Luminosity Picker
          **********/
-        public static readonly BindableProperty ValueXhslThumbProperty =
-            BindableProperty.Create(nameof(ValueXhslThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnHslValueChanged);
+        public static readonly BindableProperty ValueXRectSatLumPickerThumbProperty =
+            BindableProperty.Create(nameof(ValueXRectSatLumPickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRectSatLumValueChanged);
 
-        public static readonly BindableProperty ValueYhslThumbProperty =
-            BindableProperty.Create(nameof(ValueYhslThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnHslValueChanged);
+        public static readonly BindableProperty ValueYRectSatLumPickerThumbProperty =
+            BindableProperty.Create(nameof(ValueYRectSatLumPickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRectSatLumValueChanged);
 
-        static void OnHslValueChanged(BindableObject bindable, object oldValue, object newValue)
+        static void OnRectSatLumValueChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is ColorPicker colorPicker)
             {
                 colorPicker.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                colorPicker.UpdateHSLThumb();
-                colorPicker.CalculatePickedColorBasedOnThumbs();
+                colorPicker.UpdateRectSatLumPickerThumb();
+                colorPicker.CalculatePickedColorBasedOnRectThumbs();
             }
         }
 
-        public double ValueXhslThumb
+        public double ValueXRectSatLumPickerThumb
         {
-            get => (double)GetValue(ValueXhslThumbProperty);
-            set { SetValue(ValueXhslThumbProperty, value); }
+            get => (double)GetValue(ValueXRectSatLumPickerThumbProperty);
+            set { SetValue(ValueXRectSatLumPickerThumbProperty, value); }
         }
 
-        public double ValueYhslThumb
+        public double ValueYRectSatLumPickerThumb
         {
-            get => (double)GetValue(ValueYhslThumbProperty);
-            set { SetValue(ValueYhslThumbProperty, value); }
+            get => (double)GetValue(ValueYRectSatLumPickerThumbProperty);
+            set { SetValue(ValueYRectSatLumPickerThumbProperty, value); }
         }
 
         /**********
-         * Hue Picker
+         * RECT Hue Picker
          **********/
-        public static readonly BindableProperty ValueXrgbThumbProperty =
-            BindableProperty.Create(nameof(ValueXrgbThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnRgbValueChanged);
+        public static readonly BindableProperty ValueXRectHuePickerThumbProperty =
+            BindableProperty.Create(nameof(ValueXRectHuePickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRectHueValueChanged);
 
-        public double ValueXrgbThumb
+        public double ValueXRectHuePickerThumb
         {
-            get => (double)GetValue(ValueXrgbThumbProperty);
-            set { SetValue(ValueXrgbThumbProperty, value); }
+            get => (double)GetValue(ValueXRectHuePickerThumbProperty);
+            set { SetValue(ValueXRectHuePickerThumbProperty, value); }
         }
 
-        public static readonly BindableProperty ValueYrgbThumbProperty =
-            BindableProperty.Create(nameof(ValueYrgbThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnRgbValueChanged);
+        public static readonly BindableProperty ValueYRectHuePickerThumbProperty =
+            BindableProperty.Create(nameof(ValueRectHuePickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRectHueValueChanged);
 
-        public double ValueYrgbThumb
+        public double ValueRectHuePickerThumb
         {
-            get => (double)GetValue(ValueYrgbThumbProperty);
-            set { SetValue(ValueYrgbThumbProperty, value); }
+            get => (double)GetValue(ValueYRectHuePickerThumbProperty);
+            set { SetValue(ValueYRectHuePickerThumbProperty, value); }
         }
 
-        static void OnRgbValueChanged(BindableObject bindable, object oldValue, object newValue)
+        static void OnRectHueValueChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is ColorPicker colorPicker)
             {
                 colorPicker.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                colorPicker.UpdateRGBThumb();
-                colorPicker.CalculatePickedColorBasedOnThumbs();
+                colorPicker.UpdateRectHuePickerThumb();
+                colorPicker.CalculatePickedColorBasedOnRectThumbs();
             }
         }
 
         /**********
-         * RadialPicker
+         * RADIAL Saturation Hue Picker
          **********/
-        public static readonly BindableProperty ValueXRadialPickerThumbProperty =
-            BindableProperty.Create(nameof(ValueXRadialPickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnRadialPickerValueChanged);
+        public static readonly BindableProperty ValueXRadialSatHuePickerThumbProperty =
+            BindableProperty.Create(nameof(ValueXRadialSatHuePickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRadialPickerSatHueValueChanged);
 
-        public static readonly BindableProperty ValueYRadialPickerThumbProperty =
-            BindableProperty.Create(nameof(ValueYRadialPickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnRadialPickerValueChanged);
+        public static readonly BindableProperty ValueYRadialSatHuePickerThumbProperty =
+            BindableProperty.Create(nameof(ValueYRadialSatHuePickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRadialPickerSatHueValueChanged);
 
-        static void OnRadialPickerValueChanged(BindableObject bindable, object oldValue, object newValue)
+        static void OnRadialPickerSatHueValueChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is ColorPicker colorPicker)
             {
                 colorPicker.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                colorPicker.UpdateRadialThumb();
-                colorPicker.CalculatePickedColorBasedOnRadiantThumbs();
+                colorPicker.UpdateRadialSatHuePickerThumb();
+                colorPicker.CalculatePickedColorBasedOnRadialThumbs();
             }
         }
 
-        public double ValueXRadialPickerThumb
+        public double ValueXRadialSatHuePickerThumb
         {
-            get => (double)GetValue(ValueXRadialPickerThumbProperty);
-            set { SetValue(ValueXRadialPickerThumbProperty, value); }
+            get => (double)GetValue(ValueXRadialSatHuePickerThumbProperty);
+            set { SetValue(ValueXRadialSatHuePickerThumbProperty, value); }
         }
 
-        public double ValueYRadialPickerThumb
+        public double ValueYRadialSatHuePickerThumb
         {
-            get => (double)GetValue(ValueYRadialPickerThumbProperty);
-            set { SetValue(ValueYRadialPickerThumbProperty, value); }
+            get => (double)GetValue(ValueYRadialSatHuePickerThumbProperty);
+            set { SetValue(ValueYRadialSatHuePickerThumbProperty, value); }
         }
 
         /**********
-         * Brightness Picker
+         * RADIAL Luminosity Picker
          **********/
-        public static readonly BindableProperty ValueXbrightnessThumbProperty =
-            BindableProperty.Create(nameof(ValueXbrightnessThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnBrightnessValueChanged);
+        public static readonly BindableProperty ValueXRadialLumPickerThumbProperty =
+            BindableProperty.Create(nameof(ValueXRadialLumPickerThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRadialPickerLumValueChanged);
 
-        public double ValueXbrightnessThumb
+        public double ValueXRadialLumPickerThumb
         {
-            get => (double)GetValue(ValueXbrightnessThumbProperty);
-            set { SetValue(ValueXbrightnessThumbProperty, value); }
+            get => (double)GetValue(ValueXRadialLumPickerThumbProperty);
+            set { SetValue(ValueXRadialLumPickerThumbProperty, value); }
         }
 
-        public static readonly BindableProperty ValueYbrightnessThumbProperty =
-            BindableProperty.Create(nameof(ValueYbrightnessThumb), typeof(double), typeof(ColorPicker), 0.0d,
-                propertyChanged: OnBrightnessValueChanged);
+        public static readonly BindableProperty ValueYRadialLumPickerThumbProperty =
+            BindableProperty.Create(nameof(ValueYRadialLumThumb), typeof(double), typeof(ColorPicker), 0.0d,
+                propertyChanged: OnRadialPickerLumValueChanged);
 
-        public double ValueYbrightnessThumb
+        public double ValueYRadialLumThumb
         {
-            get => (double)GetValue(ValueYbrightnessThumbProperty);
-            set { SetValue(ValueYbrightnessThumbProperty, value); }
+            get => (double)GetValue(ValueYRadialLumPickerThumbProperty);
+            set { SetValue(ValueYRadialLumPickerThumbProperty, value); }
         }
 
-        static void OnBrightnessValueChanged(BindableObject bindable, object oldValue, object newValue)
+        static void OnRadialPickerLumValueChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is ColorPicker colorPicker)
             {
                 colorPicker.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                colorPicker.UpdateBrightnessThumb();
-                colorPicker.CalculatePickedColorBasedOnRadiantThumbs();
+                colorPicker.UpdateRadialLumPickerThumb();
+                colorPicker.CalculatePickedColorBasedOnRadialThumbs();
             }
         }
 
@@ -277,14 +277,14 @@ namespace TemplateUI.Controls
         {
             base.OnApplyTemplate();
 
-            _rgbthumb = (Frame)GetTemplateChild(ElementHSLThumb);
-            _hslPicker = (OpacityGradientLayout)GetTemplateChild(ElementHSLPicker);
-            _hueThumb = (Frame)GetTemplateChild(ElementRGBThumb);
-            _rgbPicker = (GradientLayout)GetTemplateChild(ElementRGBPicker);
-            _radialPicker = (RadialPicker)GetTemplateChild(ElementRadialPicker);
-            _radialPickerThumb = (Frame)GetTemplateChild(ElementRadialPickerThumb);
-            _brightnessPicker = (GradientLayout)GetTemplateChild(ElementBrightnessPicker);
-            _brightnessPickerThumb = (Frame)GetTemplateChild(ElementBrightnessPickerThumb);
+            _rectSatLumPickerThumb = (Frame)GetTemplateChild(ElementRectSatLumPickerThumb);
+            _rectSatLumPicker = (OpacityGradientLayout)GetTemplateChild(ElementRectSatLumPicker);
+            _rectHuePickerThumb = (Frame)GetTemplateChild(ElementRectHuePickerThumb);
+            _rectHuePicker = (GradientLayout)GetTemplateChild(ElementRectHuePicker);
+            _radialSatHuePicker = (RadialPicker)GetTemplateChild(ElementRadialSatHuePicker);
+            _radialSatHuePickerThumb = (Frame)GetTemplateChild(ElementRadialSatHuePickerThumb);
+            _radialLumPicker = (GradientLayout)GetTemplateChild(ElementRadialLumPicker);
+            _radialLumPickerThumb = (Frame)GetTemplateChild(ElementRadialLumPickerThumb);
             _entryRed = (Entry)GetTemplateChild(ElementEntryRed);
             _entryGreen = (Entry)GetTemplateChild(ElementEntryGreen);
             _entryBlue = (Entry)GetTemplateChild(ElementEntryBlue);
@@ -307,10 +307,10 @@ namespace TemplateUI.Controls
         {
             base.OnSizeAllocated(width, height);
 
-            UpdateHSLThumb();
-            UpdateRGBThumb();
-            UpdateRadialThumb();
-            UpdateBrightnessThumb();
+            UpdateRectSatLumPickerThumb();
+            UpdateRectHuePickerThumb();
+            UpdateRadialSatHuePickerThumb();
+            UpdateRadialLumPickerThumb();
         }
 
         /**************************************************
@@ -328,19 +328,19 @@ namespace TemplateUI.Controls
                 // registering event handlers
                 var panGestureRecognizer = new PanGestureRecognizer();
                 panGestureRecognizer.PanUpdated += PanGestureRecognizer_PanUpdated;
-                _rgbthumb.GestureRecognizers.Add(panGestureRecognizer);
+                _rectSatLumPickerThumb.GestureRecognizers.Add(panGestureRecognizer);
 
                 var panGestureRecognizer2 = new PanGestureRecognizer();
                 panGestureRecognizer2.PanUpdated += RgbPanGestureRecognizer_PanUpdated;
-                _hueThumb.GestureRecognizers.Add(panGestureRecognizer2);
+                _rectHuePickerThumb.GestureRecognizers.Add(panGestureRecognizer2);
 
                 var panGestureRecognizer3 = new PanGestureRecognizer();
                 panGestureRecognizer3.PanUpdated += RadialPickerThumbPanGestureRecognizer_PanUpdated;
-                _radialPickerThumb.GestureRecognizers.Add(panGestureRecognizer3);
+                _radialSatHuePickerThumb.GestureRecognizers.Add(panGestureRecognizer3);
 
                 var panGestureRecognizer4 = new PanGestureRecognizer();
                 panGestureRecognizer4.PanUpdated += BrightnessPanGestureRecognizer_PanUpdated;
-                _brightnessPickerThumb.GestureRecognizers.Add(panGestureRecognizer4);
+                _radialLumPickerThumb.GestureRecognizers.Add(panGestureRecognizer4);
 
                 _entryRed.Completed += _entryRed_Completed;
                 _entryGreen.Completed += _entryGreen_Completed;
@@ -350,16 +350,16 @@ namespace TemplateUI.Controls
                 _entryLuminosity.Completed += _entryLuminosity_Completed;
 
                 // default thumb positions and default values
-                this._radialPickerThumb.TranslationX = this._radialPicker.WidthRequest / 2;
-                this._radialPickerThumb.TranslationY = this._radialPicker.HeightRequest / 2;
+                this._radialSatHuePickerThumb.TranslationX = this._radialSatHuePicker.WidthRequest / 2;
+                this._radialSatHuePickerThumb.TranslationY = this._radialSatHuePicker.HeightRequest / 2;
             }
             else
             {
                 // unregistering event handlers
-                _rgbthumb.GestureRecognizers.Clear();
-                _hueThumb.GestureRecognizers.Clear();
-                _radialPickerThumb.GestureRecognizers.Clear();
-                _brightnessPickerThumb.GestureRecognizers.Clear();
+                _rectSatLumPickerThumb.GestureRecognizers.Clear();
+                _rectHuePickerThumb.GestureRecognizers.Clear();
+                _radialSatHuePickerThumb.GestureRecognizers.Clear();
+                _radialLumPickerThumb.GestureRecognizers.Clear();
                 _entryRed.Completed -= _entryRed_Completed;
                 _entryGreen.Completed -= _entryGreen_Completed;
                 _entryBlue.Completed -= _entryBlue_Completed;
@@ -464,30 +464,30 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _hslPreviousPositionX = e.TotalX;
-                    _hslPreviousPostionY = e.TotalY;
+                    _rectSatLumPickerThumbPreviousPositionX = e.TotalX;
+                    _rectSatLumPickerThumbPreviousPostionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _hslPreviousPositionX += _rgbthumb.TranslationX;
-                        _hslPreviousPostionY += _rgbthumb.TranslationY;
+                        _rectSatLumPickerThumbPreviousPositionX += _rectSatLumPickerThumb.TranslationX;
+                        _rectSatLumPickerThumbPreviousPostionY += _rectSatLumPickerThumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalX = _hslPreviousPositionX + e.TotalX;
-                    double totalY = _hslPreviousPostionY + e.TotalY;
+                    double totalX = _rectSatLumPickerThumbPreviousPositionX + e.TotalX;
+                    double totalY = _rectSatLumPickerThumbPreviousPostionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
-                        totalX += _rgbthumb.TranslationX;
-                        totalY += _rgbthumb.TranslationY;
+                        totalX += _rectSatLumPickerThumb.TranslationX;
+                        totalY += _rectSatLumPickerThumb.TranslationY;
                     }
 
                     // Keep the position of thumbs in check
-                    var positionX = totalX < 0 ? 0 : totalX > _hslPicker.Width ? _hslPicker.Width : totalX;
-                    ValueXhslThumb = positionX * MaximumX / _hslPicker.Width;
-                    var positionY = totalY < 0 ? 0 : totalY > _hslPicker.Height ? _hslPicker.Height : totalY;
-                    ValueYhslThumb = positionY * MaximumY / _hslPicker.Height;
+                    var positionX = totalX < 0 ? 0 : totalX > _rectSatLumPicker.Width ? _rectSatLumPicker.Width : totalX;
+                    ValueXRectSatLumPickerThumb = positionX * MaximumX / _rectSatLumPicker.Width;
+                    var positionY = totalY < 0 ? 0 : totalY > _rectSatLumPicker.Height ? _rectSatLumPicker.Height : totalY;
+                    ValueYRectSatLumPickerThumb = positionY * MaximumY / _rectSatLumPicker.Height;
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
@@ -501,23 +501,23 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _rgbThumbPreviousPostionY = e.TotalY;
+                    _rectHuePickerThumbPreviousPostionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _rgbThumbPreviousPostionY += _hueThumb.TranslationY;
+                        _rectHuePickerThumbPreviousPostionY += _rectHuePickerThumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalY = _rgbThumbPreviousPostionY + e.TotalY;
+                    double totalY = _rectHuePickerThumbPreviousPostionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
-                        totalY += _hueThumb.TranslationY;
+                        totalY += _rectHuePickerThumb.TranslationY;
                     }
 
-                    var positionY = totalY < 0 ? 0 : totalY > _rgbPicker.Height ? _rgbPicker.Height : totalY;
-                    ValueYrgbThumb = positionY * MaximumY / _rgbPicker.Height;
+                    var positionY = totalY < 0 ? 0 : totalY > _rectHuePicker.Height ? _rectHuePicker.Height : totalY;
+                    ValueRectHuePickerThumb = positionY * MaximumY / _rectHuePicker.Height;
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
@@ -531,30 +531,30 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _radialPickerPreviousPositionX = e.TotalX;
-                    _radialPickerPreviousPositionY = e.TotalY;
+                    _radialSatHuePickerThumbPreviousPositionX = e.TotalX;
+                    _radialSatHuePickerThumbPreviousPositionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _radialPickerPreviousPositionX += _radialPickerThumb.TranslationX;
-                        _radialPickerPreviousPositionY += _radialPickerThumb.TranslationY;
+                        _radialSatHuePickerThumbPreviousPositionX += _radialSatHuePickerThumb.TranslationX;
+                        _radialSatHuePickerThumbPreviousPositionY += _radialSatHuePickerThumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalX = _radialPickerPreviousPositionX + e.TotalX;
-                    double totalY = _radialPickerPreviousPositionY + e.TotalY;
+                    double totalX = _radialSatHuePickerThumbPreviousPositionX + e.TotalX;
+                    double totalY = _radialSatHuePickerThumbPreviousPositionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
-                        totalX += _radialPickerThumb.TranslationX;
-                        totalY += _radialPickerThumb.TranslationY;
+                        totalX += _radialSatHuePickerThumb.TranslationX;
+                        totalY += _radialSatHuePickerThumb.TranslationY;
                     }
 
                     // Keep the position of thumbs in check
-                    var positionX = totalX < 0 ? 0 : totalX > _radialPicker.Width ? _radialPicker.Width : totalX;
-                    ValueXRadialPickerThumb = positionX * MaximumX / _radialPicker.Width;
-                    var positionY = totalY < 0 ? 0 : totalY > _radialPicker.Height ? _radialPicker.Height : totalY;
-                    ValueYRadialPickerThumb = positionY * MaximumY / _radialPicker.Height;
+                    var positionX = totalX < 0 ? 0 : totalX > _radialSatHuePicker.Width ? _radialSatHuePicker.Width : totalX;
+                    ValueXRadialSatHuePickerThumb = positionX * MaximumX / _radialSatHuePicker.Width;
+                    var positionY = totalY < 0 ? 0 : totalY > _radialSatHuePicker.Height ? _radialSatHuePicker.Height : totalY;
+                    ValueYRadialSatHuePickerThumb = positionY * MaximumY / _radialSatHuePicker.Height;
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
@@ -568,23 +568,23 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _brightnessThumbPreviousPostionY = e.TotalY;
+                    _radialLumPickerThumbPreviousPostionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _brightnessThumbPreviousPostionY += _brightnessPickerThumb.TranslationY;
+                        _radialLumPickerThumbPreviousPostionY += _radialLumPickerThumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalY = _brightnessThumbPreviousPostionY + e.TotalY;
+                    double totalY = _radialLumPickerThumbPreviousPostionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
-                        totalY += _brightnessPickerThumb.TranslationY;
+                        totalY += _radialLumPickerThumb.TranslationY;
                     }
 
-                    var positionY = totalY < 0 ? 0 : totalY > _brightnessPicker.Height ? _brightnessPicker.Height : totalY;
-                    ValueYbrightnessThumb = positionY * MaximumY / _brightnessPicker.Height;
+                    var positionY = totalY < 0 ? 0 : totalY > _radialLumPicker.Height ? _radialLumPicker.Height : totalY;
+                    ValueYRadialLumThumb = positionY * MaximumY / _radialLumPicker.Height;
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
@@ -596,44 +596,44 @@ namespace TemplateUI.Controls
          * Move Thumbs on Human Interaction or Selected Color changed
          ****************************************/
         // Move Light & Saturation Thumb on Human Interaction
-        void UpdateHSLThumb()
+        void UpdateRectSatLumPickerThumb()
         {
-            var positionX = ValueXhslThumb / MaximumX * _hslPicker.Width;
-            var positionY = ValueYhslThumb / MaximumY * _hslPicker.Height;
+            var positionX = ValueXRectSatLumPickerThumb / MaximumX * _rectSatLumPicker.Width;
+            var positionY = ValueYRectSatLumPickerThumb / MaximumY * _rectSatLumPicker.Height;
 
             if (positionX < 0)
                 positionX = 0;
             if (positionY < 0)
                 positionY = 0;
 
-            _rgbthumb.TranslationX = positionX;
-            _rgbthumb.TranslationY = positionY;
+            _rectSatLumPickerThumb.TranslationX = positionX;
+            _rectSatLumPickerThumb.TranslationY = positionY;
         }
 
         // Move Hue Thumb on Human Interaction
-        void UpdateRGBThumb()
+        void UpdateRectHuePickerThumb()
         {
-            var positionX = ValueXrgbThumb / MaximumX * _rgbPicker.Width;
-            var positionY = ValueYrgbThumb / MaximumY * _rgbPicker.Height;
+            var positionX = ValueXRectHuePickerThumb / MaximumX * _rectHuePicker.Width;
+            var positionY = ValueRectHuePickerThumb / MaximumY * _rectHuePicker.Height;
 
             if (positionX < 0)
                 positionX = 0;
             if (positionY < 0)
                 positionY = 0;
 
-            _hueThumb.TranslationX = positionX;
-            _hueThumb.TranslationY = positionY;
+            _rectHuePickerThumb.TranslationX = positionX;
+            _rectHuePickerThumb.TranslationY = positionY;
         }
 
         // Move Radial Picker Hue Thumb on Human Interaction
-        void UpdateRadialThumb()
+        void UpdateRadialSatHuePickerThumb()
         {
-            var centerPointX = this._radialPicker.Width / 2;
-            var centerPointY = this._radialPicker.Height / 2;
-            var radius = this._radialPicker.Width / 2;
+            var centerPointX = this._radialSatHuePicker.Width / 2;
+            var centerPointY = this._radialSatHuePicker.Height / 2;
+            var radius = this._radialSatHuePicker.Width / 2;
 
-            var positionX = ValueXRadialPickerThumb / MaximumX * _radialPicker.Width;
-            var positionY = ValueYRadialPickerThumb / MaximumY * _radialPicker.Height;
+            var positionX = ValueXRadialSatHuePickerThumb / MaximumX * _radialSatHuePicker.Width;
+            var positionY = ValueYRadialSatHuePickerThumb / MaximumY * _radialSatHuePicker.Height;
 
             var positionXRelativeToCenter = Math.Abs(centerPointX - positionX);
             var positionYRelativeToCenter = Math.Abs(centerPointY - positionY);
@@ -650,69 +650,79 @@ namespace TemplateUI.Controls
             if (positionY < 0)
                 positionY = 0;
 
-            _radialPickerThumb.TranslationX = positionX;
-            _radialPickerThumb.TranslationY = positionY;
+            _radialSatHuePickerThumb.TranslationX = positionX;
+            _radialSatHuePickerThumb.TranslationY = positionY;
         }
 
         // Move Radial Picker Luminosity Thumb on Human Interaction
-        void UpdateBrightnessThumb()
+        void UpdateRadialLumPickerThumb()
         {
-            var positionX = ValueXbrightnessThumb / MaximumX * _brightnessPicker.Width;
-            var positionY = ValueYbrightnessThumb / MaximumY * _brightnessPicker.Height;
+            var positionX = ValueXRadialLumPickerThumb / MaximumX * _radialLumPicker.Width;
+            var positionY = ValueYRadialLumThumb / MaximumY * _radialLumPicker.Height;
 
             if (positionX < 0)
                 positionX = 0;
             if (positionY < 0)
                 positionY = 0;
 
-            _brightnessPickerThumb.TranslationX = positionX;
-            _brightnessPickerThumb.TranslationY = positionY;
+            _radialLumPickerThumb.TranslationX = positionX;
+            _radialLumPickerThumb.TranslationY = positionY;
         }
 
         // Move Light & Saturation Thumb on SelectedColor changing
         void UpdateHSLThumbOnColorChanged()
         {
-            _rgbthumb.TranslationX = PickedColor.Saturation * _hslPicker.Width;
-            _rgbthumb.TranslationY = _hslPicker.Height - (PickedColor.Luminosity * _hslPicker.Height + (_rgbthumb.TranslationX / _hslPicker.Width) * (_hslPicker.Height / 2));
+            _rectSatLumPickerThumb.TranslationX = PickedColor.Saturation * _rectSatLumPicker.Width;
+            // the higher the saturation the lower the max luminosity
+            double maxLuminosity = 100.0d - 0.5d * ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation);
+            maxLuminosity = ColorNumberHelper.FromTargetToSourceLuminosity(maxLuminosity);
+            // luminosity not bigger than max luminosity
+            double luminosity = PickedColor.Luminosity > maxLuminosity ? maxLuminosity : PickedColor.Luminosity;
+            _rectSatLumPickerThumb.TranslationY = _rectSatLumPicker.Height - luminosity / maxLuminosity * _rectSatLumPicker.Height;
         }
 
         // Move Hue Thumb on SelectedColor changing
         void UpdateRGBThumbOnColorChanged()
         {
-            _hueThumb.TranslationY = PickedColor.Hue * _rgbPicker.Height;
+            _rectHuePickerThumb.TranslationY = PickedColor.Hue * _rectHuePicker.Height;
         }
 
         // Move Radial Picker Hue Thumb on SelectedColor changing
         void UpdateRadialThumbOnColorChanged()
         {
-            var centerPointX = this._radialPicker.Width / 2;
-            var centerPointY = this._radialPicker.Height / 2;
-            double radius = this._radialPicker.Width / 2;
+            var centerPointX = this._radialSatHuePicker.Width / 2;
+            var centerPointY = this._radialSatHuePicker.Height / 2;
+            double radius = this._radialSatHuePicker.Width / 2;
             double hypothenuse = radius * PickedColor.Saturation;
-            _radialPickerThumb.TranslationX = centerPointX + hypothenuse * Math.Sin(ColorNumberHelper.ConvertDegreesToRadians(PickedColor.Hue * 360.0));
-            _radialPickerThumb.TranslationY = centerPointY - hypothenuse * Math.Cos(ColorNumberHelper.ConvertDegreesToRadians(PickedColor.Hue * 360.0));
+            _radialSatHuePickerThumb.TranslationX = centerPointX + hypothenuse * Math.Sin(ColorNumberHelper.ConvertDegreesToRadians(PickedColor.Hue * 360.0));
+            _radialSatHuePickerThumb.TranslationY = centerPointY - hypothenuse * Math.Cos(ColorNumberHelper.ConvertDegreesToRadians(PickedColor.Hue * 360.0));
         }
 
         // Move Radial Picker Luminosity Thumb on SelectedColor changing
         void UpdateBrightnessThumbOnColorChanged()
         {
-            _brightnessPickerThumb.TranslationY = _radialPicker.Height - ((PickedColor.Luminosity / 1.0d) * _brightnessPicker.Height);
+            // the higher the saturation the lower the max luminosity
+            double maxLuminosity = 100.0d - 0.5d * ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation);
+            maxLuminosity = ColorNumberHelper.FromTargetToSourceLuminosity(maxLuminosity);
+            // luminosity not bigger than max luminosity
+            double luminosity = PickedColor.Luminosity > maxLuminosity ? maxLuminosity : PickedColor.Luminosity;
+            _radialLumPickerThumb.TranslationY = _radialLumPicker.Height - luminosity / maxLuminosity * _radialLumPicker.Height;
         }
 
-        private void CalculatePickedColorBasedOnThumbs()
+        private void CalculatePickedColorBasedOnRectThumbs()
         {
-            // HUE (0.0d to 359.0d)
-            double hue = 359.0d * (_hueThumb.TranslationY / _rgbPicker.Height);
+            // HUE (0.0d to 360.0d)
+            double hue = 360.0d * (_rectHuePickerThumb.TranslationY / _rectHuePicker.Height);
 
             // LUMINOSITY (0.0d to 100.0d)
-            double positionXhslInv = _hslPicker.Width - _rgbthumb.TranslationX;
-            double positionYhslInv = _hslPicker.Height - _rgbthumb.TranslationY;
+            double positionXhslInv = _rectSatLumPicker.Width - _rectSatLumPickerThumb.TranslationX;
+            double positionYhslInv = _rectSatLumPicker.Height - _rectSatLumPickerThumb.TranslationY;
             double minimumLuminosity = 50.0d;
-            double maximumLuminosity = minimumLuminosity + (positionXhslInv / _hslPicker.Width * 50.0d);
-            double luminosity = positionYhslInv / _hslPicker.Height * maximumLuminosity;
+            double maximumLuminosity = minimumLuminosity + (positionXhslInv / _rectSatLumPicker.Width * 50.0d);
+            double luminosity = positionYhslInv / _rectSatLumPicker.Height * maximumLuminosity;
 
             // SATURATION (0.0d to 100.0d)
-            double saturation = _rgbthumb.TranslationX / _hslPicker.Width * 100;
+            double saturation = _rectSatLumPickerThumb.TranslationX / _rectSatLumPicker.Width * 100;
 
             // SETTING PICKED COLOR
             double technicalHue = ColorNumberHelper.FromTargetToSourceHue(hue);
@@ -722,25 +732,28 @@ namespace TemplateUI.Controls
             this.PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
-        private void CalculatePickedColorBasedOnRadiantThumbs()
+        private void CalculatePickedColorBasedOnRadialThumbs()
         {
-            // HUE (0.0d to 359.0d)
-            var positionX = _radialPickerThumb.TranslationX;
-            var positionY = _radialPickerThumb.TranslationY;
-            var centerPointX = this._radialPicker.Width / 2;
-            var centerPointY = this._radialPicker.Height / 2;
+            // HUE (0.0d to 360.0d)
+            var positionX = _radialSatHuePickerThumb.TranslationX;
+            var positionY = _radialSatHuePickerThumb.TranslationY;
+            var centerPointX = this._radialSatHuePicker.Width / 2;
+            var centerPointY = this._radialSatHuePicker.Height / 2;
             var positionXRelativeToCenter = positionX - centerPointX;
             var positionYRelativeToCenter = centerPointY - positionY;
             double hue = calculateAngleClockwise(positionXRelativeToCenter, positionYRelativeToCenter);
             Console.WriteLine($"Hue { hue }");
 
-            // LUMINOSITY (0.0d to 100.0d)
-            double luminosity = (_brightnessPicker.Height - _brightnessPickerThumb.TranslationY) / _brightnessPicker.Height * 100.0;
-
             // SATURATION (0.0d to 100.0d)
-            var radius = this._radialPicker.Width / 2;
+            var radius = this._radialSatHuePicker.Width / 2;
             var hypothenuse = Math.Sqrt(Math.Pow(positionXRelativeToCenter, 2.0) + Math.Pow(positionYRelativeToCenter, 2.0));
             double saturation = hypothenuse / radius * 100.0;
+
+            // LUMINOSITY (0.0d to 100.0d)
+            // the higher the saturation the lower the max luminosity
+            double maxLuminosity = 100.0d - 0.5d * saturation;
+            // luminosity not bigger than max luminosity
+            double luminosity = (_radialLumPicker.Height - _radialLumPickerThumb.TranslationY) / _radialLumPicker.Height * maxLuminosity;
 
             // SETTING PICKED COLOR
             double technicalHue = ColorNumberHelper.FromTargetToSourceHue(hue);
