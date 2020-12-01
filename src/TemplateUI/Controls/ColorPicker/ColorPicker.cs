@@ -59,10 +59,11 @@ namespace TemplateUI.Controls
         {
             if (bindable is ColorPicker colorPicker)
             {
-                colorPicker.UpdateRGBThumbOnColorChanged();
-                colorPicker.UpdateHSLThumbOnColorChanged();
-                colorPicker.UpdateRadialThumbOnColorChanged();
-                colorPicker.UpdateBrightnessThumbOnColorChanged();
+                colorPicker.UpdateRectHuePickerThumbOnColorChanged();
+                colorPicker.UpdateRectSatLumPickerThumbOnColorChanged();
+                colorPicker.UpdateRadialSatHuePickerThumbOnColorChanged();
+                colorPicker.UpdateRadialLumPickerOnColorChanged();
+                colorPicker.UpdateRadialLumPickerThumbOnColorChanged();
             }
         }
 
@@ -242,15 +243,17 @@ namespace TemplateUI.Controls
             }
         }
 
+        private string colorsListBrightness = $"{ Color.FromRgba(0, 0, 0, 0).ToHex() },{ Color.FromRgba(0, 0, 0, 255).ToHex() }";
         public string ColorsListBrightness
         {
             get
             {
-                string brightnessList;
-                Color brightness100 = Color.FromRgba(0, 0, 0, 0);
-                Color brightness0 = Color.FromRgba(0, 0, 0, 255);
-                brightnessList = $"{ brightness100.ToHex() },{ brightness0.ToHex() }";
-                return brightnessList;
+                return this.colorsListBrightness;
+            }
+            set
+            {
+                this.colorsListBrightness = value;
+                this.OnPropertyChanged();
             }
         }
 
@@ -670,7 +673,7 @@ namespace TemplateUI.Controls
         }
 
         // Move Light & Saturation Thumb on SelectedColor changing
-        void UpdateHSLThumbOnColorChanged()
+        void UpdateRectSatLumPickerThumbOnColorChanged()
         {
             _rectSatLumPickerThumb.TranslationX = PickedColor.Saturation * _rectSatLumPicker.Width;
             // the higher the saturation the lower the max luminosity
@@ -682,13 +685,13 @@ namespace TemplateUI.Controls
         }
 
         // Move Hue Thumb on SelectedColor changing
-        void UpdateRGBThumbOnColorChanged()
+        void UpdateRectHuePickerThumbOnColorChanged()
         {
             _rectHuePickerThumb.TranslationY = PickedColor.Hue * _rectHuePicker.Height;
         }
 
         // Move Radial Picker Hue Thumb on SelectedColor changing
-        void UpdateRadialThumbOnColorChanged()
+        void UpdateRadialSatHuePickerThumbOnColorChanged()
         {
             var centerPointX = this._radialSatHuePicker.Width / 2;
             var centerPointY = this._radialSatHuePicker.Height / 2;
@@ -698,8 +701,19 @@ namespace TemplateUI.Controls
             _radialSatHuePickerThumb.TranslationY = centerPointY - hypothenuse * Math.Cos(ColorNumberHelper.ConvertDegreesToRadians(PickedColor.Hue * 360.0));
         }
 
+        // Update Radial Picker Luminosity Appearance
+        void UpdateRadialLumPickerOnColorChanged()
+        {
+            // the higher the saturation the lower the max luminosity
+            double maxLuminosity = 100.0d - 0.5d * ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation);
+            maxLuminosity = ColorNumberHelper.FromTargetToSourceLuminosity(maxLuminosity);
+            Color pickedColorLumMin = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, 0.0);
+            Color pickedColorLumMax = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, maxLuminosity);
+            this.ColorsListBrightness = $"{ pickedColorLumMax.ToHex() },{ pickedColorLumMin.ToHex() }";
+        }
+
         // Move Radial Picker Luminosity Thumb on SelectedColor changing
-        void UpdateBrightnessThumbOnColorChanged()
+        void UpdateRadialLumPickerThumbOnColorChanged()
         {
             // the higher the saturation the lower the max luminosity
             double maxLuminosity = 100.0d - 0.5d * ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation);

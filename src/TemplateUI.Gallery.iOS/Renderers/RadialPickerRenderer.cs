@@ -17,6 +17,12 @@ namespace TemplateUI.Gallery.iOS.Renderers
         {
         }
 
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+            SetNeedsDisplay();
+        }
+
         public override void Draw(CGRect rect)
         {
             base.Draw(rect);

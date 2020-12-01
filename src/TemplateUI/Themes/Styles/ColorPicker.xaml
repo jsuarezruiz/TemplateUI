@@ -19,7 +19,7 @@
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="90" />
                         </Grid.ColumnDefinitions>
-                        <!-- COLUMN 1: HSL Picker -->
+                        <!-- COLUMN 1: RECT Saturation Luminosity Picker -->
                         <controls:OpacityGradientLayout x:Name="PART_Rect_SatLumPicker"
                                                         WidthRequest="200"
                                                         HeightRequest="200"
@@ -32,7 +32,7 @@
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
                                    Padding="0"
-                                   BackgroundColor="{TemplateBinding ThumbColor}"
+                                   BackgroundColor="{TemplateBinding RectSatLumPickerThumbColor}"
                                    HeightRequest="20"
                                    WidthRequest="20">
                                 <Frame.CornerRadius>
@@ -44,7 +44,7 @@
                             </Frame>
                         </controls:OpacityGradientLayout>
                         <BoxView BackgroundColor="{TemplateBinding PickedColor}" Grid.Row="1" Grid.Column="0"></BoxView>
-                        <!-- COLUMN 2: RGB Picker -->
+                        <!-- COLUMN 2: RECT Hue Picker -->
                         <controls:GradientLayout x:Name="PART_Rect_HuePicker"
                                                  WidthRequest="200"
                                                  HeightRequest="200"
@@ -57,7 +57,7 @@
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
                                    Padding="0"
-                                   BackgroundColor="{TemplateBinding ThumbColor}"
+                                   BackgroundColor="{TemplateBinding RectHuePickerThumbColor}"
                                    HeightRequest="20"
                                    WidthRequest="20">
                                 <Frame.CornerRadius>
@@ -120,7 +120,7 @@
                                        HorizontalOptions="FillAndExpand"></Entry>
                             </StackLayout>
                         </StackLayout>
-                        <!-- RADIAL PICKER -->
+                        <!-- RADIAL Saturation Hue Picker -->
                         <controls:RadialPicker x:Name="PART_Radial_SatHuePicker" Grid.Row="2" Grid.Column="0" WidthRequest="200" HeightRequest="200">
                             <controls:RadialPicker.Effects>
                                 <controls:RoundEffect />
@@ -130,7 +130,7 @@
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
                                    Padding="0"
-                                   BackgroundColor="Black"
+                                   BackgroundColor="{TemplateBinding RadialSatHuePickerThumbColor}"
                                    HeightRequest="20"
                                    WidthRequest="20">
                                 <Frame.CornerRadius>
@@ -141,7 +141,7 @@
                                 </Frame.CornerRadius>
                             </Frame>
                         </controls:RadialPicker>
-                        <!-- COLUMN 2: Brightness/Value Picker -->
+                        <!-- COLUMN 2: RADIAL Luminosity Picker -->
                         <controls:GradientLayout x:Name="PART_Radial_LumPicker"
                                                  WidthRequest="200"
                                                  HeightRequest="200"
@@ -155,7 +155,7 @@
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
                                    Padding="0"
-                                   BackgroundColor="{TemplateBinding ThumbColor}"
+                                   BackgroundColor="{TemplateBinding RadialLumPickerThumbColor}"
                                    HeightRequest="20"
                                    WidthRequest="20">
                                 <Frame.CornerRadius>

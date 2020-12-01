@@ -1,4 +1,5 @@
-﻿using CoreAnimation;
+﻿using System.ComponentModel;
+using CoreAnimation;
 using CoreGraphics;
 using TemplateUI.Controls;
 using TemplateUI.Gallery.iOS.Renderers;
@@ -11,6 +12,12 @@ namespace TemplateUI.Gallery.iOS.Renderers
 {
     public class GradientLayoutRenderer : VisualElementRenderer<AbsoluteLayout>
     {
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+            SetNeedsDisplay();
+        }
+
         public override void Draw(CGRect rect)
         {
             base.Draw(rect);
@@ -66,7 +73,16 @@ namespace TemplateUI.Gallery.iOS.Renderers
             gradientLayer.Frame = rect;
             gradientLayer.Colors = colors;
 
-            NativeView.Layer.InsertSublayer(gradientLayer, 0);
+            // gradientlayer not existed yet
+            if (NativeView.Layer.Sublayers.Length == 1)
+            {
+                NativeView.Layer.InsertSublayer(gradientLayer, 0);
+            }
+            // gradientlayer already existing
+            else if (NativeView.Layer.Sublayers.Length == 2)
+            {
+                NativeView.Layer.ReplaceSublayer(NativeView.Layer.Sublayers[0], gradientLayer);
+            }
         }
     }
 }
