@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Runtime.CompilerServices;
 using TemplateUI.Helpers;
 using Xamarin.Forms;
@@ -8,6 +10,16 @@ namespace TemplateUI.Controls
 {
     public class ColorPicker : TemplatedView, INotifyPropertyChanged
     {
+        private enum EntryName
+        {
+            RED,
+            GREEN,
+            BLUE,
+            HUE,
+            SATURATION,
+            LUMINOSITY
+        }
+
         const string ElementRectSatLumPicker = "PART_Rect_SatLumPicker";
         const string ElementRectSatLumPickerThumb = "PART_Rect_SatLumPickerThumb";
         const string ElementRectHuePicker = "PART_Rect_HuePicker";
@@ -43,7 +55,9 @@ namespace TemplateUI.Controls
         double _rectHuePickerThumbPreviousPostionY;
         double _radialSatHuePickerThumbPreviousPositionX;
         double _radialSatHuePickerThumbPreviousPositionY;
-        double _radialLumPickerThumbPreviousPostionY;
+        double _radialLumPickerThumbPreviousPositionY;
+
+        private Dictionary<EntryName, bool> isUserInput = new Dictionary<EntryName, bool>();
 
         /**************************************************
          * Bindable Properties
@@ -345,12 +359,36 @@ namespace TemplateUI.Controls
                 panGestureRecognizer4.PanUpdated += BrightnessPanGestureRecognizer_PanUpdated;
                 _radialLumPickerThumb.GestureRecognizers.Add(panGestureRecognizer4);
 
+                // R
                 _entryRed.Completed += _entryRed_Completed;
+                _entryRed.TextChanged += _entryRed_Changed;
+                _entryRed.Focused += _entryRed_Focused;
+                _entryRed.Unfocused += _entryRed_Unfocused;
+                // G
                 _entryGreen.Completed += _entryGreen_Completed;
+                _entryGreen.TextChanged += _entryGreen_Changed;
+                _entryGreen.Focused += _entryGreen_Focused;
+                _entryGreen.Unfocused += _entryGreen_Unfocused;
+                // B
                 _entryBlue.Completed += _entryBlue_Completed;
+                _entryBlue.TextChanged += _entryBlue_Changed;
+                _entryBlue.Focused += _entryBlue_Focused;
+                _entryBlue.Unfocused += _entryBlue_Unfocused;
+                // HUE
                 _entryHue.Completed += _entryHue_Completed;
+                _entryHue.TextChanged += _entryHue_Changed;
+                _entryHue.Focused += _entryHue_Focused;
+                _entryHue.Unfocused += _entryHue_Unfocused;
+                // SATURATION
                 _entrySaturation.Completed += _entrySaturation_Completed;
+                _entrySaturation.TextChanged += _entrySaturation_Changed;
+                _entrySaturation.Focused += _entrySaturation_Focused;
+                _entrySaturation.Unfocused += _entrySaturation_Unfocused;
+                // LUMINOSITY
                 _entryLuminosity.Completed += _entryLuminosity_Completed;
+                _entryLuminosity.TextChanged += _entryLuminosity_Changed;
+                _entryLuminosity.Focused += _entryLuminosity_Focused;
+                _entryLuminosity.Unfocused += _entryLuminosity_Unfocused;
 
                 // default thumb positions and default values
                 this._radialSatHuePickerThumb.TranslationX = this._radialSatHuePicker.WidthRequest / 2;
@@ -364,11 +402,17 @@ namespace TemplateUI.Controls
                 _radialSatHuePickerThumb.GestureRecognizers.Clear();
                 _radialLumPickerThumb.GestureRecognizers.Clear();
                 _entryRed.Completed -= _entryRed_Completed;
+                _entryRed.TextChanged -= _entryRed_Changed;
                 _entryGreen.Completed -= _entryGreen_Completed;
+                _entryGreen.TextChanged -= _entryGreen_Changed;
                 _entryBlue.Completed -= _entryBlue_Completed;
+                _entryBlue.TextChanged -= _entryBlue_Changed;
                 _entryHue.Completed -= _entryHue_Completed;
+                _entryHue.TextChanged -= _entryHue_Changed;
                 _entrySaturation.Completed -= _entrySaturation_Completed;
+                _entrySaturation.TextChanged -= _entrySaturation_Changed;
                 _entryLuminosity.Completed -= _entryLuminosity_Completed;
+                _entryLuminosity.TextChanged -= _entrySaturation_Changed;
             }
         }
 
@@ -390,6 +434,25 @@ namespace TemplateUI.Controls
             }
         }
 
+        private void _entryLuminosity_Changed(object sender, TextChangedEventArgs e)
+        {
+            bool isUserInput = false;
+            this.isUserInput.TryGetValue(EntryName.LUMINOSITY, out isUserInput);
+            if (isUserInput)
+            {
+                double newValue = 1.0d;
+                bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
+                if (parseSuccess)
+                {
+                    double maxLuminosity = ColorNumberHelper.MaxLuminosityFromSaturation(ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation));
+                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue >= maxLuminosity ? maxLuminosity : newValue);
+                    Color newColor = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, convertedNewValue);
+                    PickedColor = newColor;
+                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                }
+            }
+        }
+
         // Human Interaction: Saturation
         private void _entrySaturation_Completed(object sender, EventArgs e)
         {
@@ -402,6 +465,25 @@ namespace TemplateUI.Controls
                 Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
                 PickedColor = newColor;
                 PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entrySaturation_Changed(object sender, TextChangedEventArgs e)
+        {
+            bool isUserInput = false;
+            this.isUserInput.TryGetValue(EntryName.SATURATION, out isUserInput);
+            if (isUserInput)
+            {
+                double newValue = 1.0d;
+                bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
+                if (parseSuccess)
+                {
+                    double maxSaturation = ColorNumberHelper.MaxSaturationFromLuminosity(ColorNumberHelper.FromSourceToTargetLuminosity(PickedColor.Luminosity));
+                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue >= maxSaturation ? maxSaturation : newValue);
+                    Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
+                    PickedColor = newColor;
+                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                }
             }
         }
 
@@ -419,6 +501,24 @@ namespace TemplateUI.Controls
             }
         }
 
+        private void _entryHue_Changed(object sender, TextChangedEventArgs e)
+        {
+            bool isUserInput = false;
+            this.isUserInput.TryGetValue(EntryName.HUE, out isUserInput);
+            if (isUserInput)
+            {
+                double newValue = 1.0d;
+                bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
+                if (parseSuccess)
+                {
+                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceHue(newValue);
+                    Color newColor = Color.FromHsla(convertedNewValue, PickedColor.Saturation, PickedColor.Luminosity);
+                    PickedColor = newColor;
+                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                }
+            }
+        }
+
         // Human Interaction Blue
         private void _entryBlue_Completed(object sender, EventArgs e)
         {
@@ -430,6 +530,24 @@ namespace TemplateUI.Controls
                 Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
                 PickedColor = newColor;
                 PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+            }
+        }
+
+        private void _entryBlue_Changed(object sender, TextChangedEventArgs e)
+        {
+            bool isUserInput = false;
+            this.isUserInput.TryGetValue(EntryName.BLUE, out isUserInput);
+            if (isUserInput)
+            {
+                double newValue = 1.0d;
+                bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
+                if (parseSuccess)
+                {
+                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+                    Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
+                    PickedColor = newColor;
+                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                }
             }
         }
 
@@ -447,6 +565,24 @@ namespace TemplateUI.Controls
             }
         }
 
+        private void _entryGreen_Changed(object sender, TextChangedEventArgs e)
+        {
+            bool isUserInput = false;
+            this.isUserInput.TryGetValue(EntryName.GREEN, out isUserInput);
+            if (isUserInput)
+            {
+                double newValue = 1.0d;
+                bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
+                if (parseSuccess)
+                {
+                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+                    Color newColor = Color.FromRgb(PickedColor.R, convertedNewValue, PickedColor.B);
+                    PickedColor = newColor;
+                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                }
+            }
+        }
+
         // Human Interaction Red
         private void _entryRed_Completed(object sender, EventArgs e)
         {
@@ -461,12 +597,96 @@ namespace TemplateUI.Controls
             }
         }
 
+        private void _entryRed_Changed(object sender, TextChangedEventArgs e)
+        {
+            bool isUserInput = false;
+            this.isUserInput.TryGetValue(EntryName.RED, out isUserInput);
+            if (isUserInput)
+            {
+                double newValue = 1.0d;
+                bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
+                if (parseSuccess)
+                {
+                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+                    Color newColor = Color.FromRgb(convertedNewValue, PickedColor.G, PickedColor.B);
+                    PickedColor = newColor;
+                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                }
+            }
+        }
+
+        /**
+         * Entry Focused & Entry Unfocused are needed for distinguishing between text changed through user and text changed through code, so that there's no 
+         * circular event triggering.
+         */
+        private void _entryLuminosity_Focused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.LUMINOSITY] = true;
+        }
+
+        private void _entryLuminosity_Unfocused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.LUMINOSITY] = false;
+        }
+
+        private void _entrySaturation_Focused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.SATURATION] = true;
+        }
+
+        private void _entrySaturation_Unfocused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.SATURATION] = false;
+        }
+
+        private void _entryHue_Focused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.HUE] = true;
+        }
+
+        private void _entryHue_Unfocused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.HUE] = false;
+        }
+
+        private void _entryRed_Focused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.RED] = true;
+        }
+
+        private void _entryRed_Unfocused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.RED] = false;
+        }
+
+        private void _entryGreen_Focused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.GREEN] = true;
+        }
+
+        private void _entryGreen_Unfocused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.GREEN] = false;
+        }
+
+        private void _entryBlue_Focused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.BLUE] = true;
+        }
+
+        private void _entryBlue_Unfocused(object sender, FocusEventArgs e)
+        {
+            isUserInput[EntryName.BLUE] = false;
+        }
+
         // Human Interaction: Squared Picker Hue
         void PanGestureRecognizer_PanUpdated(System.Object sender, Xamarin.Forms.PanUpdatedEventArgs e)
         {
+
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
+                    deactivateUserInput();
                     _rectSatLumPickerThumbPreviousPositionX = e.TotalX;
                     _rectSatLumPickerThumbPreviousPostionY = e.TotalY;
 
@@ -504,6 +724,7 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
+                    deactivateUserInput();
                     _rectHuePickerThumbPreviousPostionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
@@ -534,6 +755,7 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
+                    deactivateUserInput();
                     _radialSatHuePickerThumbPreviousPositionX = e.TotalX;
                     _radialSatHuePickerThumbPreviousPositionY = e.TotalY;
 
@@ -571,15 +793,16 @@ namespace TemplateUI.Controls
             switch (e.StatusType)
             {
                 case GestureStatus.Started:
-                    _radialLumPickerThumbPreviousPostionY = e.TotalY;
+                    deactivateUserInput();
+                    _radialLumPickerThumbPreviousPositionY = e.TotalY;
 
                     if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS)
                     {
-                        _radialLumPickerThumbPreviousPostionY += _radialLumPickerThumb.TranslationY;
+                        _radialLumPickerThumbPreviousPositionY += _radialLumPickerThumb.TranslationY;
                     }
                     break;
                 case GestureStatus.Running:
-                    double totalY = _radialLumPickerThumbPreviousPostionY + e.TotalY;
+                    double totalY = _radialLumPickerThumbPreviousPositionY + e.TotalY;
 
                     if (Device.RuntimePlatform == Device.Android)
                     {
@@ -723,6 +946,23 @@ namespace TemplateUI.Controls
             _radialLumPickerThumb.TranslationY = _radialLumPicker.Height - luminosity / maxLuminosity * _radialLumPicker.Height;
         }
 
+        private void deactivateUserInput()
+        {
+            /**
+             * isUserInput komplett auf false setzen
+             */
+            //foreach(KeyValuePair<EntryName, bool> item in isUserInput)
+            //{
+            //    isUserInput[item.Key] = false;
+            //}
+            this.isUserInput[EntryName.RED] = false;
+            this.isUserInput[EntryName.GREEN] = false;
+            this.isUserInput[EntryName.BLUE] = false;
+            this.isUserInput[EntryName.HUE] = false;
+            this.isUserInput[EntryName.SATURATION] = false;
+            this.isUserInput[EntryName.LUMINOSITY] = false;
+        }
+
         private void CalculatePickedColorBasedOnRectThumbs()
         {
             // HUE (0.0d to 360.0d)
@@ -756,7 +996,6 @@ namespace TemplateUI.Controls
             var positionXRelativeToCenter = positionX - centerPointX;
             var positionYRelativeToCenter = centerPointY - positionY;
             double hue = calculateAngleClockwise(positionXRelativeToCenter, positionYRelativeToCenter);
-            Console.WriteLine($"Hue { hue }");
 
             // SATURATION (0.0d to 100.0d)
             var radius = this._radialSatHuePicker.Width / 2;
