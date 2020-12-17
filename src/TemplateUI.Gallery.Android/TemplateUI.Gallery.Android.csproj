@@ -66,6 +66,7 @@
     <Compile Include="Renderers\GradientLayoutRenderer.cs" />
     <Compile Include="Effects\RoundEffect.cs" />
     <Compile Include="Effects\CornerRadiusOutlineProvider.cs" />
+    <Compile Include="Renderers\RadialPickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

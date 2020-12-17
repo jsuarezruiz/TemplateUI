@@ -27,7 +27,6 @@ namespace TemplateUI.Controls
 
         public RadialPicker()
         {
-
         }
     }
 }

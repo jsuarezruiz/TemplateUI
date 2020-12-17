@@ -426,11 +426,7 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entryLuminosity.Text, out newValue);
             if (parseSuccess)
             {
-                double maxLuminosity = ColorNumberHelper.MaxLuminosityFromSaturation(ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation));
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue >= maxLuminosity ? maxLuminosity : newValue);
-                Color newColor = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, convertedNewValue);
-                PickedColor = newColor;
-                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                _entryLuminosity_Event(newValue);
             }
         }
 
@@ -444,13 +440,18 @@ namespace TemplateUI.Controls
                 bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
                 if (parseSuccess)
                 {
-                    double maxLuminosity = ColorNumberHelper.MaxLuminosityFromSaturation(ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation));
-                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue >= maxLuminosity ? maxLuminosity : newValue);
-                    Color newColor = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, convertedNewValue);
-                    PickedColor = newColor;
-                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                    _entryLuminosity_Event(newValue);
                 }
             }
+        }
+
+        private void _entryLuminosity_Event(double newValue)
+        {
+            double maxLuminosity = ColorNumberHelper.MaxLuminosityFromSaturation(ColorNumberHelper.FromSourceToTargetSaturation(PickedColor.Saturation));
+            double convertedNewValue = ColorNumberHelper.FromTargetToSourceLuminosity(newValue >= maxLuminosity ? maxLuminosity : newValue);
+            Color newColor = Color.FromHsla(PickedColor.Hue, PickedColor.Saturation, convertedNewValue);
+            PickedColor = newColor;
+            PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
         // Human Interaction: Saturation
@@ -460,11 +461,7 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entrySaturation.Text, out newValue);
             if (parseSuccess)
             {
-                double maxSaturation = ColorNumberHelper.MaxSaturationFromLuminosity(ColorNumberHelper.FromSourceToTargetLuminosity(PickedColor.Luminosity));
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue >= maxSaturation ? maxSaturation : newValue);
-                Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
-                PickedColor = newColor;
-                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                _entrySaturation_Event(newValue);
             }
         }
 
@@ -478,13 +475,18 @@ namespace TemplateUI.Controls
                 bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
                 if (parseSuccess)
                 {
-                    double maxSaturation = ColorNumberHelper.MaxSaturationFromLuminosity(ColorNumberHelper.FromSourceToTargetLuminosity(PickedColor.Luminosity));
-                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue >= maxSaturation ? maxSaturation : newValue);
-                    Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
-                    PickedColor = newColor;
-                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                    _entrySaturation_Event(newValue);
                 }
             }
+        }
+
+        private void _entrySaturation_Event(double newValue)
+        {
+            double maxSaturation = ColorNumberHelper.MaxSaturationFromLuminosity(ColorNumberHelper.FromSourceToTargetLuminosity(PickedColor.Luminosity));
+            double convertedNewValue = ColorNumberHelper.FromTargetToSourceSaturation(newValue >= maxSaturation ? maxSaturation : newValue);
+            Color newColor = Color.FromHsla(PickedColor.Hue, convertedNewValue, PickedColor.Luminosity);
+            PickedColor = newColor;
+            PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
         // Human Interaction Hue
@@ -494,10 +496,7 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entryHue.Text, out newValue);
             if (parseSuccess)
             {
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceHue(newValue);
-                Color newColor = Color.FromHsla(convertedNewValue, PickedColor.Saturation, PickedColor.Luminosity);
-                PickedColor = newColor;
-                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                _entryHue_Event(newValue);
             }
         }
 
@@ -511,12 +510,17 @@ namespace TemplateUI.Controls
                 bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
                 if (parseSuccess)
                 {
-                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceHue(newValue);
-                    Color newColor = Color.FromHsla(convertedNewValue, PickedColor.Saturation, PickedColor.Luminosity);
-                    PickedColor = newColor;
-                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                    _entryHue_Event(newValue);
                 }
             }
+        }
+
+        private void _entryHue_Event(double newValue)
+        {
+            double convertedNewValue = ColorNumberHelper.FromTargetToSourceHue(newValue);
+            Color newColor = Color.FromHsla(convertedNewValue, PickedColor.Saturation, PickedColor.Luminosity);
+            PickedColor = newColor;
+            PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
         // Human Interaction Blue
@@ -526,10 +530,7 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entryBlue.Text, out newValue);
             if (parseSuccess)
             {
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
-                Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
-                PickedColor = newColor;
-                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                _entryBlue_Event(newValue);
             }
         }
 
@@ -543,12 +544,17 @@ namespace TemplateUI.Controls
                 bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
                 if (parseSuccess)
                 {
-                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
-                    Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
-                    PickedColor = newColor;
-                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                    _entryBlue_Event(newValue);
                 }
             }
+        }
+
+        private void _entryBlue_Event(double newValue)
+        {
+            double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+            Color newColor = Color.FromRgb(PickedColor.R, PickedColor.G, convertedNewValue);
+            PickedColor = newColor;
+            PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
         // Human Interaction Green
@@ -558,10 +564,7 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entryGreen.Text, out newValue);
             if (parseSuccess)
             {
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
-                Color newColor = Color.FromRgb(PickedColor.R, convertedNewValue, PickedColor.B);
-                PickedColor = newColor;
-                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                _entryGreen_Event(newValue);
             }
         }
 
@@ -575,12 +578,17 @@ namespace TemplateUI.Controls
                 bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
                 if (parseSuccess)
                 {
-                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
-                    Color newColor = Color.FromRgb(PickedColor.R, convertedNewValue, PickedColor.B);
-                    PickedColor = newColor;
-                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                    _entryGreen_Event(newValue);
                 }
             }
+        }
+
+        private void _entryGreen_Event(double newValue)
+        {
+            double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+            Color newColor = Color.FromRgb(PickedColor.R, convertedNewValue, PickedColor.B);
+            PickedColor = newColor;
+            PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
         // Human Interaction Red
@@ -590,10 +598,7 @@ namespace TemplateUI.Controls
             bool parseSuccess = double.TryParse(_entryRed.Text, out newValue);
             if (parseSuccess)
             {
-                double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
-                Color newColor = Color.FromRgb(convertedNewValue, PickedColor.G, PickedColor.B);
-                PickedColor = newColor;
-                PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                _entryRed_Event(newValue);
             }
         }
 
@@ -607,12 +612,17 @@ namespace TemplateUI.Controls
                 bool parseSuccess = double.TryParse(e.NewTextValue, out newValue);
                 if (parseSuccess)
                 {
-                    double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
-                    Color newColor = Color.FromRgb(convertedNewValue, PickedColor.G, PickedColor.B);
-                    PickedColor = newColor;
-                    PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
+                    _entryRed_Event(newValue);
                 }
             }
+        }
+
+        private void _entryRed_Event(double newValue)
+        {
+            double convertedNewValue = ColorNumberHelper.FromTargetToSourceRGB(newValue);
+            Color newColor = Color.FromRgb(convertedNewValue, PickedColor.G, PickedColor.B);
+            PickedColor = newColor;
+            PickedColorForHSL = Color.FromHsla(PickedColor.Hue, 1.0d, 0.5d);
         }
 
         /**

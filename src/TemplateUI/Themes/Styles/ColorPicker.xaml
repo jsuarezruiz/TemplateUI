@@ -21,8 +21,8 @@
                         </Grid.ColumnDefinitions>
                         <!-- COLUMN 1: RECT Saturation Luminosity Picker -->
                         <controls:OpacityGradientLayout x:Name="PART_Rect_SatLumPicker"
-                                                        WidthRequest="200"
-                                                        HeightRequest="200"
+                                                        WidthRequest="100"
+                                                        HeightRequest="100"
                                                         SelectedColor="{TemplateBinding PickedColorForHSL}"
                                                         Mode="ToRight"
                                                         Grid.Column="0"
@@ -121,12 +121,18 @@
                             </StackLayout>
                         </StackLayout>
                         <!-- RADIAL Saturation Hue Picker -->
-                        <controls:RadialPicker x:Name="PART_Radial_SatHuePicker" Grid.Row="2" Grid.Column="0" WidthRequest="200" HeightRequest="200">
-                            <controls:RadialPicker.Effects>
-                                <controls:RoundEffect />
-                            </controls:RadialPicker.Effects>
+                        <AbsoluteLayout Grid.Row="2"
+                                        Grid.Column="0"
+                                        Padding="10,5,10,15" >
+                            <controls:RadialPicker x:Name="PART_Radial_SatHuePicker"
+                                                   WidthRequest="200"
+                                                   HeightRequest="200" >
+                                <controls:RadialPicker.Effects>
+                                    <controls:RoundEffect />
+                                </controls:RadialPicker.Effects>
+                            </controls:RadialPicker>
                             <Frame x:Name="PART_Radial_SatHuePickerThumb"
-                                   AbsoluteLayout.LayoutBounds="-10.0, -10.0,20,20"
+                                   AbsoluteLayout.LayoutBounds="-10,-10,20,20"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
                                    Padding="0"
@@ -140,7 +146,7 @@
                                     </OnPlatform>
                                 </Frame.CornerRadius>
                             </Frame>
-                        </controls:RadialPicker>
+                        </AbsoluteLayout>
                         <!-- COLUMN 2: RADIAL Luminosity Picker -->
                         <controls:GradientLayout x:Name="PART_Radial_LumPicker"
                                                  WidthRequest="200"
