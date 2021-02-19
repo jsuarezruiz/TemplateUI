@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.PinBox" 
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Style TargetType="controls:PinBox">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        x:Name="PART_Container">
+                        <StackLayout
+                            x:Name="PART_PinContainer"
+                            Orientation="Horizontal"    
+                            HorizontalOptions="CenterAndExpand"
+                            InputTransparent="True"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:PinItem">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Frame
+                            x:Name="PART_Border"
+                            HasShadow="False"
+                            Padding="0"
+                            BorderColor="{TemplateBinding CurrentItemBorderColor}"
+                            CornerRadius="{TemplateBinding ItemCornerRadius}"
+                            HeightRequest="{TemplateBinding ItemSize}"
+                            WidthRequest="{TemplateBinding ItemSize}"
+                            Margin="{TemplateBinding ItemMargin}"           
+                            VerticalOptions="Center">
+                            <Label
+                                x:Name="PART_Text"
+                                TextColor="{TemplateBinding CurrentItemColor}"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                        </Frame>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

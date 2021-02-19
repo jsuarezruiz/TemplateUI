@@ -68,6 +68,7 @@ namespace TemplateUI.Gallery.ViewModels
                 new GalleryItem { Title = "GridSplitter", SubTitle = "Represents the control that redistributes space between columns or rows of a Grid control.", Icon = "gridsplitter.png", Color = Color.DarkOrchid },
                 new GalleryItem { Title = "HexLayout", SubTitle = "A Layout that arranges the elements in a honeycomb pattern.", Icon = "hexlayout.png", Color = Color.LightGoldenrodYellow },
                 new GalleryItem { Title = "Marquee", SubTitle = "Use this control to add an attention–getting text message that scrolls continuously across the screen.", Icon = "marquee.png", Color = Color.DarkRed },
+                new GalleryItem { Title = "PinBox", SubTitle = "Allow to introduce a PIN or verification Code.", Icon = "pinbox.png", Color = Color.PaleVioletRed },
                 new GalleryItem { Title = "ProgressBar", SubTitle = "Provides a customizable visual to indicate the progress of a task.", Icon = "progressbar.png", Color = Color.DodgerBlue, Status = GalleryItemStatus.InProgress  },
                 new GalleryItem { Title = "Rate", SubTitle = "Allows users to select a rating value from a group of visual symbols like stars.", Icon = "rate.png", Color = Color.DarkTurquoise },
                 new GalleryItem { Title = "SegmentedControl", SubTitle = "Is a linear segment made up of multiple segments and allow users to select between multiple options.", Icon = "segmentedcontrol.png", Color = Color.DarkKhaki, Status = GalleryItemStatus.InProgress },
