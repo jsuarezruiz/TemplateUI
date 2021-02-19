@@ -24,7 +24,7 @@
                             x:Name="PART_CategoryAxis"
                             Grid.Row="1"
                             AxisColor="{TemplateBinding AxisColor}"/>
-                        <controls:GridLines
+                        <controls:GridLines 
                             x:Name="PART_GridLines" />
                         <Grid  
                             x:Name="PART_Chart"
