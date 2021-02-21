@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="clr-namespace:TemplateUI.Gallery.Converters"
+             xmlns:converters="clr-namespace:TemplateUI.Gallery.Converters" 
+             xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
+             windows:Application.ImageDirectory="Assets"
              mc:Ignorable="d" x:Class="TemplateUI.Gallery.App">
     <Application.Resources>
         <ResourceDictionary>

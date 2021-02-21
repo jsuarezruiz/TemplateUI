@@ -93,6 +93,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(TreeView), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
 
+        [Xamarin.Forms.TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
@@ -102,6 +103,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeSelectedProperty =
             BindableProperty.Create(nameof(FontSizeSelected), typeof(double), typeof(TreeView), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
 
+        [Xamarin.Forms.TypeConverter(typeof(FontSizeConverter))]
         public double FontSizeSelected
         {
             get => (double)GetValue(FontSizeSelectedProperty);

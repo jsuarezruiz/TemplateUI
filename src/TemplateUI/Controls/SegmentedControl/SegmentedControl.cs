@@ -120,6 +120,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeProperty =
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(SegmentedControl), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
@@ -129,6 +130,7 @@ namespace TemplateUI.Controls
         public static readonly BindableProperty FontSizeSelectedProperty =
             BindableProperty.Create(nameof(FontSizeSelected), typeof(double), typeof(SegmentedControl), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSizeSelected
         {
             get => (double)GetValue(FontSizeSelectedProperty);
@@ -269,10 +271,10 @@ namespace TemplateUI.Controls
             if (_holder == null)
                 return;
 
-            if(IsEnabled)
+            if (IsEnabled)
             {
                 SegmentedItems.CollectionChanged += OnSegmentedItemsCollectionChanged;
-                      
+
                 foreach (var children in _holder.Children)
                 {
                     if (children is SegmentedItem segmentedItem)

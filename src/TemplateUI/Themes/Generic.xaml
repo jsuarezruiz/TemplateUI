@@ -24,6 +24,7 @@
               <themes:GridSplitter />
               <themes:LineChart />
               <themes:Marquee />
+              <themes:PinBox />
               <themes:ProgressBar />
               <themes:Rate />
               <themes:SegmentedControl />

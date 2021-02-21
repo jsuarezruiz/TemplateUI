@@ -91,6 +91,7 @@ namespace TemplateUI.Controls
         public static BindableProperty FontSizeProperty =
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(SnackBar), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get { return (double)GetValue(FontSizeProperty); }

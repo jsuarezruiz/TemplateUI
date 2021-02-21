@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.PinBoxGallery"  
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="PinBox Gallery">
+    <ContentPage 
+        Title="Getting Started"
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:PinBox
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Customization"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <Label
+                    Text="Number of Items"/>
+                <controls:PinBox
+                    Length="5"
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"/>
+                <Label
+                    Text="Customize the item size"/>
+                <controls:PinBox
+                    ItemSize="60"
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"/>
+                <Label
+                    Text="Customize the item corner radius"/>
+                <controls:PinBox
+                    ItemCornerRadius="24"
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"/>
+                <Label
+                    Text="Customize the item margin"/>
+                <controls:PinBox
+                    ItemMargin="12, 0"
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"/>
+                <Label
+                    Text="Set a custom PasswordChar"/>
+                <controls:PinBox
+                    PasswordChar="?"
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"/>
+                <Label
+                    Text="Customize the focus item"/>
+                <controls:PinBox
+                    ItemBorderColor="DarkGreen"
+                    ItemBorderColorFocused="Red"
+                    ItemColor="MediumSeaGreen"
+                    ItemColorFocused="Orange"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Events"
+        IconImageSource="customize.png">
+        <ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:PinBox
+                    ItemBorderColor="DarkGray"
+                    ItemColor="Black"
+                    Completed="OnPinBoxCompleted"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

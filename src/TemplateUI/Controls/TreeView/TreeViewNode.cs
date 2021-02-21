@@ -148,6 +148,7 @@ namespace TemplateUI.Controls
           BindableProperty.Create(nameof(FontSize), typeof(double), typeof(TreeViewNode), Device.GetNamedSize(NamedSize.Small, typeof(Label)),
               propertyChanged: CurrentChanged);
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
@@ -158,6 +159,7 @@ namespace TemplateUI.Controls
             BindableProperty.Create(nameof(FontSizeSelected), typeof(double), typeof(TreeViewNode), Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 propertyChanged: CurrentChanged);
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSizeSelected
         {
             get => (double)GetValue(FontSizeSelectedProperty);
