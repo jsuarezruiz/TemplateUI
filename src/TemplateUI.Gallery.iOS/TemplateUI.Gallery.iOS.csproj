@@ -168,5 +168,8 @@
     <BundleResource Include="Resources\docklayout.png" />
     <BundleResource Include="Resources\hexlayout.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pinbox.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

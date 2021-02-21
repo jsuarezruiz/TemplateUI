@@ -130,6 +130,7 @@ namespace TemplateUI.Controls
         public static BindableProperty FontSizeProperty =
             BindableProperty.Create(nameof(FontSize), typeof(double), typeof(BadgeView), 10.0d);
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get { return (double)GetValue(FontSizeProperty); }
@@ -194,7 +195,7 @@ namespace TemplateUI.Controls
             double size = Math.Max(_text.Height, _text.Width) + Padding;
 
             _indicatorBackground.HeightRequest = size / 1.5;
-  
+
             double verticalMargin;
             double horizontalMargin;
 

@@ -70,6 +70,7 @@
                                 <OnPlatform x:TypeArguments="GridLength">
                                    <On Platform="Android, iOS">150</On>
                                    <On Platform="macOS">24</On>
+                                    <On Platform="UWP">200</On>
                                 </OnPlatform>
                             </RowDefinition.Height>
                         </RowDefinition>

@@ -105,8 +105,21 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty CornerRadiusProperty =
-            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(ToggleSwitch),
-                (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.macOS) ? 6.0d : 24.0d);
+            BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(ToggleSwitch), GetDefaultRadius());
+
+        static double GetDefaultRadius()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                case Device.macOS:
+                    return 6.0;
+                case Device.UWP:
+                    return 12.0;
+                default:
+                    return 24.0;
+            }
+        }
 
         public double CornerRadius
         {
@@ -180,7 +193,7 @@ namespace TemplateUI.Controls
 
         void UpdateVisualType()
         {
-            switch(VisualType)
+            switch (VisualType)
             {
                 case VisualType.Cupertino:
                     Application.Current.Resources.TryGetValue("CupertinoControlTemplate", out object cupertinoControlTemplate);
