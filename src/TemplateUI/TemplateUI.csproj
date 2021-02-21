@@ -10,6 +10,8 @@
     <PackageTags>xamarin, xamarin-forms, control, template</PackageTags>
     <Title>TemplateUI</Title>
     <Description>A set of templated controls for Xamarin.Forms.</Description>
+    <PackageId>TemplateUI</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
