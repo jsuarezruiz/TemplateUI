@@ -28,7 +28,6 @@
                     <StackLayout>
                         <Grid
                             BackgroundColor="{TemplateBinding CurrentBackgroundColor}"
-              
                             ColumnSpacing="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -41,6 +40,8 @@
                                 IsVisible="{TemplateBinding Children.Count, Converter={StaticResource TreeViewChildrenToBoolConverter}}">
                                 <Path
                                     Aspect="Uniform"
+                                    HeightRequest="12"
+                                    WidthRequest="12"
                                     Data="{StaticResource ArrowHeadRightGeometry}"
                                     Fill="{TemplateBinding CurrentTextColor}"
                                     Margin="2, 6"/>

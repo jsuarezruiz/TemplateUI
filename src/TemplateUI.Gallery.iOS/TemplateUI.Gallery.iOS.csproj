@@ -172,6 +172,7 @@
     <BundleResource Include="Resources\circularlayout.png" />
     <BundleResource Include="Resources\docklayout.png" />
     <BundleResource Include="Resources\hexlayout.png" />
+    <BundleResource Include="Resources\pinbox.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
