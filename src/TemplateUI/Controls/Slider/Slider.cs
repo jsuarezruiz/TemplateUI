@@ -14,6 +14,8 @@ namespace TemplateUI.Controls
         BoxView _progress;
         ContentView _thumb;
         double _previousPosition;
+        double? _previousVal = null;
+
 
         public event EventHandler<ValueChangedEventArgs> ValueChanged;
 
@@ -113,7 +115,7 @@ namespace TemplateUI.Controls
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-            UpdateValue();
+            UpdateValue(true);
         }
 
         void UpdateIsEnabled()
@@ -122,16 +124,16 @@ namespace TemplateUI.Controls
             {
                 var panGestureRecognizer = new PanGestureRecognizer();
                 panGestureRecognizer.PanUpdated += OnThumbPanUpdated;
-                _thumb?.GestureRecognizers?.Add(panGestureRecognizer);
+                _thumb.GestureRecognizers.Add(panGestureRecognizer);
             }
             else
             {
                 _trackBackground.GestureRecognizers.Clear();
-                _thumb?.GestureRecognizers?.Clear();
+                _thumb.GestureRecognizers.Clear();
             }
         }
 
-        void UpdateValue()
+        void UpdateValue(bool isNecessary = false)
         {
             var min = Minimum;
             var max = Maximum;
@@ -144,9 +146,12 @@ namespace TemplateUI.Controls
             }
             ValueChanged?.Invoke(this, new ValueChangedEventArgs(valChecked));
 
+            if (!isNecessary && _previousVal == val)
+                return;
+
             var half = ThumbHalfWidth;
-            var position = ConvertRangeValue(val, min, max, half, _trackBackground.Width - half) - half;
-            _thumb.TranslationX = _progress.WidthRequest = position;
+            var thumbCenterpostion = ConvertRangeValue(val, min, max, half, _trackBackground.Width -half);
+            SetThumbPosition(thumbCenterpostion - half, thumbCenterpostion, val);
         }
 
         void OnThumbPanUpdated(object sender, PanUpdatedEventArgs e)
@@ -167,8 +172,10 @@ namespace TemplateUI.Controls
                     if (Device.RuntimePlatform == Device.Android)
                         totalX += _thumb.TranslationX;
 
-                    var position = CheckValueByRange(totalX + half, half, maxPosition);
-                    Value = ConvertRangeValue(position, half, maxPosition, Minimum, Maximum);
+                    var thumbCenterPostion = CheckValueByRange(totalX + half, half, maxPosition);
+                    var val = ConvertRangeValue(thumbCenterPostion, half, maxPosition, Minimum, Maximum);
+                    SetThumbPosition(thumbCenterPostion - half, thumbCenterPostion, val);
+                    Value = val;
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
@@ -184,5 +191,12 @@ namespace TemplateUI.Controls
 
         double CheckValueByRange(double val, double min, double max)
             => val <= min ? min : val >= max ? max : val;
+
+        void SetThumbPosition(double thumbPosition, double progrssWidth, double val)
+        {
+            _previousVal = val;
+            _thumb.TranslationX = thumbPosition;
+            _progress.WidthRequest = progrssWidth;
+        }
     }
 }
