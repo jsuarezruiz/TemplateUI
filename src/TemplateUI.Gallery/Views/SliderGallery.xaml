@@ -46,7 +46,7 @@
                 MinimumTrackColor="LightGreen"
                 Maximum="10"
                 MaximumTrackColor="LightGreen"
-                Value="6"
+                Value="12"
                 Margin="0">
                 <controls:Slider.Thumb>
                     <Frame BackgroundColor="Black" CornerRadius="10" HeightRequest="60" WidthRequest="60" Padding="0" Margin="0">

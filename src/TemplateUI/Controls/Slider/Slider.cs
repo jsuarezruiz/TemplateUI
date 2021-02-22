@@ -7,28 +7,45 @@ namespace TemplateUI.Controls
     public class Slider : TemplatedView
     {
         const string ElementTrackBackground = "PART_TrackBackground";
-        const string ElementTrack = "PART_Track";
         const string ElementProgress = "PART_Progress";
         const string ElementThumb = "PART_Thumb";
 
         View _trackBackground;
         BoxView _progress;
         ContentView _thumb;
-        double ThumbHalfWidth => (_thumb?.Width ?? 0) / 2 ;
-
         double _previousPosition;
 
-        public static readonly BindableProperty ThumbProperty = BindableProperty.Create(nameof(Thumb), typeof(View), typeof(Slider), null, propertyChanged: ThumbChanged);
+        public event EventHandler<ValueChangedEventArgs> ValueChanged;
+
+        double ThumbHalfWidth => (_thumb?.Width ?? 0) / 2;
+
+        public static readonly BindableProperty ValueProperty =
+            BindableProperty.Create(nameof(Value), typeof(double), typeof(Slider), 0.0d, propertyChanged: OnValueChanged);
+
+        public double Value
+        {
+            get => (double)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
+        }
+
+        static void OnValueChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is Slider slider)
+                slider.UpdateValue();
+        }
+
+        public static readonly BindableProperty ThumbProperty =
+            BindableProperty.Create(nameof(Thumb), typeof(View), typeof(Slider), null, propertyChanged: ThumbChanged);
 
         public View Thumb
         {
             get => (View)GetValue(ThumbProperty);
-            set{ SetValue(ThumbProperty, value); }
+            set => SetValue(ThumbProperty, value);
         }
         private static void ThumbChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var slider = bindable as Slider;
-            slider._thumb.Content = newValue as View;
+            if (bindable is Slider slider)
+                slider._thumb.Content = newValue as View;
         }
 
         public static readonly BindableProperty MinimumProperty =
@@ -37,7 +54,7 @@ namespace TemplateUI.Controls
         public double Minimum
         {
             get => (double)GetValue(MinimumProperty);
-            set { SetValue(MinimumProperty, value); }
+            set => SetValue(MinimumProperty, value);
         }
 
         public static readonly BindableProperty MaximumProperty =
@@ -46,26 +63,7 @@ namespace TemplateUI.Controls
         public double Maximum
         {
             get => (double)GetValue(MaximumProperty);
-            set { SetValue(MaximumProperty, value); }
-        }
-
-        public static readonly BindableProperty ValueProperty =
-            BindableProperty.Create(nameof(Value), typeof(double), typeof(Slider), 0.0d,
-                propertyChanged: OnValueChanged);
-
-        static void OnValueChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is Slider slider)
-            {
-                slider.ValueChanged?.Invoke(bindable, new ValueChangedEventArgs((double)newValue));
-                slider.UpdateValue();
-            }
-        }
-
-        public double Value
-        {
-            get => (double)GetValue(ValueProperty);
-            set { SetValue(ValueProperty, value); }
+            set => SetValue(MaximumProperty, value);
         }
 
         public static readonly BindableProperty TrackSizeProperty =
@@ -74,7 +72,7 @@ namespace TemplateUI.Controls
         public double TrackSize
         {
             get => (double)GetValue(TrackSizeProperty);
-            set { SetValue(TrackSizeProperty, value); }
+            set => SetValue(TrackSizeProperty, value);
         }
 
         public static readonly BindableProperty MinimumTrackColorProperty =
@@ -83,7 +81,7 @@ namespace TemplateUI.Controls
         public Color MinimumTrackColor
         {
             get => (Color)GetValue(MinimumTrackColorProperty);
-            set { SetValue(MinimumTrackColorProperty, value); }
+            set => SetValue(MinimumTrackColorProperty, value);
         }
 
         public static readonly BindableProperty MaximumTrackColorProperty =
@@ -92,10 +90,8 @@ namespace TemplateUI.Controls
         public Color MaximumTrackColor
         {
             get => (Color)GetValue(MaximumTrackColorProperty);
-            set { SetValue(MaximumTrackColorProperty, value); }
+            set => SetValue(MaximumTrackColorProperty, value);
         }
-
-        public event EventHandler<ValueChangedEventArgs> ValueChanged;
 
         protected override void OnApplyTemplate()
         {
@@ -126,24 +122,31 @@ namespace TemplateUI.Controls
             {
                 var panGestureRecognizer = new PanGestureRecognizer();
                 panGestureRecognizer.PanUpdated += OnThumbPanUpdated;
-                _thumb.GestureRecognizers.Add(panGestureRecognizer);
+                _thumb?.GestureRecognizers?.Add(panGestureRecognizer);
             }
             else
             {
                 _trackBackground.GestureRecognizers.Clear();
-                _thumb.GestureRecognizers.Clear();
+                _thumb?.GestureRecognizers?.Clear();
             }
         }
 
         void UpdateValue()
         {
-            var half = ThumbHalfWidth;
-            var position = ConvertRangeValue(Value, Minimum, Maximum, half, _trackBackground.Width - half) - half;
-            if (position <= 0)
+            var min = Minimum;
+            var max = Maximum;
+            var val = Value;
+            var valChecked = CheckValueByRange(val, min, max);
+            if (valChecked != val)
+            {
+                Value = valChecked;
                 return;
+            }
+            ValueChanged?.Invoke(this, new ValueChangedEventArgs(valChecked));
 
-            _progress.WidthRequest = position;
-            _thumb.TranslationX = position;
+            var half = ThumbHalfWidth;
+            var position = ConvertRangeValue(val, min, max, half, _trackBackground.Width - half) - half;
+            _thumb.TranslationX = _progress.WidthRequest = position;
         }
 
         void OnThumbPanUpdated(object sender, PanUpdatedEventArgs e)
@@ -157,24 +160,29 @@ namespace TemplateUI.Controls
                         _previousPosition += _thumb.TranslationX;
                     break;
                 case GestureStatus.Running:
-                    double totalX = _previousPosition + e.TotalX;
+                    var totalX = _previousPosition + e.TotalX;
+                    var half = ThumbHalfWidth;
+                    var maxPosition = _trackBackground.Width - half;
 
                     if (Device.RuntimePlatform == Device.Android)
                         totalX += _thumb.TranslationX;
-                    
-                    var half = ThumbHalfWidth;
-                    var position = totalX <= half ? half : totalX >= _trackBackground.Width - half ? _trackBackground.Width - half : totalX;
-                    Value = ConvertRangeValue(position, half, _trackBackground.Width - half, Minimum, Maximum);
+
+                    var position = CheckValueByRange(totalX + half, half, maxPosition);
+                    Value = ConvertRangeValue(position, half, maxPosition, Minimum, Maximum);
                     break;
                 case GestureStatus.Completed:
                 case GestureStatus.Canceled:
                     break;
             }
         }
-        double ConvertRangeValue(double oldValue, double oldMin, double oldMax, double Min, double Max)
+
+        double ConvertRangeValue(double oldVal, double oldMin, double oldMax, double min, double max)
         {
-            var relativeValue = (oldValue - oldMin) / (oldMax - oldMin);
-            return Min + (Max - Min) * relativeValue;
+            var relativeValue = (oldVal - oldMin) / (oldMax - oldMin);
+            return min + (max - min) * relativeValue;
         }
+
+        double CheckValueByRange(double val, double min, double max)
+            => val <= min ? min : val >= max ? max : val;
     }
 }
