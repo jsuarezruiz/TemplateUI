@@ -16,7 +16,12 @@ namespace TemplateUI.Controls
         Grid _buttonClose;
 
         public static readonly BindableProperty TextProperty =
-            BindableProperty.Create(nameof(Text), typeof(string), typeof(Tag), string.Empty);
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(Tag), string.Empty,
+            propertyChanged: OnTextChanged);
+
+        static void OnTextChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateText();
+
+        void UpdateText() => _text.Text = Text;
 
         public string Text
         {
@@ -25,7 +30,12 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty TextColorProperty =
-            BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(Tag), Color.Default);
+            BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(Tag), Color.Default,
+            propertyChanged: OnTextColorChanged);
+
+        static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateTextColor();
+
+        void UpdateTextColor() => _text.TextColor = TextColor;
 
         public Color TextColor
         {
@@ -34,7 +44,12 @@ namespace TemplateUI.Controls
         }
 
         public static new readonly BindableProperty BackgroundColorProperty =
-            BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(Tag), Color.Default);
+            BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(Tag), Color.Default,
+            propertyChanged: OnBackgroundColorChanged);
+
+        static void OnBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateBackgroundColor();
+
+        void UpdateBackgroundColor() => _border.BackgroundColor = BackgroundColor;
 
         public new Color BackgroundColor
         {
@@ -52,7 +67,12 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(Tag), Color.Default);
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(Tag), Color.Default,
+            propertyChanged: OnBorderColorChanged);
+
+        static void OnBorderColorChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateBorderColor();
+
+        void UpdateBorderColor() => _border.BorderColor = BorderColor;
 
         public Color BorderColor
         {
@@ -61,7 +81,12 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty HasShadowProperty =
-            BindableProperty.Create(nameof(HasShadow), typeof(bool), typeof(Tag), false);
+            BindableProperty.Create(nameof(HasShadow), typeof(bool), typeof(Tag), false,
+            propertyChanged: OnHasShadowChanged);
+
+        static void OnHasShadowChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateHasShadow();
+
+        void UpdateHasShadow() => _border.HasShadow = HasShadow;
 
         public bool HasShadow
         {
@@ -70,7 +95,12 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty FontSizeProperty =
-            BindableProperty.Create(nameof(FontSize), typeof(double), typeof(Tag), Device.GetNamedSize(NamedSize.Small, typeof(Label)));
+            BindableProperty.Create(nameof(FontSize), typeof(double), typeof(Tag), Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+            propertyChanged: OnFontSizeChanged);
+
+        static void OnFontSizeChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateFontSize();
+
+        void UpdateFontSize() => _text.FontSize = FontSize;
 
         [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
@@ -80,7 +110,12 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty FontFamilyProperty =
-          BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(Tag), string.Empty);
+          BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(Tag), string.Empty,
+            propertyChanged: OnFontFamilyChanged);
+
+        static void OnFontFamilyChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateFontFamily();
+
+        void UpdateFontFamily() => _text.FontFamily = FontFamily;
 
         public string FontFamily
         {
@@ -89,7 +124,12 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty FontAttributesProperty =
-            BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(Tag), FontAttributes.None);
+            BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(Tag), FontAttributes.None,
+            propertyChanged: OnFontAttributesChanged);
+
+        static void OnFontAttributesChanged(BindableObject bindable, object oldValue, object newValue) => ((Tag)bindable).UpdateFontAttributes();
+
+        void UpdateFontAttributes() => _text.FontAttributes = FontAttributes;
 
         public FontAttributes FontAttributes
         {
