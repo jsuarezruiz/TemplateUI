@@ -61,6 +61,7 @@ namespace TemplateUI.Gallery.ViewModels
                 new GalleryItem { Title = "ChatBubble", SubTitle = "Allow to show a speech bubble message.", Icon = "chatbubble.png", Color = Color.DarkSeaGreen },
                 new GalleryItem { Title = "CircularLayout", SubTitle = "Is a simple Layout derivative that lays out its children in a circular arrangement.", Icon = "circularlayout.png", Color = Color.BlueViolet },
                 //new GalleryItem { Title = "CircleProgressBar", SubTitle = "Shows a control that indicates the progress percentage of an on-going operation by circular shape.", Icon = "circleprogressbar.png", Color = Color.LightGray, Status = GalleryItemStatus.InProgress },
+                new GalleryItem { Title = "ColorPicker", SubTitle = "Picker for choosing Color.", Icon = "circularlayout.png", Color = Color.Red},
                 new GalleryItem { Title = "ComparerView", SubTitle = "Provides an option for displaying a split-screen of two views, which can help you to make comparisons.", Icon = "comparerview.png", Color = Color.DarkViolet, Status = GalleryItemStatus.InProgress },
                 new GalleryItem { Title = "DataVisualization", SubTitle = "Several series graphs.", Icon = "chart.png", Color = Color.LightCoral, Status = GalleryItemStatus.Preview  },
                 new GalleryItem { Title = "Divider", SubTitle = "Displays a separator between views.", Icon = "divider.png", Color = Color.Orchid  },

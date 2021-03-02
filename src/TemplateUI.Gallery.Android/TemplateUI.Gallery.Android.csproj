@@ -41,7 +41,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -51,6 +50,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\14.0.0.0\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.7.0.1351" />
@@ -63,6 +65,11 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\OpacityGradientLayoutRenderer.cs" />
+    <Compile Include="Renderers\GradientLayoutRenderer.cs" />
+    <Compile Include="Effects\RoundEffect.cs" />
+    <Compile Include="Effects\CornerRadiusOutlineProvider.cs" />
+    <Compile Include="Renderers\RadialPickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -267,11 +274,19 @@
       </Generator>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Renderers\" />
+    <Folder Include="Effects\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TemplateUI.Gallery\TemplateUI.Gallery.csproj">
       <Project>{D9A11260-71D9-42DB-969F-733793E98E34}</Project>
       <Name>TemplateUI.Gallery</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateUI\TemplateUI.csproj">
+      <Project>{E3954AAF-D1E4-4BDD-A25B-C3A22D436501}</Project>
+      <Name>TemplateUI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

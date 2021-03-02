@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TemplateUI.Controls;assembly=TemplateUI"
+    x:Class="TemplateUI.Gallery.Views.ColorPickerGallery"
+    BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
+    BarTextColor="White"
+    Title="Colorpicker Gallery"> 
+    <ContentPage
+        Title="Getting Started" 
+        IconImageSource="started.png">
+        <ContentPage.Content>
+            <controls:ColorPicker></controls:ColorPicker>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="Avatar Size"
+        IconImageSource="customize.png">
+        <!--<ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:GradientLayout WidthRequest="200" HeightRequest="200" ColorsList="#dd8f68,#a9a9a9,#3a3939" Mode="ToBottomRight"/>
+            </StackLayout>
+        </ContentPage.Content>-->
+    </ContentPage>
+        <ContentPage
+            Title="Customization"
+            IconImageSource="customize.png">
+        <!--<ContentPage.Content>
+            <StackLayout
+                Padding="12">
+                <controls:GradientLayout WidthRequest="200" HeightRequest="200" ColorsList="#dd8f68,#a9a9a9,#3a3939" Mode="ToBottomRight"/>
+            </StackLayout>
+        </ContentPage.Content>-->
+    </ContentPage>
+</TabbedPage>
