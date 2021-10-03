@@ -96,7 +96,7 @@ namespace TemplateUI.DataVisualization
                 {
                     Aspect = Stretch.Fill,
                     Opacity = 0.25,
-                    Stroke = Color.Gray,
+                    Stroke = new SolidColorBrush(Color.Gray),
                     StrokeThickness = 1,
                     X1 = 0
                 };

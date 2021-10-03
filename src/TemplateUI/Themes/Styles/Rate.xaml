@@ -17,8 +17,8 @@
                             WidthRequest="{Binding Source={x:Reference LayoutRoot}, Path=Width}"
                             HeightRequest="{Binding Source={x:Reference LayoutRoot}, Path=Height}"
                             Data="{TemplateBinding Icon}"
-                            Fill="{TemplateBinding UnSelectedFill}"
-                            Stroke="{TemplateBinding UnSelectedStroke}"
+                            Fill="{TemplateBinding UnSelectedFill, Converter={StaticResource ColorToBrushConverter}}"
+                            Stroke="{TemplateBinding UnSelectedStroke, Converter={StaticResource ColorToBrushConverter}}"
                             StrokeThickness="{TemplateBinding UnSelectedStrokeWidth}"
                             Aspect="Uniform"/>
                         <Grid
@@ -29,8 +29,8 @@
                                 WidthRequest="{Binding Source={x:Reference LayoutRoot}, Path=Width}"
                                 HeightRequest="{Binding Source={x:Reference LayoutRoot}, Path=Height}"
                                 Data="{TemplateBinding Icon}"
-                                Fill="{TemplateBinding SelectedFill}"
-                                Stroke="{TemplateBinding SelectedStroke}"
+                                Fill="{TemplateBinding SelectedFill, Converter={StaticResource ColorToBrushConverter}}"
+                                Stroke="{TemplateBinding SelectedStroke, Converter={StaticResource ColorToBrushConverter}}"
                                 StrokeThickness="{TemplateBinding SelectedStrokeWidth}"
                                 Aspect="Uniform"/>
                         </Grid>

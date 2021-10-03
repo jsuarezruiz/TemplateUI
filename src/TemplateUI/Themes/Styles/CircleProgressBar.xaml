@@ -25,7 +25,7 @@
                                WidthRequest="100"
                                HeightRequest="100" 
                                HorizontalOptions="Start"
-                               Stroke="{TemplateBinding ProgressColor}" 
+                               Stroke="{TemplateBinding ProgressColor, Converter={StaticResource ColorToBrushConverter}}" 
                                StrokeThickness="4" />
                         <Grid
                             WidthRequest="100"

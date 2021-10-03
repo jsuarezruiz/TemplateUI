@@ -21,7 +21,7 @@
             <Ellipse
                 x:Name="Part_Border"
                 Aspect="Fill"
-                Stroke="{TemplateBinding BorderColor}"
+                Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
                 StrokeThickness="{TemplateBinding BorderWidth}"
                 HorizontalOptions="Start"/>
             <Label
@@ -54,7 +54,7 @@
             <Rectangle
                 x:Name="Part_Border"
                 Aspect="Fill"
-                Stroke="{TemplateBinding BorderColor}"
+                Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
                 StrokeThickness="{TemplateBinding BorderWidth}"
                 HorizontalOptions="Start">
                 <Rectangle.RadiusX>

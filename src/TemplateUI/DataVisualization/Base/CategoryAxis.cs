@@ -120,7 +120,7 @@ namespace TemplateUI.DataVisualization
                 _valueTicks.Add(
                     new Line()
                     {
-                        Stroke = Color.Black,
+                        Stroke = new SolidColorBrush(Color.Black),
                         StrokeThickness = 1,
                         Y1 = 0,
                         Y2 = 4
