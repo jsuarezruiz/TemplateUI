@@ -77,20 +77,20 @@ namespace TemplateUI.DataVisualization
             set { SetValue(AxisColorProperty, value); }
         }
 
-        public static readonly BindableProperty ColorProperty =
-          BindableProperty.Create(nameof(Color), typeof(Color), typeof(SerialChart), Color.Black,
-              propertyChanged: OnColorPropertyChanged);
+        public static readonly BindableProperty BrushProperty =
+          BindableProperty.Create(nameof(Brush), typeof(Brush), typeof(SerialChart), new SolidColorBrush(Color.Black),
+              propertyChanged: OnBrushPropertyChanged);
 
-        static void OnColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        static void OnBrushPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             SerialChart chart = bindable as SerialChart;
-            chart.NotifyColorChanges();
+            chart.NotifyBrushChanges();
         }
 
-        public Color Color
+        public Brush Brush
         {
-            get { return (Color)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
+            get { return (Brush)GetValue(BrushProperty); }
+            set { SetValue(BrushProperty, value); }
         }
 
         public virtual void UpdateDataSource()
@@ -98,7 +98,7 @@ namespace TemplateUI.DataVisualization
 
         }
 
-        public virtual void UpdateColor()
+        public virtual void UpdateBrush()
         {
 
         }
@@ -108,9 +108,9 @@ namespace TemplateUI.DataVisualization
             UpdateDataSource();
         }
 
-        void NotifyColorChanges()
+        void NotifyBrushChanges()
         {
-            UpdateColor();
+            UpdateBrush();
         }
     }
 }

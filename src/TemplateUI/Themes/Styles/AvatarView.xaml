@@ -11,7 +11,7 @@
             <Image
                 x:Name="Part_Image"
                 Aspect="AspectFill"
-                BackgroundColor="{TemplateBinding BackgroundColor}"
+                Background="{TemplateBinding Background}"
                 Source="{TemplateBinding ImageSource}">
                 <Image.Clip>
                     <EllipseGeometry
@@ -21,7 +21,7 @@
             <Ellipse
                 x:Name="Part_Border"
                 Aspect="Fill"
-                Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
+                Stroke="{TemplateBinding BorderBrush}"
                 StrokeThickness="{TemplateBinding BorderWidth}"
                 HorizontalOptions="Start"/>
             <Label
@@ -48,13 +48,13 @@
                 <Image
                     x:Name="Part_Image"
                     Aspect="AspectFill"
-                    BackgroundColor="{TemplateBinding BackgroundColor}"
+                    Background="{TemplateBinding Background}"
                     Source="{TemplateBinding ImageSource}" />
             </Frame>
             <Rectangle
                 x:Name="Part_Border"
                 Aspect="Fill"
-                Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
+                Stroke="{TemplateBinding BorderBrush}"
                 StrokeThickness="{TemplateBinding BorderWidth}"
                 HorizontalOptions="Start">
                 <Rectangle.RadiusX>
