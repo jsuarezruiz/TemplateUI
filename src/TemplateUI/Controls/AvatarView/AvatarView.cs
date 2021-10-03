@@ -78,22 +78,22 @@ namespace TemplateUI.Controls
             set => SetValue(AvatarSurNameProperty, value);
         }
 
-        public static new readonly BindableProperty BackgroundColorProperty =
-            BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(AvatarView), Color.Default);
+        public static new readonly BindableProperty BackgroundProperty =
+            BindableProperty.Create(nameof(Background), typeof(Brush), typeof(AvatarView), Brush.Default);
 
-        public new Color BackgroundColor
+        public new Brush Background
         {
-            get => (Color)GetValue(BackgroundColorProperty);
-            set => SetValue(BackgroundColorProperty, value);
+            get => (Brush)GetValue(BackgroundProperty);
+            set => SetValue(BackgroundProperty, value);
         }
 
-        public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(AvatarView), Color.Default);
+        public static readonly BindableProperty BorderBrushProperty =
+            BindableProperty.Create(nameof(BorderBrush), typeof(Brush), typeof(AvatarView), Brush.Default);
 
-        public Color BorderColor
+        public Brush BorderBrush
         {
-            get => (Color)GetValue(BorderColorProperty);
-            set => SetValue(BorderColorProperty, value);
+            get => (Brush)GetValue(BorderBrushProperty);
+            set => SetValue(BorderBrushProperty, value);
         }
 
         public static readonly BindableProperty BorderWidthProperty =

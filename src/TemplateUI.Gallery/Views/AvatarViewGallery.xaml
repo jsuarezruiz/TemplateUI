@@ -7,6 +7,29 @@
     BarBackgroundColor="{StaticResource NavBarBackgroundColor}"
     BarTextColor="White"
     Title="AvatarView Gallery">
+    <TabbedPage.Resources>
+              <ResourceDictionary>
+
+                  <LinearGradientBrush
+                      x:Key="BorderGradient"
+                      StartPoint="0,0"
+                      EndPoint="1,1">
+                      <GradientStop
+                          Color="Yellow"
+                          Offset="0.0" />
+                      <GradientStop
+                          Color="Red"
+                          Offset="0.25" />
+                      <GradientStop
+                          Color="Blue"
+                          Offset="0.75" />             
+                      <GradientStop
+                          Color="LimeGreen"
+                          Offset="1.0" />
+                  </LinearGradientBrush>                                                       
+
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <ContentPage
         Title="Getting Started" 
         IconImageSource="started.png">
@@ -16,29 +39,29 @@
                 <controls:AvatarView
                     AvatarName="Javier"
                     AvatarSurName="Suarez"
-                    BorderColor="Black"
-                    BackgroundColor="Red"/>
+                    BorderBrush="Black"
+                    Background="Red"/>
                 <Label
                     Text="Using Initials (Ellipse)"/>
                 <controls:AvatarView
                     AvatarShape="Square"
                     AvatarName="Javier"
                     AvatarSurName="Suarez"
-                    BorderColor="Black"
-                    BackgroundColor="Red"/>
+                    BorderBrush="Black"
+                    Background="Red"/>
                 <Label
                     Text="Using Initials (Square)"/>
                 <controls:AvatarView
                     ImageSource="javier.jpg"
-                    BorderColor="Black"
-                    BackgroundColor="Red"/>
+                    BorderBrush="Black"
+                    Background="Red"/>
                 <Label
                     Text="Using an Image (Ellipse)"/>
                 <controls:AvatarView
                     AvatarShape="Square"
                     ImageSource="javier.jpg"
-                    BorderColor="Black"
-                    BackgroundColor="Red"/>
+                    BorderBrush="Black"
+                    Background="Red"/>
                 <Label
                     Text="Using an Image (Square)"/>
             </StackLayout>
@@ -63,7 +86,7 @@
                 </Grid.RowDefinitions>
                 <StackLayout>
                     <controls:AvatarView
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="ExtraSmall"/>
@@ -74,7 +97,7 @@
                     Grid.Column="1">
                     <controls:AvatarView
                         AvatarShape="Square"
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="ExtraSmall"/>
@@ -84,7 +107,7 @@
                 <StackLayout
                     Grid.Row="1">
                     <controls:AvatarView
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="Small"/>
@@ -96,7 +119,7 @@
                     Grid.Row="1">
                     <controls:AvatarView
                         AvatarShape="Square"
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="Small"/>
@@ -106,7 +129,7 @@
                 <StackLayout
                     Grid.Row="2">
                     <controls:AvatarView
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="Medium"/>
@@ -118,7 +141,7 @@
                     Grid.Row="2">
                     <controls:AvatarView
                         AvatarShape="Square"
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="Medium"/>
@@ -128,7 +151,7 @@
                 <StackLayout
                     Grid.Row="3">
                     <controls:AvatarView
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="Large"/>
@@ -140,7 +163,7 @@
                     Grid.Row="3">
                     <controls:AvatarView
                         AvatarShape="Square"
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="Large"/>
@@ -150,7 +173,7 @@
                 <StackLayout
                     Grid.Row="4">
                     <controls:AvatarView
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="ExtraLarge"/>
@@ -162,7 +185,7 @@
                     Grid.Row="4">
                     <controls:AvatarView
                         AvatarShape="Square"
-                        BackgroundColor="Orange"
+                        Background="Orange"
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarSize="ExtraLarge"/>
@@ -190,8 +213,8 @@
                     <controls:AvatarView
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
-                        BackgroundColor="Red"
-                        BorderColor="Orange"
+                        Background="Red"
+                        BorderBrush="{StaticResource BorderGradient}"
                         BorderWidth="3"/>
                     <Label
                         Text="BorderWidth (Circle)"/>
@@ -202,8 +225,8 @@
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarShape="Square"
-                        BackgroundColor="Red"
-                        BorderColor="Orange"
+                        Background="Red"
+                        BorderBrush="{StaticResource BorderGradient}"
                         BorderWidth="3"/>
                     <Label
                         Text="BorderWidth (Square)"/>
@@ -213,8 +236,8 @@
                     <controls:AvatarView
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
-                        BorderColor="Black"
-                        BackgroundColor="Red"
+                        BorderBrush="Black"
+                        Background="Red"
                         HeightRequest="100"
                         WidthRequest="100"/>
                     <Label
@@ -227,8 +250,8 @@
                         AvatarName="Javier"
                         AvatarSurName="Suarez"
                         AvatarShape="Square"
-                        BorderColor="Black"
-                        BackgroundColor="Red"
+                        BorderBrush="Black"
+                        Background="Red"
                         HeightRequest="100"
                         WidthRequest="100"/>
                     <Label
