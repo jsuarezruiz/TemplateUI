@@ -21,7 +21,6 @@ namespace TemplateUI.Gallery.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Forms.SetFlags("Brush_Experimental", "Shapes_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

@@ -98,7 +98,7 @@ namespace TemplateUI.DataVisualization
             {
                 Aspect = Stretch.Fill,
                 WidthRequest = 100,
-                Stroke = Color,
+                Stroke = new SolidColorBrush(Color),
                 StrokeThickness = 2
             };
         }
@@ -119,7 +119,7 @@ namespace TemplateUI.DataVisualization
 
         public override void UpdateColor()
         {
-            _lineChart.Stroke = Color;
+            _lineChart.Stroke = new SolidColorBrush(Color);
         }
 
         void UpdateValueData()

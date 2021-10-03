@@ -43,7 +43,7 @@
                                     HeightRequest="12"
                                     WidthRequest="12"
                                     Data="{StaticResource ArrowHeadRightGeometry}"
-                                    Fill="{TemplateBinding CurrentTextColor}"
+                                    Fill="{TemplateBinding CurrentTextColor, Converter={StaticResource ColorToBrushConverter}}"
                                     Margin="2, 6"/>
                             </Grid>
                             <Image

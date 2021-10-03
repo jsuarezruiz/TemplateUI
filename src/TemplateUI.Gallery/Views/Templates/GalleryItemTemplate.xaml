@@ -56,7 +56,7 @@
                     WidthRequest="48"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Fill="{Binding Color}"/>
+                    Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}"/>
                 <Image
                     Aspect="AspectFit"
                     Source="{Binding Icon}"

@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:TemplateUI.Controls">
 
     <Color x:Key="GridSplitterIndicatorColor">#FF868686</Color>
+    <SolidColorBrush x:Key="GridSplitterIndicatorBrush" Color="{StaticResource GridSplitterIndicatorColor}" />
 
     <controls:ElementToBoolConverter x:Key="ElementToBoolConverter" />
 
@@ -29,11 +30,11 @@
                                     IsVisible="{TemplateBinding Element, Converter={StaticResource ElementToBoolConverter}}">
                                     <Line
                                         X2="10"
-                                        Stroke="{StaticResource GridSplitterIndicatorColor}"
+                                        Stroke="{StaticResource GridSplitterIndicatorBrush}"
                                         StrokeThickness="2" />
                                     <Line
                                         X2="10"
-                                        Stroke="{StaticResource GridSplitterIndicatorColor}"
+                                        Stroke="{StaticResource GridSplitterIndicatorBrush}"
                                         StrokeThickness="2" />
                                 </StackLayout>
                             </Grid>

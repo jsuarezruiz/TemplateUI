@@ -12,7 +12,7 @@
             <Path
                 x:Name="PART_Tail"
                 Data="{StaticResource BubbleTailGeometry}"
-                Fill="{TemplateBinding BackgroundColor}"
+                Fill="{TemplateBinding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
                 HorizontalOptions="End"
                 Aspect="Uniform"
                 VerticalOptions="End"
@@ -46,7 +46,7 @@
             <Path
                 x:Name="PART_Tail"
                 Data="{StaticResource BubbleTailGeometry}"
-                Fill="{TemplateBinding BackgroundColor}"
+                Fill="{TemplateBinding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
                 HorizontalOptions="End"
                 Aspect="Uniform"
                 VerticalOptions="End"

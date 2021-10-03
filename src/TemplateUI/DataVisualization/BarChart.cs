@@ -111,8 +111,8 @@ namespace TemplateUI.DataVisualization
             _barChart = new Path
             {
                 Aspect = Stretch.Fill,
-                Stroke = Color,
-                Fill = Color,
+                Stroke = new SolidColorBrush(Color),
+                Fill = new SolidColorBrush(Color),
                 StrokeThickness = 1,
                 Margin = new Thickness(24, 0)
             };
@@ -136,8 +136,8 @@ namespace TemplateUI.DataVisualization
 
         public override void UpdateColor()
         {
-            _barChart.Stroke = Color;
-            _barChart.Fill = Color;
+            _barChart.Stroke = new SolidColorBrush(Color);
+            _barChart.Fill = new SolidColorBrush(Color);
         }
 
         void UpdateValueData()

@@ -19,7 +19,6 @@ namespace TemplateUI.Gallery.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Forms.SetFlags("Shapes_Experimental");
             Forms.Init();
             LoadApplication(new App());
 

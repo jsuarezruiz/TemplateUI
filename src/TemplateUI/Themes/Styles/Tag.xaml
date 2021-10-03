@@ -47,7 +47,7 @@
                                     WidthRequest="12"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    Fill="{TemplateBinding TextColor}"
+                                    Fill="{TemplateBinding TextColor, Converter={StaticResource ColorToBrushConverter}}"
                                     Data="{StaticResource DeleteGeometry}"/>
                             </Grid>
                         </Grid>

@@ -15,6 +15,7 @@
             <Color x:Key="BackgroundColor">#F8F8F8</Color>
 
             <!-- CONVERTERS -->
+            <converters:ColorToBrushConverter x:Key="ColorToBrushConverter" />
             <converters:GalleryItemStatusToBoolConverter x:Key="GalleryItemStatusToBoolConverter" />
             <converters:GalleryItemStatusToColorConverter x:Key="GalleryItemStatusToColorConverter" />
             <converters:GalleryItemStatusToStringConverter x:Key="GalleryItemStatusToStringConverter" />

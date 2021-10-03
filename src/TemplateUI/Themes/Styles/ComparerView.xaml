@@ -45,8 +45,8 @@
                   <Ellipse
                       HeightRequest="40"
                       WidthRequest="40"
-                      Fill="{TemplateBinding BackgroundColor}"
-                      Stroke="{TemplateBinding Color}"
+                      Fill="{TemplateBinding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
+                      Stroke="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"
                       StrokeThickness="4"
                       HorizontalOptions="Center"
                       VerticalOptions="Center"/>
@@ -62,14 +62,14 @@
                       <Path
                           Aspect="Uniform"
                           Data="{StaticResource ArrowHeadLeftGeometry}"
-                          Fill="{TemplateBinding Color}"
-                          Stroke="{TemplateBinding Color}"/>
+                          Fill="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"
+                          Stroke="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"/>
                       <Path
                           Grid.Column="1"
                           Aspect="Uniform"
                           Data="{StaticResource ArrowHeadRightGeometry}"
-                          Fill="{TemplateBinding Color}"
-                          Stroke="{TemplateBinding Color}"/>
+                          Fill="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"
+                          Stroke="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"/>
                   </Grid>
               </Grid>
           </Grid>
@@ -88,8 +88,8 @@
                 <Ellipse
                     HeightRequest="40"
                     WidthRequest="40"
-                    Fill="{TemplateBinding BackgroundColor}"
-                    Stroke="{TemplateBinding Color}"
+                    Fill="{TemplateBinding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
+                    Stroke="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"
                     StrokeThickness="4"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
@@ -105,14 +105,14 @@
                     <Path
                         Aspect="Uniform"
                         Data="{StaticResource ArrowHeadUpGeometry}"
-                        Fill="{TemplateBinding Color}"
-                        Stroke="{TemplateBinding Color}"/>
+                        Fill="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"
+                        Stroke="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"/>
                     <Path
                         Grid.Row="1"
                         Aspect="Uniform"
                         Data="{StaticResource ArrowHeadDownGeometry}"
-                        Fill="{TemplateBinding Color}"
-                        Stroke="{TemplateBinding Color}"/>
+                        Fill="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"
+                        Stroke="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}"/>
                 </Grid>
             </Grid>
         </Grid>

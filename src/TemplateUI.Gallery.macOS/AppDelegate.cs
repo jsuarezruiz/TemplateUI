@@ -30,7 +30,6 @@ namespace TemplateUI.Gallery.macOS
 
         public override void DidFinishLaunching(NSNotification notification)
         {
-            Forms.SetFlags("Shapes_Experimental");
             Forms.Init();
             LoadApplication(new App());
             base.DidFinishLaunching(notification);
