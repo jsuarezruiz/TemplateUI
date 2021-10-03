@@ -98,7 +98,7 @@ namespace TemplateUI.DataVisualization
             {
                 Aspect = Stretch.Fill,
                 WidthRequest = 100,
-                Stroke = new SolidColorBrush(Color),
+                Stroke = Brush,
                 StrokeThickness = 2
             };
         }
@@ -117,9 +117,9 @@ namespace TemplateUI.DataVisualization
             UpdateCategoryData();
         }
 
-        public override void UpdateColor()
+        public override void UpdateBrush()
         {
-            _lineChart.Stroke = new SolidColorBrush(Color);
+            _lineChart.Stroke = Brush;
         }
 
         void UpdateValueData()

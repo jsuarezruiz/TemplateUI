@@ -111,8 +111,8 @@ namespace TemplateUI.DataVisualization
             _barChart = new Path
             {
                 Aspect = Stretch.Fill,
-                Stroke = new SolidColorBrush(Color),
-                Fill = new SolidColorBrush(Color),
+                Stroke = Brush,
+                Fill = Brush,
                 StrokeThickness = 1,
                 Margin = new Thickness(24, 0)
             };
@@ -134,10 +134,10 @@ namespace TemplateUI.DataVisualization
             UpdateCategoryData();
         }
 
-        public override void UpdateColor()
+        public override void UpdateBrush()
         {
-            _barChart.Stroke = new SolidColorBrush(Color);
-            _barChart.Fill = new SolidColorBrush(Color);
+            _barChart.Stroke = Brush;
+            _barChart.Fill = Brush;
         }
 
         void UpdateValueData()

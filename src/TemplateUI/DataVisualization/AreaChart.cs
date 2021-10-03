@@ -97,8 +97,8 @@ namespace TemplateUI.DataVisualization
             _areaChart = new Polygon
             {
                 Aspect = Stretch.Fill,
-                Fill = new SolidColorBrush(Color),
-                Stroke = new SolidColorBrush(Color),
+                Fill = Brush,
+                Stroke = Brush,
                 StrokeThickness = 2
             };
         }
@@ -117,10 +117,10 @@ namespace TemplateUI.DataVisualization
             UpdateCategoryData();
         }
 
-        public override void UpdateColor()
+        public override void UpdateBrush()
         {
-            _areaChart.Stroke = new SolidColorBrush(Color);
-            _areaChart.Fill = new SolidColorBrush(Color);
+            _areaChart.Stroke = Brush;
+            _areaChart.Fill = Brush;
         }
 
         void UpdateValueData()
