@@ -5,6 +5,7 @@ namespace TemplateUI
 {
     public static class TemplateUI
     {
+        // TODO: Create MauiAppBuilder extension method
         public static void Init()
         {
             var templateUIDictionary = new Generic();
