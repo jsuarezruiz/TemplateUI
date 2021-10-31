@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.Tag"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Style TargetType="controls:Tag">
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Frame
+                        x:Name="PART_Border"
+                        BorderColor="{TemplateBinding BorderColor}"
+                        BackgroundColor="{TemplateBinding BackgroundColor}"
+                        HasShadow="{TemplateBinding HasShadow}"
+                        CornerRadius="12"
+                        Padding="6"
+                        VerticalOptions="Start">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                x:Name="PART_Text"
+                                Text="{TemplateBinding Text}"
+                                TextColor="{TemplateBinding TextColor}"
+                                FontSize="{TemplateBinding FontSize}"
+                                FontAttributes="{TemplateBinding FontAttributes}"
+                                FontFamily="{TemplateBinding FontFamily}"
+                                FlowDirection="{TemplateBinding FlowDirection}"
+                                AutomationId="{TemplateBinding AutomationId}"
+                                MaxLines="1"
+                                LineBreakMode="TailTruncation"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                            <Grid
+                                x:Name="PART_ButtonClose"
+                                Grid.Column="1"
+                                IsVisible="{TemplateBinding ShowCloseButton}">
+                                <Path
+                                    Aspect="Fill"
+                                    HeightRequest="12"
+                                    WidthRequest="12"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Fill="{TemplateBinding TextColor, Converter={StaticResource ColorToBrushConverter}}"
+                                    Data="{StaticResource DeleteGeometry}"/>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

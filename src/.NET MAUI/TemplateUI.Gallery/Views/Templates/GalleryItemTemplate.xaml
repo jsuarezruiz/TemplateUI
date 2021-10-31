@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Gallery.Views.Templates.GalleryItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="SubTitleTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+
+            <Style x:Key="IconStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="TagContainerStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+
+            <Style x:Key="TagTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="8" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid
+            RowSpacing="0"
+            Padding="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.RowSpan="2">
+                <Ellipse
+                    HeightRequest="48"
+                    WidthRequest="48"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}"/>
+                <Image
+                    Aspect="AspectFit"
+                    Source="{Binding Icon}"
+                    Margin="12"
+                    Style="{StaticResource IconStyle}"/>
+            </Grid>
+            <Label
+                Grid.Column="1"
+                Text="{Binding Title}"
+                Style="{StaticResource TitleTextStyle}"/>
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="{Binding SubTitle}"
+                Style="{StaticResource SubTitleTextStyle}"/>
+            <Grid
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                IsVisible="{Binding Status, Converter={StaticResource GalleryItemStatusToBoolConverter}}">
+                <Frame
+                    BackgroundColor="{Binding Status, Converter={StaticResource GalleryItemStatusToColorConverter}}"
+                    Style="{StaticResource TagContainerStyle}">
+                    <Label
+                        Text="{Binding Status, Converter={StaticResource GalleryItemStatusToStringConverter}}"
+                        Style="{StaticResource TagTextStyle}"/>
+                </Frame>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

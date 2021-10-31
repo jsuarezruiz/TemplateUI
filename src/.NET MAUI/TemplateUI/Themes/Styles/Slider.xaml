@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.Slider"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Style TargetType="controls:Slider">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid x:Name="PART_TrackBackground"
+                          Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <BoxView x:Name="PART_Track"
+                                 HeightRequest="{TemplateBinding TrackSize}"
+                                 Color="{TemplateBinding MaximumTrackColor}"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center"
+                                 Margin="2, 0"/>
+
+                        <BoxView x:Name="PART_Progress"
+                                 HeightRequest="{TemplateBinding TrackSize}"
+                                 WidthRequest="0"
+                                 Color="{TemplateBinding MinimumTrackColor}"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="2, 0"/>
+
+                        <ContentView x:Name="PART_Thumb"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center"
+                                     Padding="0"
+                                     Margin="0">
+                            <ContentView.Content>
+                                <BoxView BackgroundColor="LightGray"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         CornerRadius="10"
+                                         Margin="0"/>
+                            </ContentView.Content>
+                        </ContentView>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

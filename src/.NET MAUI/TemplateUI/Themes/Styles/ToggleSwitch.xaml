@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.ToggleSwitch"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <ControlTemplate x:Key="CupertinoControlTemplate">
+          <Grid 
+              x:Name="PART_Container"
+              BackgroundColor="{TemplateBinding BackgroundColor}"
+              HorizontalOptions="Start"
+              VerticalOptions="Start"
+              HeightRequest="32"
+              WidthRequest="44">
+              <Rectangle
+                  x:Name="PART_Background"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  HeightRequest="28"
+                  WidthRequest="40"
+                  Margin="2"
+                  Fill="{TemplateBinding CurrentColor, Converter={StaticResource ColorToBrushConverter}}"
+                  Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
+                  StrokeThickness="{TemplateBinding BorderWidth}"
+                  RadiusY="{TemplateBinding CornerRadius}"
+                  RadiusX="{TemplateBinding CornerRadius}"/>
+              <Ellipse
+                  x:Name="PART_Thumb"
+                  Fill="{TemplateBinding ThumbColor, Converter={StaticResource ColorToBrushConverter}}"
+                  Stroke="{TemplateBinding CurrentColor, Converter={StaticResource ColorToBrushConverter}}"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  HeightRequest="25"
+                  WidthRequest="25" />
+          </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="FluentControlTemplate">
+          <Grid 
+              x:Name="PART_Container"
+              BackgroundColor="{TemplateBinding BackgroundColor}"
+              HorizontalOptions="Start"
+              VerticalOptions="Start"
+              HeightRequest="28"
+              WidthRequest="48">
+              <Rectangle
+                  x:Name="PART_Background"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  HeightRequest="24"
+                  WidthRequest="44"
+                  Margin="2"
+                  Fill="{TemplateBinding CurrentColor, Converter={StaticResource ColorToBrushConverter}}"
+                  Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
+                  StrokeThickness="{TemplateBinding BorderWidth}"
+                  RadiusY="{TemplateBinding CornerRadius}"
+                  RadiusX="{TemplateBinding CornerRadius}"/>
+              <Ellipse
+                  x:Name="PART_Thumb"
+                  Aspect="Uniform"
+                  Fill="{TemplateBinding ThumbColor, Converter={StaticResource ColorToBrushConverter}}"
+                  Stroke="{TemplateBinding CurrentColor, Converter={StaticResource ColorToBrushConverter}}"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  HeightRequest="18"
+                  WidthRequest="18"
+                  Margin="6"/>
+          </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MaterialControlTemplate">
+          <Grid 
+              x:Name="PART_Container"
+              BackgroundColor="{TemplateBinding BackgroundColor}"
+              HorizontalOptions="Start"
+              VerticalOptions="Start"
+              HeightRequest="32"
+              WidthRequest="44">
+              <Rectangle
+                  x:Name="PART_Background"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Center"
+                  HeightRequest="14"
+                  WidthRequest="40"
+                  Margin="2"
+                  Fill="{TemplateBinding CurrentColor, Converter={StaticResource ColorToBrushConverter}}"
+                  Stroke="{TemplateBinding BorderColor, Converter={StaticResource ColorToBrushConverter}}"
+                  StrokeThickness="{TemplateBinding BorderWidth}"
+                  RadiusY="{TemplateBinding CornerRadius}"
+                  RadiusX="{TemplateBinding CornerRadius}"/>
+              <Ellipse
+                  x:Name="PART_Thumb"
+                  Fill="{TemplateBinding ThumbColor, Converter={StaticResource ColorToBrushConverter}}"
+                  Stroke="{TemplateBinding CurrentColor, Converter={StaticResource ColorToBrushConverter}}"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  HeightRequest="25"
+                  WidthRequest="25" />
+          </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="controls:ToggleSwitch">
+        <Setter Property="ControlTemplate" Value="{StaticResource CupertinoControlTemplate}" />
+    </Style>
+
+</ResourceDictionary>

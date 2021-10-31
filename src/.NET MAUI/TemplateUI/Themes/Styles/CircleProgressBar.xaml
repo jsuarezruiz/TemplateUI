@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TemplateUI.Themes.CircleProgressBar"
+    xmlns:controls="clr-namespace:TemplateUI.Controls">
+
+    <Style TargetType="controls:CircleProgressBar">
+        <Setter Property="ControlTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid
+                        WidthRequest="{TemplateBinding Width}"
+                        HeightRequest="100">
+                        <Ellipse
+                            HorizontalOptions="Start"
+                            Aspect="Fill"
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            Stroke="LightGray"
+                            StrokeThickness="4"/>
+                           <Path
+                               x:Name="PART_Arc"
+                               Aspect="Fill"
+                               WidthRequest="100"
+                               HeightRequest="100" 
+                               HorizontalOptions="Start"
+                               Stroke="{TemplateBinding ProgressColor, Converter={StaticResource ColorToBrushConverter}}" 
+                               StrokeThickness="4" />
+                        <Grid
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            HorizontalOptions="Start">
+                                   <Label
+                                       x:Name="PART_Text"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="{TemplateBinding TextColor}"
+                                       Text="{TemplateBinding Text}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontAttributes="{TemplateBinding FontAttributes}"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

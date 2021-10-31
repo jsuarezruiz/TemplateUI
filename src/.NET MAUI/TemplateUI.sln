@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31828.326
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateUI", "TemplateUI\TemplateUI.csproj", "{2E7CCBC7-0156-47FC-BD39-7365227E8B91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateUI.Gallery", "TemplateUI.Gallery\TemplateUI.Gallery.csproj", "{A222F453-8FE6-43ED-91F5-038D770DCFB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E7CCBC7-0156-47FC-BD39-7365227E8B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7CCBC7-0156-47FC-BD39-7365227E8B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7CCBC7-0156-47FC-BD39-7365227E8B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7CCBC7-0156-47FC-BD39-7365227E8B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A222F453-8FE6-43ED-91F5-038D770DCFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A222F453-8FE6-43ED-91F5-038D770DCFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A222F453-8FE6-43ED-91F5-038D770DCFB1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A222F453-8FE6-43ED-91F5-038D770DCFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A222F453-8FE6-43ED-91F5-038D770DCFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3728B68-454B-4057-B6AE-0976841CA04D}
+	EndGlobalSection
+EndGlobal
