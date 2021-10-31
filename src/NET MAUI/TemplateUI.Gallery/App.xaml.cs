@@ -9,6 +9,8 @@ namespace TemplateUI.Gallery
         {
             InitializeComponent();
 
+            TemplateUI.Init();
+
             MainPage = new MainView();
         }
     }

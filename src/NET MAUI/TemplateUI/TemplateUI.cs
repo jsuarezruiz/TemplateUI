@@ -1,19 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
-using Microsoft.Maui.Hosting;
 using TemplateUI.Themes;
 
-namespace TemplateUI.Hosting
+namespace TemplateUI
 {
-    public static class AppHostBuilderExtensions
+    public static class TemplateUI
     {
-        public static MauiAppBuilder ConfigureTemplateUI(this MauiAppBuilder builder)
-        {
-            InitTemplateUI();
-
-            return builder;
-        }
-
-        static void InitTemplateUI()
+        public static void Init()
         {
             var templateUIDictionary = new Generic();
 

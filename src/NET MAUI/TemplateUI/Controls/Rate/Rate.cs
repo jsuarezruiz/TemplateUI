@@ -49,7 +49,7 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty SelectedFillProperty =
-            BindableProperty.Create(nameof(SelectedFill), typeof(Color), typeof(Rate), Color.FromHex("#F6C602"));
+            BindableProperty.Create(nameof(SelectedFill), typeof(Color), typeof(Rate), Color.FromArgb("#F6C602"));
 
         public Color SelectedFill
         {
@@ -67,7 +67,7 @@ namespace TemplateUI.Controls
         }
 
         public static readonly BindableProperty SelectedStrokeProperty =
-            BindableProperty.Create(nameof(SelectedStroke), typeof(Color), typeof(Rate), Color.FromHex("#F6C602"));
+            BindableProperty.Create(nameof(SelectedStroke), typeof(Color), typeof(Rate), Color.FromArgb("#F6C602"));
 
         public Color SelectedStroke
         {

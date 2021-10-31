@@ -6,7 +6,7 @@
     xmlns:templates="clr-namespace:TemplateUI.Gallery.Views.Templates"
     x:Class="TemplateUI.Gallery.Views.MainView"
     BackgroundColor="{StaticResource NavBarBackgroundColor}"
-    Title="Welcome to TemplateUI!">
+    Title="Welcome to TemplateUI">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -65,15 +65,7 @@
                     RowSpacing="0"
                     Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition>
-                            <RowDefinition.Height>
-                                <OnPlatform x:TypeArguments="GridLength">
-                                   <On Platform="Android, iOS">150</On>
-                                   <On Platform="macOS">24</On>
-                                    <On Platform="UWP">200</On>
-                                </OnPlatform>
-                            </RowDefinition.Height>
-                        </RowDefinition>
+                        <RowDefinition Height="150" />
                         <RowDefinition Height="100" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
